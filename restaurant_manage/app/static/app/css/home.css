@@ -1,0 +1,222 @@
+/* <====================| RESET CSS |=====================> */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+/* <====================| SLIDER |=====================> */
+/* --------background-------- */
+#slider {
+    margin-top: 80px;
+    background: url(../images/imgs-home/home-slider.png) top center / cover no-repeat;
+
+}
+
+#slider .background {
+    position: relative;
+    padding-top: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+/* ------------ btn Book----------- */
+#slider .book-table {
+    position: absolute;
+    bottom: 200px;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 30px;
+    font-weight:100;
+    font-style: italic;
+    color: #fff;
+}
+
+#slider .btn-book
+{
+    margin-top: 18px;
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    background-color: #ED2024;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+#slider .btn-book:hover {
+    color: #ED2024;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+
+/* <====================| CONTENT |=====================> */
+/* ===============promotion===================== */
+#content .content-promotion {
+    height: 700px;
+    padding: 98px 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #000;
+    color: #fff;
+
+    padding: 0 2%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#content .content-promotion .promotion-desc{
+    text-align: left;
+    height: 620px;
+    width: 50%;
+    
+}
+
+
+#content .heading-promotion {
+    font-size: 36px;
+    margin-bottom: 18px;
+    
+}
+
+#content .heading-sub {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+#content .desc {
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    
+}
+
+
+
+#content .content-promotion .promotion-img {
+    width: 40%;
+    height: 620px;
+    background: url() center top / cover no-repeat;
+    margin: 2px 2%
+}
+
+/* =======================About================= */
+
+#content #about {
+    background: url() center top / cover no-repeat;
+
+}
+#content .content-about-us {
+    height: 900px;
+    padding: 98px 2%;
+    margin-left: auto;
+    margin-right: auto;  
+    background-color: rgba(0, 0, 0, 0.6);  
+    color: #fff;
+    
+    padding: 0 2%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#content .content-about-us .about-desc{
+    text-align: left;
+    height: 620px;
+    width: 50%;
+    
+}
+
+#content .about-heading {
+    font-size: 36px;
+    margin-bottom: 18px;
+    
+}
+
+#content .about-sub-heading {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+#content .about-text {
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    
+}
+
+#content .content-about-us .about-img {
+    width: 40%;
+    height: 860px;
+    background: url() center top / cover no-repeat;
+    margin: 2px 2%
+}
+
+/* =========================="content-location"================ */
+
+#content .content-location {
+    padding: 50px 2%;
+    height: 800px;
+    background-color: #000;
+    color: #fff;
+}
+
+#content .content-location .location-img {
+    margin-top: 20px;
+    height: 60%;
+    width: 80%;
+    align-items: center;
+    
+}
+
+#content .location-text .location-heading {
+    font-size: 36px;
+}
+
+
+.content-location .location-text {
+    font-weight: 100;
+    margin-top: 20px;
+}
+
+.content-location .location-text .sub-heading {
+    font-size: 24px;
+    font-weight: 200;
+    padding: 10px 10px;
+}
+
+.content-location .location-text p{
+    font-size: 13px;
+    font-weight: 100;
+    margin-top: 10px;
+}
+
+.content-location .btn {
+    width: 200px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: #ed2024 solid 1px;
+    color: #ed2024;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 15px;
+}
+

@@ -1,0 +1,43 @@
+/* <====================| RESET CSS |=====================> */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+/* <====================| FORM BOOK |=====================> */
+#slider .book-heading{
+    font-size: 36px;
+    font-style: normal;
+    margin-bottom: 10px;
+}
+
+#slider .icon-book{
+    margin-right: 8px;
+    font-size: 30px;
+}
+
+#slider .icon{
+    margin-top: 10px;
+    margin-left: 8px;
+    font-size: 26px;
+    color: #000000;
+    font-weight: 800;
+}
+
+
+#slider .book-table-form .valid{
+    font-size: 20px;
+    text-align: left;
+}
+
+#slider .btn-submit{
+    height: 45px;
+    margin-left: 522px;
+    width: 590px;
+}
+
