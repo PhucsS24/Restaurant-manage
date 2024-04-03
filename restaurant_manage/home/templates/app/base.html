@@ -27,8 +27,8 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
         <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
         
+
         
         
     </head>
@@ -39,7 +39,7 @@
             <ul id="nav">
                 <li><a href="{% url 'home' %}">Home</a></li>
     
-                <li><a href="">Menu
+                <li><a href="{% url 'menu' %}">Menu
                     <i class="icon icon-down ti-angle-down"></i>
                 </a>
                     <ul class="subnav">
@@ -81,11 +81,11 @@
 
                 </li>
     
-                <li><a href="cart.html">Cart 
+                <li><a href="{% url "cart" %}">Cart 
                     <i class="icon icon-cart ti-shopping-cart"></i>
                 </a></li>
     
-                <li><a href="">Sign-in
+                <li><a href="{% url 'signin' %}">Sign-in
                     <i class="icon icon-user ti-user"></i>
                 </a></li>
             </ul>
@@ -103,6 +103,22 @@
         {% block event_css %}{% endblock event_css%} 
         {% block eventpage  %} {% endblock eventpage %}
         <!-- end event page -->
+
+        <!-- start menu page -->
+        {% block menu_css %}{% endblock menu_css%} 
+        {% block menu  %} {% endblock menu %}
+        <!-- end menu page -->
+
+
+        <!-- start cart page -->
+        {% block cart_css %}{% endblock cart_css%} 
+        {% block cart  %} {% endblock cart %}
+        <!-- end cart page -->
+
+        <!-- start checkout page -->
+        {% block checkout_css %}{% endblock checkout_css%} 
+        {% block checkout %} {% endblock checkout %}
+        <!-- end checkout page -->
 
         <!-- start sign up, sigin in page -->
         {% block signin_signup_css %}{% endblock signin_signup_css%} 

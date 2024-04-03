@@ -1,0 +1,223 @@
+{% extends "app/base.html" %}
+{%load static%}
+
+{% block checkout_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/checkout.css' %}">
+{% endblock checkout_css%} 
+
+{% block checkout %} 
+     <!-- CONTENT -->
+     <div id="contentcheckout">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <div class="heading-checkout">
+                        <h1 class="d-inline-block" style="font-size: 36px;">CHECK OUT</h1>
+                        
+                    </div>
+    
+                    <div class="checkout card">
+                        
+                        <div class="card-header">BILLING DETAIL</div>
+    
+                        <!-- Form full -->
+                        <div class="form-checkout">
+                            <!-- form info -->
+                            <div class="form_info p-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <form action="/action_page.php" class="was-validated">
+                                            <div class="mb-3 mt-3">   
+                                                <input type="text" class="form-control info" id="fname" placeholder="Enter first name" name="fname" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please fill out this field.</div>
+                                            </div>
+
+                                            <div class="mb-3">                                                  
+                                                <input type="tel" class="form-control info" id="phone" placeholder="Phone" name="phone" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please fill out this field.</div>
+                                            </div>
+                                   
+                                        </form>
+
+                                    </div>
+
+                                    <div class="col-6">
+                                        <form action="/action_page.php" class="was-validated">
+                                            <div class="mb-3 mt-3">   
+                                                <input type="text" class="form-control info" id="lname" placeholder="Enter last name" name="lname" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please fill out this field.</div>
+                                            </div>
+
+                                            <div class="mb-3">                                                  
+                                                <input type="email" class="form-control info"  id="email" placeholder="Email" name="email" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please fill out this field.</div>
+                                            </div>
+                                   
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <!--Form - note  -->
+                            <p class="text-region m-2">Country / Region <b>* Viet Nam</b></p>
+                            <div class="form-note">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form action="/action_page.php" class="was-validated">
+                                            <div class="mb-3 address-input">
+                                               
+                                                <input type="text" class="form-control info " id="address" placeholder="Enter Address (Required)" name="address" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please fill out this field.</div>
+    
+                                            </div>
+                                            <div class="mb-3 textarea-input">
+                                                <textarea class="form-control" name="note" id="note" rows="5" placeholder="Comment - Message"></textarea>
+                                                
+                                            </div>
+                                                
+                                        </form>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                            <!-- Address -->
+                            <div class="set-address d-flex " style="font-size: 13px;">
+                                <p class="set-address m-1">Set your address:</p>
+                                <div class="form-check m-1">
+                                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked >
+                                    <label class="form-check-label" for="radio1">Home</label>
+
+                                </div>
+                                <div class="form-check m-1">
+                                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
+                                    <label class="form-check-label" for="radio2">Office</label>
+                                </div>
+                                
+                            </div> 
+
+                            
+                            <!-- Payment method -->
+                            <div class="card payment-method mt-2 " style="font-size: 13px;">
+                                <div class="card-header">
+                                    <p ><b>PAYMENT METHOD</b></p>
+                                </div>
+                                <div class="method-pay mt-2 d-flex">
+                                    <div class="form-check m-2">
+                                        <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option1" checked >
+                                        <label class="form-check-label" for="radio3">Paypal/Credit card</label>
+    
+                                    </div>
+                                    <div class="form-check m-2">
+                                        <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option2">
+                                        <label class="form-check-label" for="radio4">Cash on Delivery</label>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+    
+                    </div>
+
+
+                    <div class="text-start m-3 text-dark" style="font-size: 13px;">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</div>
+
+                </div>
+    
+                <div class="col-4">
+                    <div class="heading-bill">
+                        <h1 class="d-inline-block" style="font-size: 36px;" hidden="on">Delivery</h1>
+                        
+
+                        <div class="card">
+
+                            <div class="delivery-time card-header">
+                                <b>Delivery</b>
+                            </div>
+
+                            <div class="date-time d-flex mb-2">
+                                <div class="date m-1">
+                                    <label class="delivery-date" for="delivery-date">Date:</label>
+                                    <input class="form-control border-secondary rounded" type="date" id="delivery-date " name="">
+                                </div>
+
+                                <!-- pading = com -->
+                                <div class="paddingbangcom2" style="margin: 0 50px;"></div>
+
+                                <div class="time m-1 ">
+                                    <label class="delivery-time" for="delivery-time">Time:</label>
+                                    <input class="form-control border-secondary rounded" type="time" id="delivery-time " name="">
+                                </div>
+                            </div>
+
+                            
+                            
+                            <div class="card-header"><b>Cart totals</b></div>
+                            <div class="card-content">
+                                <!-- row 1 -->
+                                <div class="subtotal d-flex">
+                                    <div class="subtotal-text m-2">Subtotal</div>
+
+                                    <!-- pading = com -->
+                                    <div class="paddingbangcom2" style="margin: 0 90px;"></div>
+    
+                                    <div class="subtotal-prices float-end m-2">400.000VND</div>
+                                </div>
+
+                                <!-- row 2 -->
+                                <div class="shipping d-flex">
+                                    <div class="shipping-text m-2">Shipping*</div>
+    
+                                    <!-- pading = com -->
+                                    <div class="paddingbangcom2" style="margin: 0 90px;"></div>
+    
+                                    <div class="free-ship float-end m-2 mb-2">FreeShip</div>
+                                </div>
+
+                                <div class="voucher mb-2  d-flex">
+                                    <input type="text" class="form-control border-secondary rounded" placeholder="Voucher code">
+                                    <button class="btn bg-danger text-light">Apply</button>
+                                </div>
+
+                                <div class="vat d-flex m-2 mb-2">
+                                    <p class="vat-text">VAT 8%</p>
+                                    <div class="paddingbangcom2" style="margin: 0 100px;"></div>
+                                    <div class="price-vat">23.000VND</div>
+                                </div>
+    
+                                <!-- row 3 -->
+                                <div class="total d-flex">
+                                    <div class="total-text m-2 mb-3">Total</div>
+                                    <!-- pading = com -->
+                                    <div class="paddingbangcom2" style="margin: 0 100px;"></div>
+    
+                                    <div class="Total-prices float-end m-2">400.000VND</div>
+                                </div>
+    
+                            </div>
+    
+                            <button type="button" class="btn-checkout btn btn-outline-warning m-2 text-dark" >PayPal</button>
+                            <button type="button" class="btn-checkout btn btn-outline-danger mb-5 m-2" >Credit card</button>
+                        </div>
+
+                    </div>
+    
+    
+                </div>
+            </div>
+        
+        </div>
+
+    </div>
+{% endblock checkout %}
+
