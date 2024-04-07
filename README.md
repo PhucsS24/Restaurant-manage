@@ -16,3 +16,7 @@ II. Install requirement libraries
         root
         123456
     
+Superuser:
+    username: nhom9
+    email: nhom9@gmail.com
+    password: P@ssword123
