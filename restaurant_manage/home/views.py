@@ -12,6 +12,10 @@ def event(request):
     context = {}
     return render(request, 'event\event.html', context)
 
+#view menu
+def menu(request):
+    context = {}
+    return render(request, 'menu\menu.html', context)
 
 def signup(request):
     context = {}
