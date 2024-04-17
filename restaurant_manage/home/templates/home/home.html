@@ -22,32 +22,33 @@
                 <div class="book-table-form collapse m-3" id="demo">
                     <h1 class="book-heading"><i class="icon-book ti-notepad"></i><b>BOOK A TABLE</b></h1>
 
-                    <!-- row 1 -->
-                    <div class="row line1">
-                        <!-- Select location -->
-                        <div class="col valid">
-                            <form action="/action_page.php" class="was-validated" method="post">
+                    
+                    <!-- begin form book -->
+                    <form action="{% url 'home' %}"  class="was-validated mx-2" method="post">
+                        {% csrf_token %}
+                        <!-- row 1 -->
+                        <div class="row line1">
+                            
+                            <!-- select location -->
+                            <div class="col ">
                                 <div class="mb-1 mt-1 d-flex">
-                                    <select name="" id="select-location" aria-placeholder="Restaurant" class="modal-select form-select form-select-lg" >
-                                        <option value="HaNoi">Restaurant location</option>
+                                    <select name="select_location" id="select-location" aria-placeholder="Restaurant" class="modal-select form-select form-select-lg" >
+                                        
                                         <option value="HaNoi">Trang Tien, Hoan Kiem | Hanoi</option>
                                         <option value="HaNoi">Phu My Hung, D7 | HCMC</option>
                                         <option value="HaNoi">An Hai Tay, Son Tra | Danang</option>
                                     </select>
-                                    <i class="icon ti-location-pin" ></i>
-                                    
+                                    <!-- <i class="icon ti-location-pin" ></i> -->
                                 </div>
-                            </form>
-                        </div>
+                            </div>
 
-                        <!-- select size -->
-                        <div class="col valid">
-                            <form action="/action_page.php" class="was-validated">
+                            <!-- select size -->
+                            <div class="col ">
                                 <div class="mb-1 mt-1 d-flex">
                                      
-                                    <select name="" id="party-size" class="modal-select form-select form-select-lg" aria-placeholder="party-size" >
-                                        <option value="prity-size">Prity Size</option>
-                                        <option value="HaNoi">1</option>
+                                    <select name="select_size" id="party-size" class="modal-select form-select form-select-lg" aria-placeholder="party-size" >
+                                        
+                                        <option value="prity-size">1</option>
                                         <option value="HaNoi">2</option>
                                         <option value="HaNoi">3</option>
                                         <option value="HaNoi">4</option>
@@ -59,120 +60,108 @@
                                         <option value="HaNoi">10</option>
                                         <option value="HaNoi">11</option>
                                         <option value="HaNoi">12</option>
+                                        <option value="HaNoi">13</option>
                                     </select>
                                     
-                                    <i class="icon ti-user"></i>  
+                                    <!-- <i class="icon ti-user"></i>   -->
                                 </div>
-                            </form>
-                        </div>
+                            </div>
 
-                        <!-- Select date -->
-                        <div class="col valid">
-                            <form action="/action_page.php" class="was-validated">
+                            <!-- select date -->
+                            <div class="col">
                                 <div class="mb-1 mt-1">   
-                                    <input type="date" class="form-control form-control-lg date" id="date" name="date" required>
+                                    <input type="date" class="form-control form-control-lg date" id="date" name="choice_date" required>
                                     <div class="valid-feedback check-valid" ></div>
-                                    <div class="invalid-feedback check-valid">Please fill out this field.</div>
+                                    <div class="invalid-feedback check-valid"></div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
 
-                        <!-- Select time -->
-                        <div class="col valid">
-                            <form action="/action_page.php" class="was-validated">
+                            <!-- select time -->
+                            <div class="col">
                                 <div class="mb-1 mt-1" >   
-                                    <input type="time" class="form-control form-control-lg time" id="time"  name="time" required>
+                                    <input type="time" class="form-control form-control-lg time" id="time"  name="choice_time" required>
                                     <div class="valid-feedback check-valid"></div>
-                                    <div class="invalid-feedback check-valid">Please fill out this field.</div>
+                                    <div class="invalid-feedback check-valid"></div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    
+                            </div>
 
-                    <!-- row 2 -->
-                    <div class="row line2">
-                        <!-- first name -->
-                        <div class="col-3 valid">
-                            <form action="/action_page.php" class="was-validated">
+                        </div>
+
+                        <div class="row  mt-2 line2">
+
+                            <!-- fname -->
+                            <div class="col">
                                 <div class="mb-1 mt-1">   
                                     <input type="text" class="form-control form-control-lg info" id="fname" placeholder="Enter first name" name="fname" required>
                                     <div class="valid-feedback check-valid"></div>
-                                    <div class="invalid-feedback check-valid">Please fill out this field.</div>
+                                    <div class="invalid-feedback check-valid"></div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
 
-                        <!-- last name -->
-                        <div class="col-3 valid">
-                            <form action="/action_page.php" class="was-validated">
+                            <!-- lname -->
+                            <div class="col">
                                 <div class="mb-1 mt-1">   
                                     <input type="text" class="form-control form-control-lg info" id="lname" placeholder="Enter last name" name="lname" required>
                                     <div class="valid-feedback check-valid"></div>
-                                    <div class="invalid-feedback check-valid">Please fill out this field.</div>
+                                    <div class="invalid-feedback check-valid"></div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
 
-                        <!-- phone -->
-                        <div class="col-3 valid">
-                            <form action="/action_page.php" class="was-validated">
+                            <!-- phone -->
+                            <div class="col">
                                 <div class="mb-1 mt-1">   
                                     <input type="tel" class="form-control form-control-lg info" id="phone" placeholder="Phone" name="phone" required>
                                     <div class="valid-feedback check-valid" ></div>
-                                    <div class="invalid-feedback check-valid">Please fill out this field.</div>
+                                    <div class="invalid-feedback check-valid"></div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
 
-                        <!-- Email -->
-                        <div class="col-3 valid">
-                            <form action="/action_page.php" class="was-validated">
+                            <!-- email -->
+                            <div class="col">
                                 <div class="mb-1 mt-1" >   
                                     <input type="email" class="form-control form-control-lg info" id="email" placeholder="Email" name="email" required>
                                     <div class="valid-feedback check-valid"></div>
-                                    <div class="invalid-feedback check-valid">Please fill out this field.</div>
+                                    <div class="invalid-feedback check-valid"></div>
                                 </div>
-                            </form>
-                        </div>
-
-                    </div>
-
-                    <!--  -->
-                    <div class="row line3 mt-1">
-                        <div class="col-12 valid">
-                            <form action="/action_page.php" class="was-validated ">
-                                <div class="mb-2 mt-1 d-flex">
-                                    <select name="" id="select-party" aria-placeholder="Choose party size" class="modal-select form-select form-select-lg" >
-                                        <option value="Birthday">Birthday</option>
-                                        <option value="Anniversary">Anniversary</option>
-                                        <option value="Bussiness">Bussiness Meeting</option>
-                                        <option value="Party">Party</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <!-- <i class="icon ti-location-pin" ></i> -->
-                                    
-                                </div>
-                            </form>
+                            </div>
 
                         </div>
 
-                    </div>
+                        <!-- row 3 -->
+                        <div class="row line3 mt-2">
+                            <div class="mb-2 mt-1 d-flex">
+                                <select name="size_party" id="select-party" aria-placeholder="Choose party size" class="modal-select form-select form-select-lg" >
+                                    <option value="Birthday">Birthday</option>
+                                    <option value="Anniversary">Anniversary</option>
+                                    <option value="Bussiness">Bussiness Meeting</option>
+                                    <option value="Party">Party</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <!-- <i class="icon ti-location-pin" ></i> -->
+                                
+                            </div>
 
-                    <!-- Row 3 -->
-                    <div class="row mt-2">
-                        <div class="col">
-                            <textarea class="mb-1 mt-1 form-control" name="note" id="note"  rows="3" placeholder="*Note"></textarea>
                         </div>
-                    </div>
+
+                        <!-- row 4 -->
+                        <div class="row line4 mt-2">
+                            <div class="col">
+                                <textarea class="mb-1 mt-1 form-control" name="note" id="note"  rows="3" placeholder="*Note"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- <button type="button" class="btn-book btn collapse show" id="booknowbtn" onclick="display_submit()" data-bs-toggle="collapse" data-bs-target="#demo" >Book Now</button> -->
+                
+                        <input type="submit" class="btn-book btn-submit btn mx-auto" id="submitbtn" style="display: none; " value="Submit" ></input>
+    
+
+                    </form>
 
                 </div>
                 
                 <button type="button" class="btn-book btn collapse show" id="booknowbtn" onclick="display_submit()" data-bs-toggle="collapse" data-bs-target="#demo" >Book Now</button>
                 
-                <div class="row-12 m-2 ">
-                    <button type="button" class="btn-book btn-submit btn mx-auto" id="submitbtn" style="display: none; " >Submit</button>
-                </div>
+                <!-- <button type="button" class="btn-book btn-submit btn mx-auto" id="submitbtn" style="display: none; " >Submit</button> -->
 
             </div>
 
