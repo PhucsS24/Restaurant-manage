@@ -26,5 +26,5 @@ class SignUpForm(forms.ModelForm):
 
 
 class SignInForm(forms.Form):
-    email = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=50)
     password = forms.CharField(widget=forms.PasswordInput)

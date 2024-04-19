@@ -10,7 +10,7 @@ def signup(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
-            user.username = user.first_name + ' ' + user.last_name
+            user.username = user.email
             user.save()
             return redirect('signin')
         else:
@@ -24,9 +24,9 @@ def signin(request):
     if request.method == 'POST':
         form = SignInForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
+            email = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(email=email, password=password)
+            user = authenticate(username=email, password=password)
             if user is not None:
                 login(request, user)
                 return redirect('home')
