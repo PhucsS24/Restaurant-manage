@@ -2,3 +2,4 @@ django
 mysqlclient
 django-money
 Pillow
+django-phonenumber-field[phonenumbers]
