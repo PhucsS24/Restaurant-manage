@@ -1,8 +1,16 @@
 from django.shortcuts import render
-from .models import MenuItem, Order
+from .models import *
+from django.http import HttpResponse
 
 # Create your views here.
 
 def delivery(request):
-    items = MenuItem.objects.all()
-    return render(request, 'deliveries/base.html', {'items': items })
+    
+    return HttpResponse("page delivery")
+
+def Deliveries(request):
+    
+    menuItems = MenuItem.objects.all()
+
+    context = {'menuItems':  menuItems }
+    return render(request, 'deliveries/deliveries.html', context)

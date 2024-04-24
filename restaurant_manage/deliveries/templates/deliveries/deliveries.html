@@ -1,0 +1,318 @@
+{% extends "base_delivery.html" %}
+{%load static%}
+
+{% block menu_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'deliveries/css/deliveries.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    
+{% endblock menu_css%} 
+
+{% block menu  %} 
+
+    <div class="container py-5 menu-section" id="menu">
+        <!-- list menu -->
+        <div class="clearfix my-4">
+            <span class="float-start">
+                <ul class="nav nav-tabs" role="tablist" >
+
+                    <li class="nav-item" >
+                        <a class="nav-link active" data-bs-toggle="tab" href="#all">ALL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#beef">BEEF</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#sauces">SAUCES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#lunch">LUNCH</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#dinning">DINNING</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#drink">DRINK</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#popular">POPULAR</a>
+                    </li>
+                </ul>
+            </span>
+            <span class="float-end">
+                <div class="search_btn ms-5">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="text" placeholder="Search">
+                        <button class="btn btn-search" type="button">Search</button>
+                    </form>
+                </div>
+            </span>
+        </div>
+        
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- ALL menu -->
+            <div id="all" class="container tab-pane active"><br>
+                <h1  class="text-center">ALL DAY DINING</h1>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+
+                    {% for  menuItem in  menuItems %}
+                    <div class="col-3">
+                        <div class="card">
+                            <img  class="card-img-top" src="{{ menuItem.ImageURL}}" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ menuItem.name}}</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                            <div class="mb-5 d-flex justify-content-around">
+                                <h3>{{ menuItem.price}} </h3>
+                                <button class="btn btn-color view-details"  data-bs-toggle="modal" data-bs-target="#detailsModal">View details</button>
+                                {% comment %} <button data-product={{product.id}} data-action="add" class="btn btn-color add-btn update-cart">Add to cart</button> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The Modal -->
+                    <div class="modal" id="detailsModal">
+                        <div class="modal-dialog custom_modal">
+                            <div class="modal-content">
+                        
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h3 class="modal-title ">{{ menuItem.name}}</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+                                </div>
+                        
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="modal-body clearfix">                               
+                                        <h5 class="name_item float-start">{{ menuItem.name}}</h5>
+                                        <h5 class="price_item float-end" style="color: #ed2024;">{{ menuItem.price}}</h5>
+                                    </div>
+                                    {% comment %} load data {% endcomment %}
+                                    <select class="form-select ">
+                                        <option>Weight</option>  
+                                        <option>200g</option>
+                                        <option>500g</option>
+                                        <option>1000g</option>
+                                        
+                                    </select>
+
+                                    <select class="form-select mt-3">
+                                        <option>Doneness</option>  
+                                        <option>Well done</option>
+                                        <option>Medium well</option>
+                                        <option>Medium</option>
+                                        <option>Medium rare</option>
+                                        <option>Rare</option>
+                                    </select>
+                                    <p class="descr mx-1 my-3">This is descriptions {{ menuItem.description}}</p>
+                                                        
+                                </div>
+                                
+                        
+                                <!-- Modal footer -->
+                                <div class="modal-footer" style="background-color: #f2f2f2;">
+                                    <div class="modal-body clearfix">                               
+                                        <h5 class="quantity float-start">Quantity</h5>
+                                        <div class="btn-mount float-end d-flex btn-group">
+                                            <button type="button" class="btn btn-outline-danger float-start" style="color: #111;" > - </button>
+                                            <input type="text" class="display-mount form-control float-center border-danger border-1"  placeholder="10" readonly style="width:45px; height:37.5px;">
+                                            <button type="button" class="btn btn-outline-danger float-end" style="color: #111;">+</button>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="modal-body clearfix">                               
+                                        <h5 class="total float-start">Total</h5>
+                                        <h5 class="price_total float-end " style="color: #ed2024;">300000VND</h5>
+                                    </div>
+
+                                </div>
+                            
+                                <button data-product={{product.id}} data-action="add" class="btn btn-color add-btn update-cart mx-auto mb-2" style="width:300px;border-radius: 10px;">Add to cart</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                   
+                </div>
+
+            </div>
+        
+            <!-- Foood menu -->
+            <div id="food" class="container tab-pane fade"><br>
+                <h1 class="text-center">Food menu</h1>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+
+                    {% for product in products %}
+                    <div class="col-3">
+                        <div class="card">
+                            <img src="{{product.ImageURL}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name}}</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                                    dignissimos accusantium amet similique velit iste.</p>
+                            </div>
+                            <div class="mb-5 d-flex justify-content-around">
+                                <h3>{{product.price}}$</h3>
+                                <button class="btn btn-color">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            
+            <!-- Drink menu  -->
+            <div id="drink" class="container tab-pane fade"><br>
+                <h1 class="text-center">Drink menu</h1>
+                <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+
+                    {% for product in products %}
+                    <div class="col-3">
+                        <div class="card">
+                            <img src="{{product.ImageURL}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name}}</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                                    dignissimos accusantium amet similique velit iste.</p>
+                            </div>
+                            <div class="mb-5 d-flex justify-content-around">
+                                <h3>{{product.price}}$</h3>
+                                <button class="btn btn-color">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+
+                </div>
+
+            </div>
+
+            <!-- Lunch menu -->
+            <div id="lunch" class="container tab-pane fade"><br>
+                <h1 class="text-center">Lunch menu</h1>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+
+                    {% for product in products %}
+                    <div class="col-3">
+                        <div class="card">
+                            <img src="{{product.ImageURL}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name}}</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                                    dignissimos accusantium amet similique velit iste.</p>
+                            </div>
+                            <div class="mb-5 d-flex justify-content-around">
+                                <h3>{{product.price}}$</h3>
+                                <button class="btn btn-color">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+                </div>
+
+            </div>
+
+            <!--Dining menu  -->
+            <div id="dining" class="container tab-pane fade"><br>
+                <h1 class="text-center">Dining menu</h1>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+
+                    {% for product in products %}
+                    <div class="col-3">
+                        <div class="card">
+                            <img src="{{product.ImageURL}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name}}</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                                    dignissimos accusantium amet similique velit iste.</p>
+                            </div>
+                            <div class="mb-5 d-flex justify-content-around">
+                                <h3>{{product.price}}$</h3>
+                                <button class="btn btn-color">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <!-- Popular Dishes -->
+            <div id="popular" class="container tab-pane fade"><br>
+                <h1 class="text-center">Popular Dishes</h1>
+                <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+
+                    {% for product in products %}
+                    <div class="col-3">
+                        <div class="card">
+                            <img src="{{product.ImageURL}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name}}</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                                    dignissimos accusantium amet similique velit iste.</p>
+                            </div>
+                            <div class="mb-5 d-flex justify-content-around">
+                                <h3>{{product.price}}$</h3>
+                                <button class="btn btn-color">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+
+                </div>
+
+
+            </div>
+            
+        </div>
+        
+
+
+    </div>
+    
+
+
+    
+    
+    {% comment %} <div class="container py-5 menu-section">
+            
+        <h1 class="text-center">Popular Dishes</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+
+
+            {% for product in products %}
+                <div class="col-3">
+                    <div class="card">
+                        <img src="{% static 'app/images/img-menu/dish1.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{product.name}}</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                                dignissimos accusantium amet similique velit iste.</p>
+                        </div>
+                        <div class="mb-5 d-flex justify-content-around">
+                            <h3>{{product.price}}$</h3>
+                            <button class="btn btn-color">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
+    
+        </div>
+    </div> {% endcomment %}
+    
+    
+{% endblock menu %}
+<script src="{% static 'app/js/cart.js' %}"></script>
