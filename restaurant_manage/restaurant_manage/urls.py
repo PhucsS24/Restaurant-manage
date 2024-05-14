@@ -26,7 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')), 
     path('accounts/', include('accounts.urls')),
-    path('delivery/', include('deliveries.urls'))
+    path('delivery/', include('deliveries.urls')),
+    path('cart/', include('cart.urls'))
 ]
 
 #lấy hình đưa vào 1 path cho trước

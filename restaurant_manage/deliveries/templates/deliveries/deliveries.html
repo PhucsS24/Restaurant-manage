@@ -1,4 +1,4 @@
-{% extends "base_delivery.html" %}
+{% extends "home/base.html" %}
 {%load static%}
 
 {% block menu_css %}
@@ -68,7 +68,7 @@
                                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                             </div>
                             <div class="mb-5 d-flex justify-content-around">
-                                <h3>{{ menuItem.price}} </h3>
+                                <h3>{{ menuItem.price.amount}} {{menuItem.price.currency}} </h3>
                                 <button class="btn btn-color view-details"  data-bs-toggle="modal" data-bs-target="#detailsModal">View details</button>
                                 {% comment %} <button data-product={{product.id}} data-action="add" class="btn btn-color add-btn update-cart">Add to cart</button> {% endcomment %}
                             </div>

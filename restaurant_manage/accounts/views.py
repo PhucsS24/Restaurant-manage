@@ -29,6 +29,7 @@ def signin(request):
             user = authenticate(username=email, password=password)
             if user is not None:
                 login(request, user)
+                request.session['user_id'] = user.id 
                 return redirect('home')
             else:
                 form.add_error(None, 'Invalid email or password. Please try again!')

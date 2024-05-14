@@ -1,4 +1,4 @@
-# Restaurant-manage
+#Restaurant-manage
 
 I. Setup
     1. pip install virtualenv

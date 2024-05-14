@@ -51,7 +51,7 @@
                     </ul>
                 </li>
     
-                <li><a href="">Delivery</a></li>
+                <li><a href="{% url 'delivery' %}">Delivery</a></li>
     
                 <li><a href="">Shop</a></li>
     
@@ -81,11 +81,11 @@
 
                 </li>
     
-                <li><a href="{% url "home" %}">Cart 
+                <li><a href="{% url "cart" %}">Cart 
                     <i class="icon icon-cart ti-shopping-cart"></i>
                 </a></li>
     
-                <li><a href="{% url 'signin' %}">Sign-in
+                <li><a href="{% url 'home' %}">{{user.first_name}}
                     <i class="icon icon-user ti-user"></i>
                 </a></li>
             </ul>

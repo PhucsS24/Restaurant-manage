@@ -4,10 +4,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def delivery(request):
-    
-    return HttpResponse("page delivery")
-
 def Deliveries(request):
     
     menuItems = MenuItem.objects.all()

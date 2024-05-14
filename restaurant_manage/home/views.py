@@ -1,12 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.shortcuts import render, redirect
+from accounts.models import CustomUser
 # Create your views here.
 #view home
 
 def home(request):
-    context = {}
-    return render(request, 'home\home.html', context)
+    user_id = request.session.get('user_id')
+    if user_id:
+        user = CustomUser.objects.get(id=user_id)
+        return render(request, 'home\home.html', {'user': user})
+    else:
+        return redirect('signin')
 
 #view event
 def event(request):
