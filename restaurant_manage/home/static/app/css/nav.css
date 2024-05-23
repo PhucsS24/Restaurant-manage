@@ -1,0 +1,50 @@
+nav {
+    /* font-family: Garamond; */
+    font-family: serif;
+}
+.nav-item{
+    margin-right: 20px;
+}
+
+
+.navbar-custom {
+    background-color: #000; /* Màu nền đen */
+}
+.navbar-custom .navbar-nav .nav-link {
+    color: #fff; /* Chữ màu trắng */
+    font-size: 17px;
+    
+}
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: #ED2024; /* Chữ màu đỏ khi di chuột */
+}
+.navbar-custom .navbar-brand {
+    color: #fff; /* Màu logo trắng */
+}
+.dropdown-menu {
+    background-color: #000; /* Nền đen cho dropdown */
+}
+.dropdown-item {
+    color: #fff; /* Chữ màu trắng trong dropdown */
+}
+.dropdown-item:hover {
+    color: #fff; /* Chữ màu trắng khi di chuột */
+    background-color: #ED2024; /* Nền đỏ khi di chuột */
+    text-decoration: underline; /* Gạch chân khi di chuột */
+}
+.navbar-toggler {
+    /* border-color: rgba(255, 255, 255, 0.1); */
+    border-color: #ed2024
+
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    color: #fff; /* Màu trắng cho menu 3 gạch */
+}
+
+@media (max-width: 990px) {
+    .navbar-custom {
+        padding-left: 15px; /* Khoảng cách so với bên trái 10px */
+    }
+}
+

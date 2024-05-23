@@ -1,0 +1,224 @@
+/* <====================| RESET CSS |=====================> */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+/* <====================| Promotion && About |=====================> */
+ 
+/*Promotion  */
+ #myCarousel {
+    margin-top: 0px;
+  }
+  .carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: black;
+    padding-top: 50px;
+    color: white;
+  }
+  
+  /* Định dạng phần văn bản và hình ảnh */
+   .carousel-item .text-content {
+    padding: 20px;
+    text-align: left;
+    padding-left: 200px;
+    background-color: black;
+    opacity: 1;
+    color: white;
+  }
+  
+  .carousel-item .text-content h1 {
+    margin-bottom: 20px;
+
+  }
+ 
+  .carousel-item .image-content {
+    padding: 30px;
+    padding-right: 200px;
+    text-align: right;
+    background-color: black;
+  }
+  
+   .carousel-item img {
+    max-width: 300px;
+    max-height: auto;
+    background-color:black;
+    margin-left: 150px;
+    
+  }
+
+
+  .carousel-inner .content-location  {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: black;
+    color:white;
+  } 
+
+   .carousel-inner p{
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    margin-left: 150px;
+    line-height: 2em;
+  }
+
+   .carousel-inner h2{
+    font-size: 30px;
+    font-style: bold;
+    letter-spacing: 5px;
+    margin-left: 150px;
+    margin-bottom: 15px;
+    color:white;
+  }
+  .content-about-us {
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  /* About */
+  .about-us {
+    background-color:black;
+    color:white;
+  }
+  .about-heading {
+    font-size: 35px;
+    font-style: bold;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    color:white;
+  }
+  .about-heading h2 {
+    color: white;
+  }
+  .about-sub-heading{
+    font-size: 17px;
+    font-style: bold;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  .about-text {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+  }
+  .about-us img {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    #myCarousel {
+      margin-top: 0px;
+     }
+    .carousel-item img {
+      max-width: 70%;
+      height: 100%;
+      background-color:black;
+      display: block; /* Hiển thị hình ảnh như một khối */
+      margin: 0 auto;
+      object-fit: cover;
+    }
+    .carousel-inner p{
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      text-align: center;
+      margin-left:0px;
+      padding: 10px;
+    }
+  
+    .carousel-inner h2{
+      font-size: 14px;
+      font-style: bold;
+      letter-spacing: 5px;
+      margin-bottom: 15px;
+      text-align: center;
+      margin-left:0px;
+      color: white;
+    }
+    .about-heading {
+      font-size: 35px;
+      font-style: bold;
+      letter-spacing: 5px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .about-sub-heading{
+      font-size: 13px;
+      font-style: bold;
+      letter-spacing: 1px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .about-text {
+      font-size: 15px;
+      font-style: italic;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .about-us img {
+      max-width: 80%;
+      height: 100%;
+      display: block; /* Hiển thị hình ảnh như một khối */
+      margin: 0 auto;
+      object-fit: cover;
+    }
+    .image_head img{
+      width: 100%;
+      height: auto;
+    
+    }
+  }
+
+  @media (max-width: 1024px) {
+    #myCarousel {
+      margin-top: 0px;
+     }
+     #myCarousel .carousel-item img {
+      object-fit: cover;
+      width: 90%;
+      height: 100%;
+      display: block; 
+      margin: 0 auto;
+    }
+    #myCarousel .carousel-inner p{
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      text-align: center;
+      margin-left:0px;
+      padding: 10px;
+    }
+  
+    #myCarousel .carousel-inner h2{
+      font-size: 20px;
+      font-style: bold;
+      letter-spacing: 5px;
+      margin-bottom: 15px;
+      text-align: center;
+      margin-left:0px;
+    }
+    .image_head img{
+      width: 100%;
+      height: auto;
+    
+    }
+  }
+
+ 
+

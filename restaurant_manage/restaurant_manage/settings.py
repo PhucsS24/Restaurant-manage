@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'deliveries',
     'cart',
     'checkout',
-    'menu'
+    'menu',
+    'locations',
     
 ]
 

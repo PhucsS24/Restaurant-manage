@@ -1,0 +1,119 @@
+/* <====================| RESET CSS |=====================> */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+/* <====================| FORM BOOK |=====================> */
+#slider {
+    margin-top: 55px;
+    background: url(../images/imgs-home/home-slider.png) top center / cover no-repeat;
+    height: 600px;
+    
+}
+
+#slider .background {
+    
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 600px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+ 
+
+
+.sologan {
+    
+    font-size: 30px;
+    font-family: 'Georgia', serif;
+    color: #fff;
+    font-weight: 400;
+}
+
+
+.btn-book {
+
+    margin-top: 8px;
+    background-color: #ed2024;
+    color: #fff;
+    font-weight: 500;
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+    border-radius: 6px;
+    width: 250px;
+
+}
+
+#slider .btn-book:hover {
+    color: #ED2024;
+    font-weight: 600;
+    font-size: 18px;
+    
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+
+
+@media (max-width: 1024px) and (min-width: 740px) {
+    .navbar-custom {
+        padding-left: 15px; /* Khoảng cách so với bên trái 10px */
+    }
+
+    #slider {
+        /* margin-top: 80px; */
+        background: url(../images/imgs-home/home-slider.png) top center / cover no-repeat;
+        height: 950px;
+        
+    }
+    
+    #slider .background {
+        background-color: rgba(0, 0, 0, 0.4);
+        height: 800px;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+
+    .sologan {
+    
+        font-size: 20px;
+        font-family: 'Georgia', serif;
+        color: #fff;
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 740px){
+    .navbar-custom {
+        padding-left: 15px; /* Khoảng cách so với bên trái 10px */
+    }
+    
+    #slider {
+        /* margin-top: 80px; */
+        background: url(../images/imgs-home/home-slider.png) top center / cover no-repeat;
+        height: 800px;
+        
+    }
+    
+    #slider .background {
+        background-color: rgba(0, 0, 0, 0.4);
+        height: 1050px;
+        padding-bottom: 5px;
+        text-align: center;
+    }  
+
+    .sologan {
+        font-size: 20px;
+        font-family: 'Georgia', serif;
+        color: #fff;
+        font-weight: 400;
+    }
+}

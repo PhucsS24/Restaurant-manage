@@ -2,65 +2,71 @@
 {%load static%}
 
 {% block home_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/home.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/modal_book.css' %}">
-    <script src="{% static 'app/js/bookevent.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/slider.css' %}">
+    
+    <script src="{% static 'home/js/bookevent.js' %}"></script>
 {% endblock %} 
 
 {% comment %} ================================================================================= {% endcomment %}
 {% block homepage  %} 
-    <!-- Begin slider -->
+    <!-- Begin slider book table -->
     <div id="slider">
         <div class="background">
+
             <div class="book-table">
-                <div class="sloder-text collapse show" id="demo">
-                    <p class="sologan " >Embark on a journey of culinary delight at our restaurant</p>
-                    <p class="sologan " >where every meal becomes an adventure filled with creativity and excitement!</p>
+
+                <div class="sloder-text collapse show mt-5" id="demo">
+                    <div class="sologan">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p class=" " >Embark on a journey of culinary delight at our restaurant</p>
+                        <p class=" " >Where every meal becomes an adventure filled with creativity and excitement!</p>
+                    </div>
+                    
                 </div>
 
-                <!-- Form -BOOK-table -->
-                <div class="book-table-form collapse m-3" id="demo">
-                    <h1 class="book-heading"><i class="icon-book ti-notepad"></i><b>BOOK A TABLE</b></h1>
+                 <!-- Form -BOOK-table -->
+                <div class="book-table-form collapse" id="demo">
+                    <br>
+                    <h1 class="book-heading text-white"><i class="icon-book ti-notepad"></i><b class="">BOOK A TABLE</b></h1>
 
-                    
-                    <!-- begin form book -->
-                    <form action="{% url 'home' %}"  class="was-validated mx-2" method="post">
+                    <!-- Begin form -->
+                    <form action="{% url 'home' %}" class="was-validated form-book mx-2" method="post">
                         {% csrf_token %}
-                        <!-- row 1 -->
+                        <!-- Begin line1 -->
                         <div class="row line1">
-                            
                             <!-- select location -->
-                            <div class="col ">
+                            <div class="col-md-3 ">
                                 <div class="mb-1 mt-1 d-flex">
                                     <select name="select_location" id="select-location" aria-placeholder="Restaurant" class="modal-select form-select form-select-lg" >
-                                        
                                         <option value="HaNoi">Trang Tien, Hoan Kiem | Hanoi</option>
-                                        <option value="HCM">Phu My Hung, D7 | HCMC</option>
-                                        <option value="DaNang">An Hai Tay, Son Tra | Danang</option>
+                                        <option value="HaNoi">Phu My Hung, D7 | HCMC</option>
+                                        <option value="HaNoi">An Hai Tay, Son Tra | Danang</option>
                                     </select>
                                     <!-- <i class="icon ti-location-pin" ></i> -->
                                 </div>
                             </div>
 
                             <!-- select size -->
-                            <div class="col ">
+                            <div class="col-md-3 ">
                                 <div class="mb-1 mt-1 d-flex">
-                                     
+                                    
                                     <select name="select_size" id="party-size" class="modal-select form-select form-select-lg" aria-placeholder="party-size" >
-                                        
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
+                                        <option value="prity-size">Prity Size</option>
+                                        <option value="HaNoi">1</option>
+                                        <option value="HaNoi">2</option>
+                                        <option value="HaNoi">3</option>
+                                        <option value="HaNoi">4</option>
+                                        <option value="HaNoi">5</option>
+                                        <option value="HaNoi">6</option>
+                                        <option value="HaNoi">7</option>
+                                        <option value="HaNoi">8</option>
+                                        <option value="HaNoi">9</option>
+                                        <option value="HaNoi">10</option>
+                                        <option value="HaNoi">11</option>
+                                        <option value="HaNoi">12</option>
                                     </select>
                                     
                                     <!-- <i class="icon ti-user"></i>   -->
@@ -68,16 +74,16 @@
                             </div>
 
                             <!-- select date -->
-                            <div class="col">
+                            <div class="col-md-3">
                                 <div class="mb-1 mt-1">   
-                                    <input type="date" class="form-control form-control-lg date" id="date" name="choice_date" required>
+                                    <input type="date" class="form-control form-control-lg date " id="date" name="choice_date" required>
                                     <div class="valid-feedback check-valid" ></div>
                                     <div class="invalid-feedback check-valid"></div>
                                 </div>
                             </div>
 
                             <!-- select time -->
-                            <div class="col">
+                            <div class="col-md-3">
                                 <div class="mb-1 mt-1" >   
                                     <input type="time" class="form-control form-control-lg time" id="time"  name="choice_time" required>
                                     <div class="valid-feedback check-valid"></div>
@@ -86,48 +92,51 @@
                             </div>
 
                         </div>
+                        <!-- end line1 -->
 
+                        <!-- Begin line2 -->
                         <div class="row  mt-2 line2">
 
                             <!-- fname -->
-                            <div class="col">
+                            <div class="col-md-3">
                                 <div class="mb-1 mt-1">   
-                                    <input type="text" class="form-control form-control-lg info" id="fname" placeholder="Enter first name" name="fname" value="{{user.first_name}}" required>
+                                    <input type="text" class="form-control form-control-lg info" id="fname" placeholder="Enter first name" name="fname" required>
                                     <div class="valid-feedback check-valid"></div>
                                     <div class="invalid-feedback check-valid"></div>
                                 </div>
                             </div>
 
                             <!-- lname -->
-                            <div class="col">
+                            <div class="col-md-3">
                                 <div class="mb-1 mt-1">   
-                                    <input type="text" class="form-control form-control-lg info" id="lname" placeholder="Enter last name" name="lname" value="{{user.last_name}}" required>
+                                    <input type="text" class="form-control form-control-lg info" id="lname" placeholder="Enter last name" name="lname" required>
                                     <div class="valid-feedback check-valid"></div>
                                     <div class="invalid-feedback check-valid"></div>
                                 </div>
                             </div>
 
                             <!-- phone -->
-                            <div class="col">
+                            <div class="col-md-3">
                                 <div class="mb-1 mt-1">   
-                                    <input type="tel" class="form-control form-control-lg info" id="phone" placeholder="Phone" name="phone" value={{user.phone}} required>
+                                    <input type="tel" class="form-control form-control-lg info" id="phone" placeholder="Phone" name="phone" required>
                                     <div class="valid-feedback check-valid" ></div>
                                     <div class="invalid-feedback check-valid"></div>
                                 </div>
                             </div>
 
                             <!-- email -->
-                            <div class="col">
+                            <div class="col-md-3">
                                 <div class="mb-1 mt-1" >   
-                                    <input type="email" class="form-control form-control-lg info" id="email" placeholder="Email" name="email" value="{{user.email}}" required>
+                                    <input type="email" class="form-control form-control-lg info" id="email" placeholder="Email" name="email" required>
                                     <div class="valid-feedback check-valid"></div>
                                     <div class="invalid-feedback check-valid"></div>
                                 </div>
                             </div>
 
                         </div>
+                        <!-- end line2 -->
 
-                        <!-- row 3 -->
+                        <!-- Begin line 3 -->
                         <div class="row line3 mt-2">
                             <div class="mb-2 mt-1 d-flex">
                                 <select name="size_party" id="select-party" aria-placeholder="Choose party size" class="modal-select form-select form-select-lg" >
@@ -140,136 +149,114 @@
                                 <!-- <i class="icon ti-location-pin" ></i> -->
                                 
                             </div>
+                            <!-- End line 3 -->
 
                         </div>
 
-                        <!-- row 4 -->
+                        <!-- Begin line 4 -->
                         <div class="row line4 mt-2">
                             <div class="col">
                                 <textarea class="mb-1 mt-1 form-control" name="note" id="note"  rows="3" placeholder="*Note"></textarea>
                             </div>
                         </div>
+                        <!-- End line 4 -->
 
-                        <!-- <button type="button" class="btn-book btn collapse show" id="booknowbtn" onclick="display_submit()" data-bs-toggle="collapse" data-bs-target="#demo" >Book Now</button> -->
-                
-                        <input type="submit" class="btn-book btn-submit btn mx-auto" id="submitbtn" style="display: none; " value="Submit" ></input>
-    
-
+                        <button type="submit" class="btn-book btn-submit btn mx-auto" id="submitbtn">Submit</button>
+                    
                     </form>
+                    <!-- End form -->
 
                 </div>
-                
-                <button type="button" class="btn-book btn collapse show" id="booknowbtn" onclick="display_submit()" data-bs-toggle="collapse" data-bs-target="#demo" >Book Now</button>
-                
-                <!-- <button type="button" class="btn-book btn-submit btn mx-auto" id="submitbtn" style="display: none; " >Submit</button> -->
+                <button type="button" class="btn-book btn collapse show" id="booknowbtn" onclick="display_submit()" data-bs-toggle="collapse" data-bs-target="#demo" style="background-color: #ed2024; color: #fff; border: none;">Book Now</button>
 
             </div>
+           
 
-            
         </div>
+
     </div>
     <!-- End slider -->
 
-    <div id="content">
-        <!-- Promotion-section -->
-        <div class="content-promotion">
-
-            <div class="promotion-desc">
-                <h1 class="heading-promotion">PROMOTION</h1>
-                <h3 class="heading-sub">Lunch Menu</h3>
-                <p class="desc">
-                    Savor our delectable lunch featuring all your favorite steaks, complete with our special burgers and many more options for you to choose, available daily from 11AM to 3PM. Ensure you seize the opportunity to enjoy our exceptional lunch deals, featuring our finest beef cuts in any size you desire. 
-                    <br>
-                    Please note that our lunch menu dishes may vary based on the restaurant you choose to visit. 
-                    <br>
-                    Daily from 11AM - 3PM at selected locations:
-                    <br>
-                    <br>
-                    HCM:
-                    <br>
-                    -	El Gaucho Hai Ba Trung: Hai Ba Trung, Ben Nghe Ward, District 1.
-                    <br>
-                    -	El Gaucho Le Loi: Le Loi Street, Ben Nghe Ward, District 1.
-                    <br>
-                    -	El Gaucho Phu My Hung: The Crescent, Phu My Hung, District 7.
-                    <br>
-                    Binh Duong:
-                    <br>
-                    -	El Gaucho Hikari Binh Duong: Hikari Expansion, Binh Duong Province.
-                    <br>
-                    Da Nang:
-                    <br>
-                    -	El Gaucho Danang: Wink Hotel, Danang.
-                    <br>
-                    Ha Noi:
-                    <br>
-                    -	El Gaucho Trang Tien: 11 Trang Tien, Hoan Kiem District.
-                    <br>
-                    -	El Gaucho Ba Dinh: Vincom Center Metropolis, Ba Dinh District.
-                </p>
-            </div>
-            
-            <div class="promotion-img">
-                
-            </div>
-
-        </div>
-
-        <!-- about-section -->
-        <div id="about">
-            <div class="content-about-us">
-                <div class="about-desc">
-                    <h1 class="about-heading">ABOUT US</h1>
-                    <h3 class="about-sub-heading">OUR EL GAUCHO STEAKHOUSE – CONTEMPORARY AND SPECIALISED</h3>
-                    <p class="about-text">El Gaucho is an upscale Argentina themed steakhouse restaurant chain, first established in 2011. As a privately owned and financially independent venture with today 28 well-established locations in Europe and Asia, owner and management enjoy a great reputation with customers and partners and combine an extraordinary skill set in the industry and beyond. With this well-proven and unique upscale business concept, the owner aims to drive expansion in main European and Asian cities, operating 44 locations by the end of 2026. In addition, we are launching for the first time franchise opportunities in the Gulf region, poised to take our successful brand to new heights.</p>
-                </div>
-
-                <div class="about-img">
-
-                </div>
-
-            </div>
-        </div>
-        
-
-        <!-- location-section -->
-        <div class="content-location">
-            <div class="location">
-                <h1 class="location-heading">LOCATION</h1>
-
-                <div class="location-img">
-                    <img src="{%static '' %}" alt="xt" class="img-loca">
-                </div>
-
-                <div class="location-text">
-                    <h3 class="sub-heading">Xuan Thuy, Thu Duc | HCMC</h3>
-                    
-
-                    
-                    <i class="icon-location ti-location-pin">  77 XUAN THUY, THAO DIEN WARD, THU DUC CITY, HCMC</i>
-                    <br>
-                    <i class="icon-time ti-timer">
-                        11AM | Late
-                    </i>
-                    
-                    <br>
-                    <i class="icon-phone ti-mobile">
-                        012345678910
-                    </i>
-                    
-                </div>
-
-                <br>
-                <div class="btn">
-                    Plan your special event
-                </div>
-            </div>
-
-        </div>
-
-    </div>
 {% endblock homepage  %}
 
+{% block home_promotion  %}
+    <!-- Begin Promotion -->
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+        </ol>
+                
+        <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-lg-6">
+                          <div class="text-container">
+                            <h2>SUPER TUESDAY</h2>
+                            <p> In light of the overwhelming success of Super Tuesdays, we're spreading the joy to ALL OUR LOCATIONS, offering a 50% discount on all cooked steaks every first Tuesday of the month for the whole year 2024, for everyone to enjoy and embrace what we have to offer.</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="image-container">
+                            <img src="{% static 'app/images/imgs-home/banner1.jpg' %}" alt="Image">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-lg-6">
+                          <div class="text-container">
+                            <h2>BURGER SPECIALS</h2>
+                            <p>Our special burgers redefine the dining experience with a 220g homemade patty made from our cuts of beef. You can choose various tasty options, from the classic to cheddar cheese and topped with foie gras, all are juicy, delicious, and will keep you wanting more. All our burgers come with fries or mixed green salad.</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="image-container">
+                            <img src="{% static 'app/images/imgs-home/banner2.jpg' %}" alt="Image">
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-lg-6">
+                          <div class="text-container">
+                            <h2>ALL-TIME FAVORITES</h2>
+                            <p>El Gaucho’s All-time Favorites are available all day, offering a variety of high-quality steaks including New York Striploin, Filet, Rib Eye and our Homemade Burgers with the same exceptional quality at affordable prices.</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="image-container">
+                            <img src="{% static 'home/images/imgs-home/banner3.jpg' %}" alt="Image">
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+    </div>
+    <!-- End Promotion -->
+
+    <!--Begin About-us -->
+    <div class="about-us">
+        <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="about-heading">ABOUT US</h1>
+                    <h2 class="about-sub-heading">OUR EL GAUCHO STEAKHOUSE – CONTEMPORARY AND SPECIALISED</h2>
+                    <p class="about-text">El Gaucho is an upscale Argentina themed steakhouse restaurant chain, first established in 2011. As a privately owned and financially independent venture with today 28 well-established locations in Europe and Asia, owner and management enjoy a great reputation with customers and partners and combine an extraordinary skill set in the industry and beyond. With this well-proven and unique upscale business concept, the owner aims to drive expansion in main European and Asian cities, operating 44 locations by the end of 2026. In addition, we are launching for the first time franchise opportunities in the Gulf region, poised to take our successful brand to new heights.</p>
+              </div>
+              <div class="col-md-6">
+                <img src="{% static 'app/images/imgs-home/Family collage.png' %}" class="img-fluid" alt="Hình ảnh">
+              </div>
+            </div>
+          </div>
+    </div>
+    <!--End About-us -->
+{% endblock home_promotion  %}
 {% comment %} ================================================================================== {% endcomment %}
 
 

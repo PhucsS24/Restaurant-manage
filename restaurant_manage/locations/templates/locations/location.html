@@ -1,0 +1,157 @@
+{% extends "base_location.html" %}
+{%load static%}
+
+{% block location_css %}
+
+{% endblock %} 
+
+{% comment %} ================================================================================= {% endcomment %}
+{% block location_html  %} 
+    <!-- Location -->
+    <div class="delivery">
+        <!-- ======= Location Section ======= -->
+        <section id="menu" class="menu section-bg">
+        <div class="container" data-aos="fade-up">
+            <div class="head">
+                <h1>LOCATIONS</h1>
+            </div>
+            
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="menu-flters">
+                <li data-filter="*" class="filter-active">All</li>
+                <li data-filter=".filter-hn">HaNoi</li>
+                <li data-filter=".filter-hcm">HCM</li>
+                <li data-filter=".filter-dn">DaNang</li>
+                </ul>
+            </div>
+            </div>
+            
+            <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-6 menu-item filter-hcm">
+                <img src="/Retaurant_manage/assets/img/img-location/12.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                <a href="#">135 Nam Kỳ Khởi Nghĩa, Bến Thành, Quận 1, TP. Hồ Chí Minh</a>
+                </div>
+                <div class="menu-ingredients">
+                <br>
+                <button class="pulse">BOOK NOW</button>
+                <br>
+                <br>
+                <button class="pulse" onclick="openMap('135 Nam Kỳ Khởi Nghĩa, Bến Thành, Quận 1, TP. Hồ Chí Minh')">MAP</button>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 menu-item filter-hcm">
+                <img src="/Retaurant_manage/assets/img/img-location/15.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                <a href="#">24 Nguyễn Huệ, Bến Nghé, Quận 1, TP. Hồ Chí Minh</a>
+                </div>
+                <div class="menu-ingredients">
+                <br>
+                <button class="pulse">BOOK NOW</button>
+                <br>
+                <br>
+                <button class="pulse" onclick="openMap('24 Nguyễn Huệ, Bến Nghé, Quận 1, TP. Hồ Chí Minh')">MAP</button>   
+                </div>
+            </div>
+            
+            <div class="col-lg-6 menu-item filter-hcm">
+                <img src="/Retaurant_manage/assets/img/img-location/6.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                <a href="#">123 Lê Lợi, Bến Thành, Quận 1, TP. Hồ Chí Minh</a>
+                </div>
+                <div class="menu-ingredients">
+                <br>
+                <button class="pulse">BOOK NOW</button>
+                <br>
+                <br>
+                <button class="pulse" onclick="openMap('123 Lê Lợi, Bến Thành, Quận 1, TP. Hồ Chí Minh')">MAP</button>
+                </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-hn">
+                <img src="/Retaurant_manage/assets/img/img-location/1.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                <a href="#">58 Quốc Tử Giám,Văn Miếu, Quận Đống Đa, TP. Hà Nội</a>
+                </div>
+                <div class="menu-ingredients">
+                <br>
+                <button class="pulse">BOOK NOW</button>
+                <br>
+                <br>
+                <button class="pulse" onclick="openMap('58 Quốc Tử Giám,Quận Đống Đa, Hà Nội')">MAP</button> 
+                </div>
+            </div>
+            
+            <div class="col-lg-6 menu-item filter-hn">
+                <img src="/Retaurant_manage/assets/img/img-location/10.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                <a href="#">40 Nhà Chung,Hàng Trống, Quận Hoàn Kiếm, TP. Hà Nội</a>
+                </div>
+                <div class="menu-ingredients">
+                <br>
+                <button class="pulse">BOOK NOW</button>
+                <br>
+                <br>
+                <button class="pulse" onclick="openMap('40 Nhà Chung, Quận Hoàn Kiếm, Hà Nội')">MAP</button>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 menu-item filter-hn">
+                <img src="/Retaurant_manage/assets/img/img-location/11.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                <a href="#">18 Nguyễn Văn Huyên, Quận Cầu Giấy, TP. Hà Nội</a>
+                </div>
+                <div class="menu-ingredients">
+                <br>
+                <button class="pulse">BOOK NOW</button>
+                <br>
+                <br>
+                <button class="pulse" onclick="openMap('18 Nguyễn Văn Huyên, Quận Cầu Giấy, Hà Nội')">MAP</button> 
+                </div>
+            </div>
+            
+            <div class="col-lg-6 menu-item filter-dn">
+                <img src="/Retaurant_manage/assets/img/img-location/7.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                <a href="#">113 Trần Hưng Đạo, An Hải Bắc, Sơn Trà, TP. Đà Nẵng</a>
+                </div>
+                <div class="menu-ingredients">
+                <br>
+                <button class="pulse">BOOK NOW</button>
+                <br>
+                <br>
+                <button class="pulse" onclick="openMap('113 Trần Hưng Đạo, An Hải Bắc, Sơn Trà, TP. Đà Nẵng')">MAP</button>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 menu-item filter-dn">
+                        <img src="/Retaurant_manage/assets/img//img-location/8.jpg" class="menu-img" alt="">
+                        <div class="menu-content">
+                        <a href="#">18 Phường Mỹ An, Quận Ngũ Hành Sơn, TP. Đà Nẵng</a>
+                        </div>
+                        <div class="menu-ingredients">
+                        <br>
+                        <button class="pulse">BOOK NOW</button>
+                        <br>
+                        <br>
+                        <button class="pulse" onclick="openMap('18 Phường Mỹ An, Quận Ngũ Hành Sơn, TP. Đà Nẵng')">MAP</button>
+                        
+                    </div>
+            </div>
+        
+            </div>
+        </div>
+        </section>
+        <!-- End Location Section -->
+    </div>   
+    <!-- End Location -->
+
+    
+{% endblock location_html  %}
+
+{% comment %} ================================================================================== {% endcomment %}
+
+
