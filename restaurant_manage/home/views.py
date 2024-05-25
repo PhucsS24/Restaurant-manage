@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import BookTableForm
 from .models import Booking
+from accounts.models import CustomUser
 # Create your views here.
 #view home
 
