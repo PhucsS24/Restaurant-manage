@@ -1,0 +1,209 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .menu-section{
+        background-color: #fff;
+        margin-top: 80px;
+  }
+
+/*--------------------------------------------------------------
+# Menu Section
+--------------------------------------------------------------*/
+.navbar1 {
+  text-align: center; /* Căn giữa nội dung của thanh tìm kiếm */
+}
+
+.search-container {
+  display: inline-block; /* Đảm bảo thanh tìm kiếm chỉ chiếm không gian cần thiết */
+}
+
+.search-input {
+  padding: 8px 12px; /* Đảm bảo khoảng cách xung quanh ô nhập liệu */
+  border-radius: 4px; /* Bo tròn các góc của ô nhập liệu */
+  border: 1px solid #ccc; /* Đường viền của ô nhập liệu */
+}
+
+.search-btn {
+  padding: 8px 12px; /* Đảm bảo khoảng cách xung quanh nút tìm kiếm */
+  border: none; /* Loại bỏ đường viền của nút */
+  background-color: #007bff; /* Màu nền của nút */
+  color: #fff; /* Màu chữ của nút */
+  border-radius: 4px; /* Bo tròn các góc của nút */
+}
+
+
+.navbar1 {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: 30px;
+}
+.search-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+}
+.search-btn i {
+  color: black;
+}
+.search-input {
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 350px;
+}
+.menu #menu-flters {
+  padding: 0;
+  margin: 0 auto 0 auto;
+  list-style: none;
+  text-align: center;
+  border-radius: 50px;
+
+}
+ 
+.menu #menu-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 12px 10px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  color: black;
+  margin-bottom: 50px;
+  margin-top: 30px;
+  transition: all ease-in-out 0.3s;
+  border-radius: 50px;
+  font-family: "Playfair Display", serif;
+}
+ 
+.menu #menu-flters li:hover,
+.menu #menu-flters li.filter-active {
+  color: #ed2024;
+}
+ 
+.menu #menu-flters li:last-child {
+  margin-right: 0;
+}
+ 
+.menu .menu-item {
+  margin-bottom: 50px;
+}
+ 
+.menu .menu-img {
+  width: 80px;
+  height:60px;
+  border-radius: 20px;
+  float: left;
+  border: 2px solid rgba(31, 28, 28, 0.2);
+  
+}
+ 
+.menu .menu-content {
+  margin-left: 85px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  
+}
+#menu .head{
+  background-color: black;
+  color: white;
+  padding: 10px 0px;
+}
+#menu h1{
+  text-align: center;
+  font-size: 25px;
+}
+ 
+.menu .menu-content::after {
+  content: "......................................................................" "...................................................................." "....................................................................";
+  position: absolute;
+  left: 20px;
+  right: 0;
+  top: -4px;
+  z-index: 1;
+  color: black;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+ 
+.menu .menu-content a {
+  padding-right: 10px;
+  position: relative;
+  z-index: 3;
+  font-weight: 500;
+  color: black;
+  transition: 0.3s;
+  background: white;
+  text-decoration: none;
+}
+ 
+.menu .menu-content a:hover {
+  color: #cda45e;
+}
+ 
+.menu .menu-content span {
+  background: white;
+  position: relative;
+  z-index: 3;
+  padding: 0 10px;
+  font-weight: 600;
+  color: black;
+}
+ 
+.menu .menu-ingredients {
+  margin-left: 85px;
+  font-style: italic;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  color: black;
+}
+#menu {
+  background: white;
+  color: black;
+ 
+}
+/*Tablet nhỏ(480 x 640)*/
+@media (max-width: 480px){
+  #menu {
+    max-width: 480px;
+    
+  }
+  .search-container {
+    display: flex;
+    max-width: 376px;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: 0px;
+  }
+}
+@media (max-width:767px){
+  .menu{
+  max-width: 767px;
+  
+  }
+  .search-container {
+    display: flex;
+    max-width: 767px;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: 0px;
+  }
+}

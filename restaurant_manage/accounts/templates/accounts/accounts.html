@@ -1,0 +1,318 @@
+{% extends "base_accounts.html" %}
+{%load static%}
+
+{% block accounts_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/css/account.css' %}">
+
+{% endblock %} 
+
+{% comment %} ================================================================================= {% endcomment %}
+<!-- start accounts page -->
+
+{% block accounts  %} 
+    <!-- Statrt content-account -->
+    <div id="content-account" class="container-fluid">
+            
+        <div class="row" id="test">
+        
+            <div class="col-md-4">
+                <div class="row" id="test1">
+                    <div class="col-md-3">
+                        <!-- phần bên trái -->
+                        <div class="info_list">
+                            <!-- Phần avata -->
+                            <div class="avata ms-2">
+                                <!-- img avata -->
+                                <div class=" avata_upload rounded-circle text-center d-flex align-items-center justify-content-center" >
+                                    <label for="avatar">
+                                        <i class="icon-plus ti-plus mt-1" ></i>
+                                    </label>
+                                </div>
+    
+                                <div class="form-group upload_avata text-center">
+                                    <h5 class="name_user text-danger">Name</h5>
+                                    <input type="file" class="form-control-file" id="avatar" name="avatar" hidden>
+                                    <label for="avatar"></label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="test2">
+                    <div class="col-md-10">
+                        <div class="container mt-3">
+                            <a href="#demo_1" class="btn btn-light" data-bs-toggle="collapse" style="width: 200px; text-align: left;">
+                                
+                                <h6><icon class="icon-profile ti-user me-1" ></icon>PROFILE</h6>
+                            </a>
+                            <div id="demo_1" class="collapse" >
+                                <ul class="menu list-unstyled no-decoration">
+                                  <li class="nav-item">
+                                    <a class="nav-link ms-2 text-danger " href="#demo1" data-bs-toggle="collapse">Profile_Infomation</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link ms-2 text-danger " href="#demo2" data-bs-toggle="collapse">Reservation</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link ms-2 text-danger " href="#demo3" data-bs-toggle="collapse">Change_Password</a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="row" id="test3">
+                    <div class="col-md-10">
+                        <div class="container mt-3">
+                            <a href="#demo_2" class="btn btn-light" data-bs-toggle="collapse" style="width: 200px; text-align: left;">
+                                <h6><icon class="icon-oder ti-notepad me-1"></icon>PURCHASE ORDER</h6>
+                            </a>
+                            <div id="demo_2" class="collapse">
+                                <ul class="menu list-unstyled no-decoration ">
+                                    <li><a class="ms-2 text-danger" href="#demo4" data-bs-toggle="collapse">All</a></li>
+                                    <li><a class="ms-2 text-danger" href="#demo5" data-bs-toggle="collapse">Delivering</a></li>
+                                    <li><a class="ms-2 text-danger" href="#demo6" data-bs-toggle="collapse">Deliverd</a></li>
+                                </ul>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="row" id="test4">
+                    <div class="col">
+                        <button type="button" class="btn-signout btn btn-outline-danger ms-2 mt-3">Sign out</button>
+                    </div>
+                </div>
+
+        </div>
+        
+            
+
+        
+
+            <div class="col-md-8" id="accordion">
+                <!-- phần bên phải -->
+                <div id="demo1" class="info_profile collapse show" data-bs-parent="#accordion"> 
+
+                    <div class="card" style="margin-top: 20px;">
+                        <h5 class="heading_profile " style="text-align: center; padding-top: 10px;">PROFILE INFORMATION</h5>
+                    </div>
+                    
+                    <form action="/action_page.php" method="get">
+
+                        <div class="card" style="padding: 10px;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-1 mt-1">
+                                        <label for="username" class="form-label">User name</label>
+                                        <input type="text" class="form-control bg-white" id="username" name="username" placeholder="username" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-1 mt-1">
+                                        <label for="fullname" class="form-label">Full name</label>
+                                        <input type="text" class="form-control bg-white" id="fullname" name="fullname" placeholder="full name" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-1 mt-1">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control bg-white" id="email" name="email" placeholder="nguyenphuchoang434@gmail.com" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-1 mt-1">
+                                        <label for="phone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control bg-white" id="phone" name="phone" placeholder="0123456789" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="mb-1 mt-1">
+                                        <label for="gender" class="form-label">Gender</label>
+                                        <select name="gender" id="gender" class="form-select form-contro">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="mb-1 mt-1">
+                                        <label for="date" class="form-label">Birthday</label>
+                                        <input type="text" class="form-control " id="date" name="date" placeholder="24-03-2005" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="text-center" style="margin: 20px 0px;" >
+                                    <button type="button" class="btn btn-danger" style="width: 200px; ">SAVE</button>
+                            
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    
+                </div>
+
+                <div id="demo2" class="RESERVATION  collapse" data-bs-parent="#accordion">
+
+                    <div class="card">
+                        <h5 class="heading_profile p-2">RESERVATION</h5>
+                    </div>
+                    
+                    
+                    <div class="card">
+                        <div class="row">
+                            <div class="col">
+                                #item
+                            </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col">#item</div>
+                            
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+                <div id="demo3" class="change_passwd  collapse" data-bs-parent="#accordion">
+
+                    <div class="card" style="margin-top: 20px;">
+                        <h5 class="heading_profile" style="text-align: center; padding-top: 10px;">CHANGE PASSWORD</h5>
+                    </div>
+                    
+                    <form action="/action_page.php" method="get" class="was-validated">
+                        <div class="card">
+                            <div class="d-flex justify-content-center">
+                                <div class="row m-3">
+                                    <div class="col-16">
+                                        <div class="mb-3">
+                                            <input type="password" class="form-control form-outline-danger" id="currpwd" placeholder="Enter Currrent Password" name="currpswd" required>
+                                            <div class="valid-feedback"></div>
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <div class="row m-3">
+                                    <div class="col-16">
+                                        <div class="mb-3">
+                                            <input type="password" class="form-control" id="newwpwd" placeholder="Enter New Password" name="newpswd" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <div class="row m-3">
+                                    <div class="col-16">
+                                        <div class="mb-3">
+                                            <input type="password" class="form-control" id="cofpwd" placeholder="Confirm Your Password" name="cofpswd" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-center" style="margin-bottom: 20px;">
+                                    <button type="button" class="btn btn-danger" style="width: 200px;">SAVE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+
+
+                <!-- Phần mua hàng -->
+                <div id="demo4" class="RESERVATION  collapse" data-bs-parent="#accordion">
+
+                    <div class="card">
+                        <h5 class="heading_profile p-2">ALL PURCHASE</h5>
+                    </div>
+                                          
+                    <div class="card">
+                        <div class="row">
+                            <div class="col">
+                                #item
+                            </div>                              
+                        </div>
+
+                        <div class="row">
+                            <div class="col">#item</div>                              
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+                <div id="demo5" class="RESERVATION  collapse" data-bs-parent="#accordion">
+
+                    <div class="card">
+                        <h5 class="heading_profile p-2">DELIVERING</h5>
+                    </div>
+                                          
+                    <div class="card">
+                        <div class="row">
+                            <div class="col">
+                                #item
+                            </div>                              
+                        </div>
+
+                        <div class="row">
+                            <div class="col">#item</div>                              
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+                <div id="demo6" class="RESERVATION  collapse" data-bs-parent="#accordion">
+
+                    <div class="card">
+                        <h5 class="heading_profile p-2">DELIVERED</h5>
+                    </div>
+                                          
+                    <div class="card">
+                        <div class="row">
+                            <div class="col">
+                                #item
+                            </div>                              
+                        </div>
+
+                        <div class="row">
+                            <div class="col">#item</div>                              
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+{% endblock accounts %}
+<!-- end accounts page -->

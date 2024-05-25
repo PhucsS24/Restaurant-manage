@@ -1,0 +1,63 @@
+/* <====================| RESET CSS |=====================> */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+
+/* <====================| CONTENT-account |=====================> */
+#content-account {
+    margin-top: 120px;
+}
+
+#content-account .avata_upload {
+    height: 102px;
+    width: 102px;
+    color: #fbfbfb;
+    background-color: #ccc;
+    
+}
+
+#content-account .icon-plus{
+    font-size: 30px;
+}
+
+#content-account .upload_avata {
+    
+    width: 102px;
+}
+
+#content-account .btn-signout{
+    width: 200px;
+}
+
+#content-account .heading_profile {
+    font-size: 14px;
+}
+@media (max-width : 480px) {
+    #content-account #test1{
+        margin-left: 110px;
+    }
+    #content-account #test2{
+        margin-left: 60px;
+    }
+    #content-account #test3{
+        margin-left: 60px;
+    }
+    #content-account #test4{
+        margin-left: 60px;
+    }
+    #content-account #demo_1{
+        text-align: center;
+        margin-right: 110px;
+    }
+    #content-account #demo_2{
+        text-align: center;
+        margin-right: 110px;
+    }
+}
