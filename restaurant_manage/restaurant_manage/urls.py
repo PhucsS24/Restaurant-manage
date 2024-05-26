@@ -27,9 +27,8 @@ urlpatterns = [
     path('', include('home.urls')), 
     path('account/', include('accounts.urls')),
     path('delivery/', include('deliveries.urls')),
-    path('cart/', include('cart.urls')),
-    path('location/', include('locations.urls'))
-] 
+    path('cart/', include('cart.urls'))
+]
 
 #lấy hình đưa vào 1 path cho trước
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

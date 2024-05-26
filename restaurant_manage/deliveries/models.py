@@ -30,31 +30,55 @@ class MenuItem(models.Model):
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='menu_items/', blank=True)
 
-    ITEM_TYPE_CHOICES = {
-        'BEEF': 'Beef',
-        'SAUCES': 'Sauces',
-        'DESSERT': 'Dessert',
-        'DRINK': 'Drink',
-        'SOUP': 'Soup',
-        'TRADITIONAL': 'Traditional',
-        'POPULAR' : 'Popular'
-    }
-    item_type = models.CharField(max_length=20, choices=ITEM_TYPE_CHOICES, default='POPULAR')
+    # ITEM_TYPE_CHOICES = {
+    #     'BEEF': 'Beef',
+    #     'SAUCES': 'Sauces',
+    #     'DESSERT': 'Dessert',
+    #     'DRINK': 'Drink',
+    #     'SOUP': 'Soup',
+    #     'TRADITIONAL': 'Traditional',
+    #     'POPULAR' : 'Popular'
+    # }
+    # item_type = models.CharField(max_length=20, choices=ITEM_TYPE_CHOICES, default='POPULAR')
 
-    WEIGHT_CHOICES = {
-        250 : '250g',
-        350 : '350g',
-        200 : '200G',
-        300 : '300g',
-        500 : '500g'
-    }
+    # WEIGHT_CHOICES = {
+    #     250 : '250g',
+    #     350 : '350g',
+    #     200 : '200G',
+    #     300 : '300g',
+    #     500 : '500g'
+    # }
+    # weight = models.IntegerField(choices=WEIGHT_CHOICES, blank=True, null=True)
+
+    # DONENESS_CHOICES = {
+    #     'WELL_DONE': 'WELL DONE',
+    #     'MEDIUM': 'MEDIUM',
+    #     'RARE': 'RARE'
+    # }
+    ITEM_TYPE_CHOICES = [
+        ('BEEF', 'Beef'),
+        ('SAUCES', 'Sauces'),
+        ('DESSERT', 'Dessert'),
+        ('DRINK', 'Drink'),
+        ('SOUP', 'Soup'),
+        ('TRADITIONAL', 'Traditional'),
+        ('POPULAR' , 'Popular')
+    ]
+    WEIGHT_CHOICES = [
+        (250, '250g'),
+        (350, '350g'),
+        (200, '200g'),
+        (300, '300g'),
+        (500, '500g'),
+    ]
     weight = models.IntegerField(choices=WEIGHT_CHOICES, blank=True, null=True)
 
-    DONENESS_CHOICES = {
-        'WELL_DONE': 'WELL DONE',
-        'MEDIUM': 'MEDIUM',
-        'RARE': 'RARE'
-    }
+    DONENESS_CHOICES = [
+        ('WELL_DONE', 'WELL DONE'),
+        ('MEDIUM', 'MEDIUM'),
+        ('RARE', 'RARE'),
+    ]
+
     doneness = models.CharField(max_length=20, choices=DONENESS_CHOICES, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
