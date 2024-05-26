@@ -39,3 +39,6 @@ def signin(request):
     else:
         form = SignInForm()
     return render(request, 'accounts/signin.html', {'form': form})
+
+def account(request):
+    return render(request, 'accounts/account.html')

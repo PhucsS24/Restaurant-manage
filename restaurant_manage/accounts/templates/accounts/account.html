@@ -1,5 +1,5 @@
-{% extends "base_accounts.html" %}
-{%load static%}
+{% extends "home/base.html" %}
+{% load static %}
 
 {% block accounts_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/css/account.css' %}">
@@ -9,7 +9,7 @@
 {% comment %} ================================================================================= {% endcomment %}
 <!-- start accounts page -->
 
-{% block accounts  %} 
+{% block account %} 
     <!-- Statrt content-account -->
     <div id="content-account" class="container-fluid">
             
@@ -314,5 +314,5 @@
 
     </div>
 
-{% endblock accounts %}
+{% endblock account %}
 <!-- end accounts page -->
