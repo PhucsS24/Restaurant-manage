@@ -150,3 +150,7 @@ STATICFILES_DIRS = [
 #image
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#session ids
+CART_SESSION_ID = 'cart_id'
+USER_SESSION_ID = 'user_id'

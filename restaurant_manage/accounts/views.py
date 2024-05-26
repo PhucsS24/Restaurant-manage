@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from django.conf import settings
 from .forms import SignUpForm, SignInForm
 
 # Create your views here.
@@ -29,7 +30,7 @@ def signin(request):
             user = authenticate(username=email, password=password)
             if user is not None:
                 login(request, user)
-                request.session['user_id'] = user.id 
+                request.session[settings.USER_SESSION_ID] = user.id 
                 return redirect('home')
             else:
                 form.add_error(None, 'Invalid email or password. Please try again!')

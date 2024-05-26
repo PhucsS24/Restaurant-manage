@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.conf import settings
 from accounts.models import CustomUser
 # Create your views here.
 #view home
@@ -43,7 +44,7 @@ from accounts.models import CustomUser
 #     return render(request, 'home\home.html', {'form': form})
 
 def home(request):
-    user_id = request.session.get('user_id')
+    user_id = request.session.get(settings.USER_SESSION_ID)
     if user_id:
         user = CustomUser.objects.get(id=user_id)
         return render(request, 'home\home.html', {'user': user})
