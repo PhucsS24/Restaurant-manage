@@ -1,0 +1,85 @@
+body {
+    background-image: url(../images/imgs-accounts/bg_signup.png); /* URL của hình nền */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.signup-container {
+    width: 465px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    position: relative;
+    z-index: 1;
+}
+
+.signup-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.additional-info {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.additional-info a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.terms {
+    font-size: 0.9rem;
+}
+
+.btn-custom {
+    background-color: #ed2024;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.fa-home{
+    color: #101;
+}
+
+
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .signup-container {
+      width: 80%;
+      
+    }
+  }
+  @media (max-width: 430px) {
+    .signup-container {
+      width: 90%;
+      
+      padding: 10px;
+      
+    }
+    .signup-title {
+      font-size: 1.5rem;
+    }
+    .additional-info, .terms {
+      font-size: 0.8rem;
+    }
+
+    
+  }
+
+  @media (min-height: 677px) and ((min-height: 1024px)){
+    .signup-container {
+      max-height: 80vh;
+      margin-top: -180px;
+     }
+  }

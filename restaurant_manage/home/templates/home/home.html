@@ -33,7 +33,7 @@
                     <h1 class="book-heading text-white"><i class="icon-book ti-notepad"></i><b class="">BOOK A TABLE</b></h1>
 
                     <!-- Begin form -->
-                    <form class="was-validated form-book mx-2" method="post" id="booking-form">
+                    <form action="" class="was-validated form-book mx-2" method="post" id="booking-form">
                         {% csrf_token %}
                         <!-- Begin line1 -->
                         <div class="row line1">
@@ -78,7 +78,7 @@
                                     <input type="date" class="form-control form-control-lg date " id="date" name="choice_date" required>
                                     <div class="valid-feedback check-valid" ></div>
                                     <div class="invalid-feedback check-valid"></div>
-                                    <div class="invalid-feedback" id="choice_date-error"></div>
+                                    <div style="display: block !important; color: red !important;" class="invalid-feedback" id="choice_date-error"></div>
                                 </div>
                             </div>
 
@@ -121,7 +121,8 @@
                                     <input type="tel" class="form-control form-control-lg info" id="phone" placeholder="Phone" name="phone" required>
                                     <div class="valid-feedback check-valid" ></div>
                                     <div class="invalid-feedback check-valid"></div>
-                                    <div class="invalid-feedback" id="phone-error"></div>
+                                    <div style="display: block !important; color: red !important;" class="invalid-feedback" id="phone-error" >
+                                    </div>
                                 </div>
                             </div>
 
@@ -131,7 +132,7 @@
                                     <input type="email" class="form-control form-control-lg info" id="email" placeholder="Email" name="email" required>
                                     <div class="valid-feedback check-valid"></div>
                                     <div class="invalid-feedback check-valid"></div>
-                                    <div class="invalid-feedback" id="email-error"></div>
+                                    <div style="display: block !important; color: red !important;" class="invalid-feedback" id="email-error"></div>
                                 </div>
                             </div>
 
@@ -160,6 +161,8 @@
                             <div class="col">
                                 <textarea class="mb-1 mt-1 form-control" name="note" id="note"  rows="3" placeholder="*Note"></textarea>
                             </div>
+                            
+                            <div style="display: block !important; color: red !important;" class="invalid-feedback" id="note-error"></div>
                         </div>
                         <!-- End line 4 -->
 
@@ -261,11 +264,14 @@
 {% endblock home_promotion  %}
 {% comment %} ================================================================================== {% endcomment %}
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% block delivery_js %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
       $('#booking-form').submit(function(event) {
-        event.preventDefault(); // Ngăn submit mặc định
+        event.preventDefault(); 
+        $('.invalid-feedback').empty();
     
         var formData = $(this).serialize();
     
@@ -275,23 +281,27 @@
           data: formData,
           success: function(response) {
             if (response.success) {
-              alert(response.message); // Hiển thị thông báo thành công
-              $('#booking-form')[0].reset(); // Reset form
+              alert(response.message); 
             } else {
-              // Hiển thị lỗi theo từng trường
-              $('.invalid-feedback').text('');
+              $('.invalid-feedback').empty();
+              $('.form-control').removeClass('is-invalid').removeClass('is-valid');
               for (var field in response.errors) {
-                if (response.errors.hasOwnProperty(field)) {
-                  var errorMessage = response.errors[field][0];
-                  $('#' + field + '-error').text(errorMessage);
-                }
+                  if (response.errors.hasOwnProperty(field)) {
+                      var errorMessages = response.errors[field];
+                      var $errorContainer = $('#' + field + '-error');
+                      $errorContainer.empty(); 
+                      for (var i = 0; i < errorMessages.length; i++) {
+                          $errorContainer.append('<div class="error">' + errorMessages[i] + '</div>');
+                      }
+                  }
               }
             }
           },
           error: function(xhr) {
-            console.error('Lỗi:', xhr.responseText);  // Hiển thị lỗi console
+            console.error('Lỗi:', xhr.responseText); 
           }
         });
       });
     });
-    </script> -->
+    </script>
+{% endblock delivery_js %} 

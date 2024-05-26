@@ -1,0 +1,92 @@
+body {
+    background-image: url(../images/imgs-accounts/bg_login.png);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 0; */
+}
+
+.login-container {
+    width: 465px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    position: relative;
+    z-index: 1;
+    margin-top: 10px;
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.forgot-password {
+    font-size: 0.9rem;
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+}
+
+.additional-info {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.additional-info a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.btn-custom {
+    background-color: #ed2024;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.fa-home{
+    color: #101;
+}
+
+
+  /* Responsive styles */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .login-container {
+      width: 80%;
+      margin-top: -500px;
+    }
+  }
+
+  @media (min-width: 430px) and  (max-width: 768px) {
+    .login-container {
+      width: 95%;
+      padding: 10px;
+      margin-top: -180px;
+    }
+    .login-title {
+      font-size: 1.5rem;
+    }
+    .forgot-password, .additional-info {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .login-container {
+      width: 90%;
+      padding: 10px;
+      margin-top: -190px;
+    }
+    .login-title {
+      font-size: 1.5rem;
+    }
+    .forgot-password, .additional-info {
+      font-size: 0.8rem;
+    }
+  }
