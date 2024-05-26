@@ -33,7 +33,7 @@
                     <h1 class="book-heading text-white"><i class="icon-book ti-notepad"></i><b class="">BOOK A TABLE</b></h1>
 
                     <!-- Begin form -->
-                    <form action="{% url 'home' %}" class="was-validated form-book mx-2" method="post">
+                    <form action="{% url 'reservations:booking' %}" class="was-validated form-book mx-2" method="post" id="booking-form">
                         {% csrf_token %}
                         <!-- Begin line1 -->
                         <div class="row line1">
@@ -54,19 +54,18 @@
                                 <div class="mb-1 mt-1 d-flex">
                                     
                                     <select name="select_size" id="party-size" class="modal-select form-select form-select-lg" aria-placeholder="party-size" >
-                                        <option value="prity-size">Prity Size</option>
-                                        <option value="HaNoi">1</option>
-                                        <option value="HaNoi">2</option>
-                                        <option value="HaNoi">3</option>
-                                        <option value="HaNoi">4</option>
-                                        <option value="HaNoi">5</option>
-                                        <option value="HaNoi">6</option>
-                                        <option value="HaNoi">7</option>
-                                        <option value="HaNoi">8</option>
-                                        <option value="HaNoi">9</option>
-                                        <option value="HaNoi">10</option>
-                                        <option value="HaNoi">11</option>
-                                        <option value="HaNoi">12</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
                                     </select>
                                     
                                     <!-- <i class="icon ti-user"></i>   -->
@@ -79,6 +78,7 @@
                                     <input type="date" class="form-control form-control-lg date " id="date" name="choice_date" required>
                                     <div class="valid-feedback check-valid" ></div>
                                     <div class="invalid-feedback check-valid"></div>
+                                    <div class="invalid-feedback" id="choice_date-error"></div>
                                 </div>
                             </div>
 
@@ -121,6 +121,7 @@
                                     <input type="tel" class="form-control form-control-lg info" id="phone" placeholder="Phone" name="phone" required>
                                     <div class="valid-feedback check-valid" ></div>
                                     <div class="invalid-feedback check-valid"></div>
+                                    <div class="invalid-feedback" id="phone-error"></div>
                                 </div>
                             </div>
 
@@ -130,6 +131,7 @@
                                     <input type="email" class="form-control form-control-lg info" id="email" placeholder="Email" name="email" required>
                                     <div class="valid-feedback check-valid"></div>
                                     <div class="invalid-feedback check-valid"></div>
+                                    <div class="invalid-feedback" id="email-error"></div>
                                 </div>
                             </div>
 
@@ -161,7 +163,7 @@
                         </div>
                         <!-- End line 4 -->
 
-                        <button type="submit" class="btn-book btn-submit btn mx-auto" id="submitbtn">Submit</button>
+                        <button type="submit" class="btn-book btn-submit btn mx-auto" id="submitbtn" >Submit</button>
                     
                     </form>
                     <!-- End form -->
@@ -259,4 +261,37 @@
 {% endblock home_promotion  %}
 {% comment %} ================================================================================== {% endcomment %}
 
-
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+      $('#booking-form').submit(function(event) {
+        event.preventDefault(); // Ngăn submit mặc định
+    
+        var formData = $(this).serialize();
+    
+        $.ajax({
+          url: "{% url 'reservations:booking' %}",
+          type: 'POST',
+          data: formData,
+          success: function(response) {
+            if (response.success) {
+              alert(response.message); // Hiển thị thông báo thành công
+              $('#booking-form')[0].reset(); // Reset form
+            } else {
+              // Hiển thị lỗi theo từng trường
+              $('.invalid-feedback').text('');
+              for (var field in response.errors) {
+                if (response.errors.hasOwnProperty(field)) {
+                  var errorMessage = response.errors[field][0];
+                  $('#' + field + '-error').text(errorMessage);
+                }
+              }
+            }
+          },
+          error: function(xhr) {
+            console.error('Lỗi:', xhr.responseText);  // Hiển thị lỗi console
+          }
+        });
+      });
+    });
+    </script> -->
