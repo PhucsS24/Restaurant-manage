@@ -33,7 +33,7 @@
                     <h1 class="book-heading text-white"><i class="icon-book ti-notepad"></i><b class="">BOOK A TABLE</b></h1>
 
                     <!-- Begin form -->
-                    <form action="{% url 'reservations:booking' %}" class="was-validated form-book mx-2" method="post" id="booking-form">
+                    <form class="was-validated form-book mx-2" method="post" id="booking-form">
                         {% csrf_token %}
                         <!-- Begin line1 -->
                         <div class="row line1">
