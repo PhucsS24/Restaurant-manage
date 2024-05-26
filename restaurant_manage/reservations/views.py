@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def booking(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
         form = BookTableForm(request.POST)
         if form.is_valid():
             # Xử lý dữ liệu
@@ -25,7 +25,7 @@ def booking(request):
             size_party = form.cleaned_data['size_party']
             note = form.cleaned_data['note']
 
-            # Lưu dữ liệu vào cơ sở dữ liệu
+            # Lưu dữ liệu 
             booking = Booking(
                 select_location=select_location,
                 select_size=select_size,
@@ -39,7 +39,7 @@ def booking(request):
                 note=note
             )
             booking.save()
-            return JsonResponse({'success': True, 'message': 'Yeu cau da duoc gui'})
+            return JsonResponse({'success': True, 'message': 'Yêu cầu của bạn đã được gửi'})
         else:
-            return JsonResponse({'success': False, 'errors': form.errors}, status=400)
-    return JsonResponse({'success': False, 'message': 'Yeu cau khong hop le'}, status=400)
+            return JsonResponse({'success': False, 'message': 'Có trường bị lỗi','errors': form.errors})
+    return JsonResponse({'success': False, 'message': 'Yêu cầu không hợp lệ'}, status=400)
