@@ -1,9 +1,9 @@
-{% extends "base_menu.html" %}
+{% extends "home/base.html" %}
 {%load static%}
 
-{% block menu_css %}
+{% comment %} {% block menu_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'menu/css/menu.css' %}">
-{% endblock %} 
+{% endblock %}  {% endcomment %}
 
 {% comment %} ================================================================================= {% endcomment %}
 {% block menu_html  %} 
@@ -139,4 +139,29 @@
 
 {% comment %} ================================================================================== {% endcomment %}
 
-
+{% comment %} JS menu {% endcomment %}
+{% block menu_js %}
+  <script>
+    $(document).ready(function() {
+    // Xử lý sự kiện khi nhấp vào mỗi data-filter
+      $('#menu-flters li').click(function() {
+          // Lấy giá trị data-filter của mục được nhấp
+          var filterValue = $(this).attr('data-filter');
+          
+          // Ẩn tất cả các menu-item
+          $('.menu-item').hide();
+          
+          // Hiển thị các menu-item phù hợp với data-filter được chọn
+          if (filterValue === '*') {
+          $('.menu-item').show();
+          } else {
+          $(filterValue).show();
+          }
+          
+          // Thêm lớp 'filter-active' cho mục được nhấp và xóa lớp này khỏi các mục khác
+          $(this).addClass('filter-active').siblings().removeClass('filter-active');
+      });
+    });
+  </script>
+    
+{% endblock menu_js %}

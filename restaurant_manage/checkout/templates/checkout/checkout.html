@@ -1,11 +1,11 @@
-{% extends "base_checkout.html" %}
+{% extends "home/base.html" %}
 {%load static%}
 
 {% block checkout_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'checkout/css/checkout.css' %}">
-{% endblock checkout_css%} 
+{% endblock checkout_css%}  
 
-{% block checkout %} 
+{% block checkout_html %} 
 
     <!-- CONTENT -->
     <div id="contentcheckout">
@@ -219,5 +219,5 @@
 
     </div>
 
-{% endblock checkout %}
+{% endblock checkout_html %}
 

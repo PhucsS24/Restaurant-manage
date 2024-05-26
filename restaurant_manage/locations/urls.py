@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from locations import views as locations
 
 
 urlpatterns = [
-    path('', views.location, name="location"),
+    path('', locations.locations, name="locations"),
 
 ]
 

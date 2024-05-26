@@ -28,7 +28,11 @@ urlpatterns = [
     path('account/', include('accounts.urls')),
     path('delivery/', include('deliveries.urls')),
     path('cart/', include('cart.urls')),
-    path('location/', include('locations.urls'))
+    path('location/', include('locations.urls')),
+    path('menu/', include('menu.urls')),
+    path('checkout/', include('checkout.urls')),
+
+
 ]
 
 #lấy hình đưa vào 1 path cho trước

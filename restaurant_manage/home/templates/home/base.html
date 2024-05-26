@@ -11,6 +11,8 @@
        
 
         <link rel="stylesheet" type="text/css" href="{% static 'app/css/promotion.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'menu/css/menu.css' %}">
+        
         {% comment %} css bootstrap {% endcomment %}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -42,14 +44,16 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{% url 'home' %}" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="{% url 'menu' %}" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Menu
                             
                         </a>
                         <div class="dropdown-menu" aria-labelledby="menuDropdown">
-                            <a class="dropdown-item" href="{% url 'home' %}">Food</a>
+                            <a class="dropdown-item" href="{% url 'menu' %}">ALL</a>
+                            <a class="dropdown-item" href="#">Beef</a>
+                            <a class="dropdown-item" href="#">Checken</a>
+                            <a class="dropdown-item" href="#">SOUPS</a>
                             <a class="dropdown-item" href="#">Drink</a>
-                            <a class="dropdown-item" href="#">Lunch</a>
                         </div>
                     </li>
 
@@ -63,7 +67,8 @@
                             
                         </a>
                         <div class="dropdown-menu" aria-labelledby="locationDropdown">
-                            <a class="dropdown-item" href="{% url 'location' %}">HCM</a>
+                            <a class="dropdown-item" href="{% url 'locations' %}">All</a>
+                            <a class="dropdown-item" href="{% url 'locations' %}">Ho Chi Minh</a>
                             <a class="dropdown-item" href="#">Ha Noi</a>
                             <a class="dropdown-item" href="#">Da Nang</a>
                         </div>
@@ -93,9 +98,6 @@
         <!-- start home page -->
         {% block home_css %}{% endblock home_css%} 
         {% block homepage  %} {% endblock homepage  %}
-        <!-- end home page -->
-
-        <!-- start home page -->
         {% block home_promotion  %} {% endblock home_promotion  %}
         <!-- end home page -->
 
@@ -105,10 +107,13 @@
         <!-- end event page -->
 
         <!-- start menu page -->
-        {% block menu_css %}{% endblock menu_css%} 
-        {% block menu  %} {% endblock menu %}
+        {% block menu_html %}{% endblock menu_html%} 
         <!-- end menu page -->
 
+        <!-- start delivery page -->
+        {% block delivery_css %}{% endblock delivery_css %} 
+        {% block delivery_html %}{% endblock delivery_html %} 
+        <!-- end delivery page -->
 
         <!-- start cart page -->
         {% block cart_css %}{% endblock cart_css%} 
@@ -116,8 +121,8 @@
         <!-- end cart page -->
 
         <!-- start checkout page -->
-        {% block checkout_css %}{% endblock checkout_css%} 
-        {% block checkout %} {% endblock checkout %}
+        {% block checkout_css %} {% endblock checkout_css %}
+        {% block checkout_html %} {% endblock checkout_html %}
         <!-- end checkout page -->
 
         <!-- start sign up, sigin in page -->
@@ -125,6 +130,18 @@
         {% block signup  %} {% endblock signup %}
         {% block signin  %} {% endblock signin %}
         <!-- end sign up, sigin in page -->
+
+        <!-- start location page -->
+        {% block account_css  %} {% endblock account_css %}
+        {% block account_html  %} {% endblock account_html %}
+        <!-- end checkout page -->
+
+        <!-- start location page -->
+        {% block location_css  %} {% endblock location_css %}
+        {% block location_html  %} {% endblock location_html %}
+        <!-- end checkout page -->
+
+
 
 
         <!-- start footer -->
@@ -199,6 +216,10 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        {% block location_js  %} {% endblock location_js %}
+        {% block menu_js  %} {% endblock menu_js %}
+        {% block delivery_js %}{% endblock delivery_js %} 
         
     </body>
 </html>

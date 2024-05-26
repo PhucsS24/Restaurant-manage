@@ -9,4 +9,4 @@ def Deliveries(request):
     menuItems = MenuItem.objects.all()
 
     context = {'menuItems':  menuItems }
-    return render(request, 'deliveries/deliveries.html', context)
+    return render(request, 'deliveries/deliveries_2.html', context)

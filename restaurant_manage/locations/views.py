@@ -4,6 +4,6 @@ from .models import *
 
 # Create your views here.
 #view locations
-def location(request):
+def locations(request):
     context = {}
-    return render(request, 'locations\location.html', context)
+    return render(request, 'locations\locations.html', context)
