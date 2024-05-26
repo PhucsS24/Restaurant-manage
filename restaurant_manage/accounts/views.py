@@ -17,7 +17,7 @@ def signup(request):
             print(form.errors.as_data())
     else:
         form = SignUpForm()
-    return render(request, 'accounts/signup.html', {'form': form})
+    return render(request, 'accounts/signup-new.html', {'form': form})
 
 #log in
 def signin(request):
@@ -38,7 +38,7 @@ def signin(request):
             print(form.errors.as_data())
     else:
         form = SignInForm()
-    return render(request, 'accounts/signin.html', {'form': form})
+    return render(request, 'accounts/signin-new.html', {'form': form})
 
 def account(request):
     return render(request, 'accounts/account.html')
