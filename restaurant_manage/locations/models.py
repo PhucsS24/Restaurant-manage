@@ -9,8 +9,16 @@ class Restaurant(models.Model):
     time_open = models.CharField(max_length=50)
     phone = PhoneNumberField(blank=True)
     description = models.TextField()
-    image = models.ImageField(upload_to='location/', blank=True)
+    image = models.ImageField(upload_to='location_items/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    @property
+    def ImageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
     
     
