@@ -46,39 +46,39 @@
 
                 {% for  menuItem in  menuItems %}
                 <div class="col-lg-6 menu-item filter-starters">
-                    <img src="{{ menuItem.ImageURL}}" class="menu-img" alt="dish">
-                    <div class="menu-content">
-                        <a href="#">{{ menuItem.name}}</a>
-                        <span class="price_items">{{ menuItem.price.amount}} {{menuItem.price.currency}}</span>
-                    </div>
+                    <img src="{{ menuItem.ImageURL}}" class="menu-img" alt="">
+        
+                    <div class="menu-content ">
+                        <a href="#">{{ menuItem.name}} </a>
+                        <div class="price-item" style="font-weight: 500;">{{ menuItem.price.amount}} {{menuItem.price.currency}}</div>
 
+                    </div>
+        
                     <div class="menu-ingredients">
-                        <br>
-                        <button class="pulse " data-bs-toggle="modal" data-bs-target="#detailsModal">View Detail</button>
-                        <br>
-                        <br>
-                        <button class="pulse">Add to cart</button>
+        
+                        <button class="pulse btn-view mt-2"  data-bs-toggle="modal" data-bs-target="#detailsModal{{forloop.counter}}">View Detail</button>
+                        
                     </div>
-
                 </div>
-
+        
                 <!-- Modal -->
-                <div class="modal" id="detailsModal">
+                <div class="modal " id="detailsModal{{ forloop.counter}}">
                     <div class="modal-dialog custom_modal">
                         <div class="modal-content">
                     
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h3 class="modal-title ">{{ menuItem.name}}</h3>
+                                <h3 class="modal-title " >{{ menuItem.name}}</h3>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
                             </div>
                     
                             <!-- Modal body -->
                             <div class="modal-body">
-                                <div class="modal-body clearfix">                               
-                                    <h5 class="name_item float-start">{{ menuItem.name}}</h5>
-                                    <h5 class="price_item float-end" style="color: #ed2024;">{{ menuItem.price.amount}}. {{menuItem.price.currency}}</h5>
+                                <div class="modal-body clearfix " >                               
+                                    <h6 class="name_item float-start" style="font-size: 18px">{{ menuItem.name}}</h6>
+                                    <h6 class="price_item float-end" style="color: #ed2024;font-size: 18px;">{{ menuItem.price.amount}} {{menuItem.price.currency}}</h6>
                                 </div>
+                                
                                 {% comment %} load data {% endcomment %}
                                 <select class="form-select ">
                                     <option>Weight</option>  
@@ -87,7 +87,7 @@
                                     <option>1000g</option>
                                     
                                 </select>
-
+        
                                 <select class="form-select mt-3">
                                     <option>Doneness</option>  
                                     <option>Well done</option>
@@ -105,45 +105,44 @@
                             <div class="container" style="background-color: #f2f2f2;">
                                 <div class="row mx-2  quantity-container">
                                     <div class="col-6 col-md-8 ">
-                                        <h5 class="quantity ">Quantity</h5>
+                                        <h5 class="quantity " style="font-size: 18px">Quantity</h5>
                                     </div>
-
+        
                                     <div class="col-6 col-md-4 text-right">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-outline-danger btn-light border border-danger" style="color: #111; width:40px;"> - </button>
-                                            <button type="button" class="btn btn-light border border-danger" style="width:50px;">1</button>
-                                            <button type="button" class="btn btn-outline-danger btn-light border border-danger" style="color: #111; width:40px;"> + </button>
+                                            <button type="button" class="btn btn-outline-danger btn-light border border-danger decrease-quantity" style="color: #111; width:40px;" data-price="{{ menuItem.price.amount }}"> - </button>
+                                            <button type="button" class="btn btn-light border border-danger quantity-display" style="width:50px;">1</button>
+                                            <button type="button" class="btn btn-outline-danger btn-light border border-danger increase-quantity" style="color: #111; width:40px;" data-price="{{ menuItem.price.amount }}"> + </button>
                                         </div>
                                     </div>
-
+        
                                 </div>
-
+        
                                 <div class="row mt-3  quantity-container">
                                     <div class="col-6 col-md-8 ">
-                                        <h5 class="quantity ms-4">Total</h5>
+                                        <h5 class="quantity  ms-4" style="font-size: 18px">Total</h5>
                                     </div>
-
+        
                                     <div class="col-6 col-md-4 text-right">
                                         <div class="total" style="color: #ed2024;">
-                                           <h5>{{ menuItem.price.amount}} {{menuItem.price.currency}}</h5>
+                                            <h5 class="total-amount" style="font-size: 18px"> 0 VND</h5>
                                         </div>
                                     </div>
-
+        
                                 </div>
-
-                                
-
+        
                             </div>
                         
-                            <button data-product={{product.id}} data-action="add" class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-2" style="width:300px;border-radius: 10px;">Add to cart</button>
-
+                            <button data-product={{product.id}} data-action="add" class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500">Add to cart</button>
+        
                         </div>
-
+        
                     </div>
                 </div>
                 {% endfor %}
-                
+            
             </div>
+
         </section>
 
     </div>
@@ -171,6 +170,43 @@
                 
                 // Thêm lớp 'filter-active' cho mục được nhấp và xóa lớp này khỏi các mục khác
                 $(this).addClass('filter-active').siblings().removeClass('filter-active');
+            });
+        });
+    </script>
+
+    {% comment %} tăng giảm số lượng và tính tổng giá {% endcomment %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to update total
+            function updateTotal(modal, price, quantity) {
+                const totalAmountElement = modal.querySelector('.total-amount');
+                const total = price * quantity;
+                totalAmountElement.textContent = `${total} VND`;
+            }
+        
+            // Event listeners for quantity buttons
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = button.closest('.modal');
+                    const quantityDisplay = modal.querySelector('.quantity-display');
+                    let quantity = parseInt(quantityDisplay.textContent);
+                    quantity++;
+                    quantityDisplay.textContent = quantity;
+                    updateTotal(modal, parseFloat(button.dataset.price), quantity);
+                });
+            });
+        
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = button.closest('.modal');
+                    const quantityDisplay = modal.querySelector('.quantity-display');
+                    let quantity = parseInt(quantityDisplay.textContent);
+                    if (quantity > 1) {
+                        quantity--;
+                        quantityDisplay.textContent = quantity;
+                        updateTotal(modal, parseFloat(button.dataset.price), quantity);
+                    }
+                });
             });
         });
     </script>
