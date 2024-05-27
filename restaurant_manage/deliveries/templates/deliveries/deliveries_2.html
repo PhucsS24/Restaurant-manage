@@ -85,7 +85,6 @@
                                     <option>200g</option>
                                     <option>500g</option>
                                     <option>1000g</option>
-                                    
                                 </select>
 
                                 <select class="form-select mt-3">
@@ -135,7 +134,7 @@
 
                             </div>
                         
-                            <button data-product={{product.id}} data-action="add" class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-2" style="width:300px;border-radius: 10px;">Add to cart</button>
+                            <button id="" data-product={{product.id}} data-action="add" class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-2" style="width:300px;border-radius: 10px;">Add to cart</button>
 
                         </div>
 
@@ -153,7 +152,7 @@
 {% comment %} JS delivery {% endcomment %}
 {% block delivery_js %}
     <script>
-        $(document).ready(function() {
+        $(document).ready(function() {      
         // Xử lý sự kiện khi nhấp vào mỗi data-filter
             $('#menu-flters li').click(function() {
                 // Lấy giá trị data-filter của mục được nhấp
@@ -173,6 +172,6 @@
                 $(this).addClass('filter-active').siblings().removeClass('filter-active');
             });
         });
-    </script>
+    </script>  
 {% endblock delivery_js %} 
 

@@ -1,5 +1,6 @@
 from django.conf import settings
 from deliveries.models import MenuItem
+from decimal import Decimal
 
 class Cart:
     def __init__(self, request):
@@ -31,6 +32,25 @@ class Cart:
             del self.cart[item_id]
             self.save()
     
-    # def __iter__(self):
-    #     item_ids = self.cart.keys()
-    #     items = MenuItem.objects.filter(id__in=item_ids)
+    def __iter__(self):
+        item_ids = self.cart.keys()
+        items = MenuItem.objects.filter(id__in=item_ids)
+        cart = self.cart.copy()
+        for item in items:
+            cart[str(item.id)]['item'] = item
+        for item in cart.values():
+            item['price'] = Decimal(item['price'])
+            item['total_price'] = item['price'] * item['quantity']
+            yield item
+
+    def __len__(self):
+        print(self.cart.values())
+        return sum(item['quantity'] for item in self.cart.values())
+    
+    def get_total_price(self):
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+    
+    def clear(self):
+        for key in list(self.cart.keys()):
+            del self.cart[key]
+        self.save()
