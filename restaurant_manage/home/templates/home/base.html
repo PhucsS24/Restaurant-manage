@@ -43,6 +43,7 @@
                             <i class="fas fa-home"></i>
                         </a>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'menu' %}" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Menu
@@ -50,9 +51,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="menuDropdown">
                             <a class="dropdown-item" href="{% url 'menu' %}">ALL</a>
+                            <a class="dropdown-item" href="#">Popular</a>
                             <a class="dropdown-item" href="#">Beef</a>
-                            <a class="dropdown-item" href="#">Chicken</a>
-                            <a class="dropdown-item" href="#">Soups</a>
+                            <a class="dropdown-item" href="#">Soup &amp; Salad</a>
                             <a class="dropdown-item" href="#">Drink</a>
                         </div>
                     </li>
@@ -68,7 +69,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="locationDropdown">
                             <a class="dropdown-item" href="{% url 'locations' %}">All</a>
-                            <a class="dropdown-item" href="{% url 'locations' %}">Ho Chi Minh</a>
+                            <a class="dropdown-item" href="#">Ho Chi Minh</a>
                             <a class="dropdown-item" href="#">Ha Noi</a>
                             <a class="dropdown-item" href="#">Da Nang</a>
                         </div>
@@ -247,6 +248,6 @@
         {% block location_js  %} {% endblock location_js %}
         {% block menu_js  %} {% endblock menu_js %}
         {% block delivery_js %}{% endblock delivery_js %} 
-        
+
     </body>
 </html>
