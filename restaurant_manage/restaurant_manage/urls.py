@@ -31,7 +31,7 @@ urlpatterns = [
     path('location/', include('locations.urls')),
     path('menu/', include('menu.urls')),
     path('checkout/', include('checkout.urls')),
-    path('reservations', include('reservations.urls'))
+    path('', include('reservations.urls'))
 ]
 
 #lấy hình đưa vào 1 path cho trước

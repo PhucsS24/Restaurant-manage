@@ -51,5 +51,5 @@ def home(request):
         user = CustomUser.objects.get(id=user_id)
         return render(request, 'home\home.html', {'user': user})
     else:
-        return redirect('signin')
+        return render(request, 'home\home.html', {'user': {}})
 

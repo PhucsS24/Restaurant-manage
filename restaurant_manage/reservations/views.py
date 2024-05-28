@@ -16,6 +16,7 @@ def booking(request):
         form = BookTableForm(request.POST)
         if form.is_valid():
             # Xử lý dữ liệu
+            print(form)
             select_location = form.cleaned_data['select_location']
             select_size = form.cleaned_data['select_size']
             choice_date = form.cleaned_data['choice_date']
