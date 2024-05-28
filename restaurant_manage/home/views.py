@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.conf import settings
 from accounts.models import CustomUser
+from locations.models import Restaurant
+
 # Create your views here.
 #view home
 

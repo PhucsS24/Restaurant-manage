@@ -125,7 +125,7 @@
         
                                     <div class="col-6 col-md-4 text-right">
                                         <div class="total" style="color: #ed2024;">
-                                            <h5 class="total-amount" style="font-size: 18px"> 0 VND</h5>
+                                            <h5 class="total-amount" style="font-size: 18px"> {{ menuItem.price.amount}} {{menuItem.price.currency}}</h5>
                                         </div>
                                     </div>
         
@@ -175,7 +175,7 @@
     </script>
 
     {% comment %} tăng giảm số lượng và tính tổng giá {% endcomment %}
-    <script>
+    {% comment %} <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Function to update total
             function updateTotal(modal, price, quantity) {
@@ -209,6 +209,77 @@
                 });
             });
         });
+    </script> {% endcomment %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var decreaseButtons = document.querySelectorAll('.decrease-quantity');
+            var increaseButtons = document.querySelectorAll('.increase-quantity');
+            var quantityDisplays = document.querySelectorAll('.quantity-display');
+            var totalAmounts = document.querySelectorAll('.total-amount');
+            
+            // Biến toàn cục để lưu trữ tổng tiền của tất cả các sản phẩm
+            var totalValues = [];
+            
+            // Biến toàn cục để lưu trữ số lượng của tất cả các sản phẩm
+            var quantities = [];
+        
+            decreaseButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    var quantityDisplay = quantityDisplays[index];
+                    var totalAmount = totalAmounts[index];
+                    var price = parseFloat(button.getAttribute('data-price'));
+                    var quantity = parseInt(quantityDisplay.innerText);
+        
+                    if (quantity > 1) {
+                        quantity--;
+                        quantityDisplay.innerText = quantity;
+                        var total = (quantity * price).toFixed(2) + " VND";
+                        totalAmount.innerText = total;
+                        // Save the total amount and quantity to the global variables
+                        totalValues[index] = (quantity * price).toFixed(2);
+                        quantities[index] = quantity;
+                        console.log("Total value of item " + (index + 1) + ": " + totalValues[index]);
+                        console.log("Quantity of item " + (index + 1) + ": " + quantities[index]);
+                    }
+                });
+            });
+        
+            increaseButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    var quantityDisplay = quantityDisplays[index];
+                    var totalAmount = totalAmounts[index];
+                    var price = parseFloat(button.getAttribute('data-price'));
+                    var quantity = parseInt(quantityDisplay.innerText);
+        
+                    quantity++;
+                    quantityDisplay.innerText = quantity;
+                    var total = (quantity * price).toFixed(0) + " VND";
+                    totalAmount.innerText = total;
+                    // Save the total amount and quantity to the global variables
+                    totalValues[index] = (quantity * price).toFixed(0);
+                    quantities[index] = quantity;
+                    console.log("Total value of item " + (index + 1) + ": " + totalValues[index]);
+                    console.log("Quantity of item " + (index + 1) + ": " + quantities[index]);
+                });
+            });
+            
+            // Hàm để lấy tổng tiền của một sản phẩm bất kỳ dựa vào index
+            function getTotalValue(index) {
+                return totalValues[index];
+            }
+        
+            // Hàm để lấy số lượng của một sản phẩm bất kỳ dựa vào index
+            function getQuantity(index) {
+                return quantities[index];
+            }
+        
+            // Ví dụ: Lấy tổng tiền và số lượng của sản phẩm đầu tiên
+            console.log("Total value of the first item: " + getTotalValue(0));
+            console.log("Quantity of the first item: " + getQuantity(0));
+        });
+        
+        
     </script>
 {% endblock delivery_js %} 
 

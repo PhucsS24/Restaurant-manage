@@ -1,0 +1,85 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: serif;
+}
+
+.bg-image {
+    /* The image used */
+    background-image: url('/assets/img/img-home/bg.jpg') ;
+    
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.9); /* Black background with transparency */
+    height: 100%; 
+    width: 100%;
+}
+
+.content {
+    text-align: center;
+    color: white;
+    margin-bottom: 200px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.thank-you {
+    font-size: 18px;
+}
+
+.btn-group {
+    margin-top: 20px;
+}
+
+.btn-custom {
+    background-color: #ed2024;
+    color: #fff;
+    font-weight: 500;
+    font-size: 19x;
+    height: 40px;
+    width: 180px;
+    border-radius: 5px ;
+    border: solid 2px #ed2024 ;
+}
+
+.btn-custom:hover {
+    font-weight: 650;
+}
+
+@media (max-width: 1024px) and (min-width: 740px) {
+    
+    .content {
+        margin-bottom: 650px;
+    }
+}
+
+@media (max-width: 739px) and (min-width: 430px) {
+    
+    .content {
+        margin-bottom: 500px;
+    }
+
+    .btn-group {
+        display: block;
+    }
+
+}
+
+@media (max-width: 430px) {
+    
+    .content {
+        margin-bottom: 400px;
+    }
+
+    .btn-group {
+        display: block;
+    }
+
+}

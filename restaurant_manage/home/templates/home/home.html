@@ -3,7 +3,7 @@
 
 {% block home_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/css/slider.css' %}">
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/info_book.css' %}">
     <script src="{% static 'app/js/bookevent.js' %}"></script>
 {% endblock %} 
 
@@ -264,9 +264,18 @@
 {% endblock home_promotion  %}
 {% comment %} ================================================================================== {% endcomment %}
 
+{% block book_succsess_info  %} 
+
+
+
+{% endblock book_succsess_info  %}
+{% comment %} ==================================================================================== {% endcomment %}
+
 {% block delivery_js %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 <script>
     $(document).ready(function() {
       $('#booking-form').submit(function(event) {

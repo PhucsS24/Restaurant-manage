@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'checkout',
     'menu',
     'locations',
-    'reservations'
+    'reservations',
     
 ]
 
