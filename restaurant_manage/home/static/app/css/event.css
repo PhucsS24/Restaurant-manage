@@ -1,0 +1,117 @@
+/* <====================| RESET CSS |=====================> */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+
+/* <====================| SLIDER |=====================> */
+/* --------background-------- */
+#slider {
+    margin-top: 58px;
+    height: 500px;
+    background: url(../images/imgs-home/home-slider.png) top center / cover no-repeat;
+
+}
+
+#slider .background {
+    position: relative;
+    /* padding-top: 50%; */
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+#slider .heading-text-event {
+    position: absolute;
+    bottom: 200px;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 36px;
+    font-weight:700;
+    color: #fff;
+}
+
+/* <====================| Content |=====================> */
+
+/* #content .content-form-event {
+    margin-top: 10px;
+    width: 100%;
+    background: url(../images/imgs-home/home-slider.png) top center / cover no-repeat;
+}
+
+#content  .background-form-event {
+    position: relative;
+    padding-top: 50%; 
+    height: 1094px;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    
+}
+
+#content .form-book-event {
+    position: absolute;
+    bottom: 350px;
+    width: 100%;
+    font-family: Roboto;
+    font-size: 30px;
+    font-weight:100;
+    font-style: italic;
+    color: #fff;
+    
+}
+
+#content .btn-book
+{
+    margin-top: 1px;
+    width: 400px;
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: #ED2024;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+#content .btn-book:hover {
+    color: #ED2024;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+
+#scontent .icon-book{
+    margin-right: 8px;
+    font-size: 30px;
+}
+
+#content .icon{
+    margin-top: 10px;
+    margin-left: 8px;
+    font-size: 26px;
+    color: #fff;
+    font-weight: 800;
+}
+
+
+#content .book-table-form .valid{
+    font-size: 20px;
+    text-align: left;
+}
+
+#content .btn-submit{
+    margin-left: 58px;
+} */
+
+
+
+

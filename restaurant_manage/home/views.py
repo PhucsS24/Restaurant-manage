@@ -53,3 +53,6 @@ def home(request):
     else:
         return render(request, 'home\home.html', {'user': {}})
 
+
+def events(request):
+    return render(request,'home/events.html')
