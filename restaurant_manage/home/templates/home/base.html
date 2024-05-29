@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home</title>
+        <title>NHOM7 RESTAURANT</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
        
@@ -76,7 +76,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "home" %}">Event
+                        <a class="nav-link" href="{% url "events" %}">Event
                             
                         </a>
                     </li>
@@ -93,9 +93,10 @@
                         </a>
                     </li> {% endcomment %}
 
-                    <li class="nav-item dropdown">
+                    {% comment %} cũ {% endcomment %}
+                    {% comment %} <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'account' %}" id="locationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.first_name}}
-                            <i class="fas fa-user"></i>
+                            Account<i class="fas fa-user"></i>
                             
                         </a>
                         <div class="dropdown-menu" aria-labelledby="locationDropdown">
@@ -110,9 +111,28 @@
                         <a class="nav-link" href="{% url "signin" %}">Sign-in
                             <i class="fas "></i>
                         </a>
-                    </li>
+                    </li> {% endcomment %}
 
-                    
+                    {% comment %} mới {% endcomment %}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{% url 'account' %}" id="locationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ user.first_name }}
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="locationDropdown">
+                                <a class="dropdown-item" href="{% url 'account' %}">Profile</a>
+                                <a class="dropdown-item" href="{% url 'account' %}">Purchase order</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Sign out</a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signin' %}">Sign-in
+                                <i class="fas "></i>
+                            </a>
+                        </li>
+                    {% endif %}
 
                 </ul>
             </div>
