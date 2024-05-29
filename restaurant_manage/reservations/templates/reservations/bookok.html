@@ -22,7 +22,7 @@
             <h1 class="title">Booking successful</h1>
             <p class="thank-you">Thank you for booking with us at Restaurant NHOM7! We look forward to serving you.</p>
             <div class="btn-group">
-                <button type="button" class=" btn-custom mx-3 my-2">Book other table</button>
+                <button id="book-table-btn" type="button" class=" btn-custom mx-3 my-2">Book other table</button>
                 <button type="button" class=" btn-custom mx-3 my-2" data-toggle="modal" data-target="#bookingModal">Check booking info</button>
             </div>
         </div>
@@ -40,19 +40,23 @@
                 </div>
                 <div class="modal-body">
                     <h5 class="text-info">Booking info</h5>
-                    <p class="bold-label">Date created:</p>
-                    <p class="bold-label">Time created:</p>
-                    <p class="bold-label mt-3">Name:</p>
-                    <p class="info-label">Tel:</p>
-                    <p class="info-label">Email:</p>
-                    <p class="info-label">Party size:</p>
-                    <p class="info-label">Location:</p>
-                    <p class="bold-label">Time booking:</p>
-                    <p class="bold-label">Date booking:</p>
+                    {% if latest_booking %}
+                        <p class="bold-label">Date created: <span id="date-created">{{ latest_booking.created_at|date:'Y-m-d' }}</span></p> 
+                        <p class="bold-label">Time created: <span id="time-created">{{ latest_booking.created_at|time:'H:i' }}</span></p>
+                        <p class="bold-label mt-3">Name: <span id="full-name">{{ latest_booking.fname }} {{ latest_booking.lname }}</span></p>
+                        <p class="info-label">Tel: <span id="tel">{{ latest_booking.phone }}</span></p>
+                        <p class="info-label">Email: <span id="email">{{ latest_booking.email }}</span></p>
+                        <p class="info-label">Party size: <span id="party-size">{{ latest_booking.size_party }}</span></p>
+                        <p class="info-label">Location: <span id="location">{{ latest_booking.select_location }}</span></p>
+                        <p class="bold-label">Time booking: <span id="time-booking">{{ latest_booking.choice_time }}</span></p>
+                        <p class="bold-label">Date booking: <span id="date-booking">{{ latest_booking.choice_date }}</span></p>
+                    {% else %}
+                        <p>Chưa có thông tin đặt bàn.</p>
+                    {% endif %}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-custom1">Book other table</button>
-                    <button type="button" class="btn btn-custom2">Order delivery</button>
+                    <button id="book-table-btn2"type="button" class="btn btn-custom1">Book other table</button>
+                    <button id="order-delivery-btn" type="button" class="btn btn-custom2">Order delivery</button>
                 </div>
             </div>
         </div>
@@ -63,7 +67,25 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const bookTableBtn = document.getElementById('book-table-btn');
+        const bookTableBtn2 = document.getElementById('book-table-btn2');
+        const orderDeliveryBtn = document.getElementById('order-delivery-btn');
 
+        bookTableBtn.addEventListener('click', function() {
+            window.location.href = "/"; // Chuyển hướng đến trang home
+         });
+        bookTableBtn2.addEventListener('click', function() {
+            window.location.href = "/"; // Chuyển hướng đến trang home
+        });
+
+        orderDeliveryBtn.addEventListener('click', function() {
+            window.location.href ="/delivery/"; // Chuyển hướng đến trang delivery
+        });
+});
+
+    </script>
 </body>
 </html>
 

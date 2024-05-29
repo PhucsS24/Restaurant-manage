@@ -6,7 +6,7 @@ body, html {
 
 .bg-image {
     /* The image used */
-    background-image: url('/assets/img/img-home/bg.jpg') ;
+    background-image: url(../images/imgs-info/bg.jpg) ;
     
     background-position: top center;
     background-repeat: no-repeat;

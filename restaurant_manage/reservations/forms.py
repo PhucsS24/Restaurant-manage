@@ -13,6 +13,9 @@ class BookTableForm(forms.Form):
     email = forms.EmailField()
     size_party = forms.CharField(max_length=100)
     note = forms.CharField(widget=forms.Textarea)
+    created_at = forms.DateTimeField(
+        required=False
+    )
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
@@ -47,3 +50,8 @@ class BookTableForm(forms.Form):
         if not note.strip():  # Loại bỏ khoảng trắng ở đầu và cuối chuỗi
             raise ValidationError('Ghi chú không được để trống')
         return note
+    def clean_created_at(self):
+        created_at = self.cleaned_data.get('created_at')
+        if not created_at:
+            created_at = datetime.datetime.now()  # Lấy thời gian hiện tại
+        return created_at

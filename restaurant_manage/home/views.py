@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.conf import settings
 from accounts.models import CustomUser
 from locations.models import Restaurant
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 # Create your views here.
 #view home
@@ -52,7 +54,13 @@ def home(request):
         return render(request, 'home\home.html', {'user': user})
     else:
         return render(request, 'home\home.html', {'user': {}})
-
-
+    
 def events(request):
-    return render(request,'home\events.html')
+    return render(request,'home/events.html')
+
+# Log out
+def custom_logout(request):
+    logout(request)  # Xóa phiên và cookie phiên
+    response = redirect('home')  # Chuyển hướng về trang chủ
+
+    return render(request,'home/home.html')
