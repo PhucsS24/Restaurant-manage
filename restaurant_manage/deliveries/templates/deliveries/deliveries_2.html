@@ -221,6 +221,7 @@
             var decreaseButtons = document.querySelectorAll('.decrease-quantity');
             var increaseButtons = document.querySelectorAll('.increase-quantity');
             var quantityDisplays = document.querySelectorAll('.quantity-display');
+            var addToCartButtons = document.querySelectorAll('.add-btn');
             var totalAmounts = document.querySelectorAll('.total-amount');
             
             // Biến toàn cục để lưu trữ tổng tiền của tất cả các sản phẩm
@@ -269,6 +270,19 @@
                 });
             });
             
+
+            addToCartButton.forEach(function(button, index){
+                button.addEventListener('click', function(){
+                    var productId = button.getAttribute('data-product');
+                    var quantity = quantities[index];
+                    var total = totalValues[index];
+
+                    var data = {
+                        
+                    }
+                })
+            })
+
             // Hàm để lấy tổng tiền của một sản phẩm bất kỳ dựa vào index
             function getTotalValue(index) {
                 return totalValues[index];

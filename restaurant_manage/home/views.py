@@ -55,4 +55,4 @@ def home(request):
 
 
 def events(request):
-    return render(request,'home/events.html')
+    return render(request,'home\events.html')
