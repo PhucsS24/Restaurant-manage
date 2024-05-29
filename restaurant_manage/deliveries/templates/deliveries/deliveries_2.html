@@ -133,7 +133,7 @@
         
                             </div>
                         
-                            <button data-product={{product.id}} data-action="add" class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500">Add to cart</button>
+                            <button id="#"  class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500">Add to cart</button>
         
                         </div>
         
@@ -179,49 +179,14 @@
         });
     </script>
 
-    {% comment %} tăng giảm số lượng và tính tổng giá {% endcomment %}
-    {% comment %} <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Function to update total
-            function updateTotal(modal, price, quantity) {
-                const totalAmountElement = modal.querySelector('.total-amount');
-                const total = price * quantity;
-                totalAmountElement.textContent = `${total} VND`;
-            }
-        
-            // Event listeners for quantity buttons
-            document.querySelectorAll('.increase-quantity').forEach(button => {
-                button.addEventListener('click', function() {
-                    const modal = button.closest('.modal');
-                    const quantityDisplay = modal.querySelector('.quantity-display');
-                    let quantity = parseInt(quantityDisplay.textContent);
-                    quantity++;
-                    quantityDisplay.textContent = quantity;
-                    updateTotal(modal, parseFloat(button.dataset.price), quantity);
-                });
-            });
-        
-            document.querySelectorAll('.decrease-quantity').forEach(button => {
-                button.addEventListener('click', function() {
-                    const modal = button.closest('.modal');
-                    const quantityDisplay = modal.querySelector('.quantity-display');
-                    let quantity = parseInt(quantityDisplay.textContent);
-                    if (quantity > 1) {
-                        quantity--;
-                        quantityDisplay.textContent = quantity;
-                        updateTotal(modal, parseFloat(button.dataset.price), quantity);
-                    }
-                });
-            });
-        });
-    </script> {% endcomment %}
 
+    {% comment %} Mới {% endcomment %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var decreaseButtons = document.querySelectorAll('.decrease-quantity');
             var increaseButtons = document.querySelectorAll('.increase-quantity');
             var quantityDisplays = document.querySelectorAll('.quantity-display');
-            var addToCartButtons = document.querySelectorAll('.add-btn');
+            var addToCartButton = document.getElementById('add-to-cart-btn'); 
             var totalAmounts = document.querySelectorAll('.total-amount');
             
             // Biến toàn cục để lưu trữ tổng tiền của tất cả các sản phẩm
@@ -242,11 +207,9 @@
                         quantityDisplay.innerText = quantity;
                         var total = (quantity * price).toFixed(0) + " VND";
                         totalAmount.innerText = total;
-                        // Save the total amount and quantity to the global variables
-                        totalValues[index] = (quantity * price).toFixed(2);
+                        // Lưu giá trị tổng tiền và số lượng vào mảng toàn cục
+                        totalValues[index] = (quantity * price).toFixed(0);
                         quantities[index] = quantity;
-                        console.log("Total value of item " + (index + 1) + ": " + totalValues[index]);
-                        console.log("Quantity of item " + (index + 1) + ": " + quantities[index]);
                     }
                 });
             });
@@ -262,30 +225,30 @@
                     quantityDisplay.innerText = quantity;
                     var total = (quantity * price).toFixed(0) + " VND";
                     totalAmount.innerText = total;
-                    // Save the total amount and quantity to the global variables
+                    // Lưu giá trị tổng tiền và số lượng vào mảng toàn cục
                     totalValues[index] = (quantity * price).toFixed(0);
                     quantities[index] = quantity;
-                    console.log("Total value of item " + (index + 1) + ": " + totalValues[index]);
-                    console.log("Quantity of item " + (index + 1) + ": " + quantities[index]);
                 });
             });
             
-            // Hàm để lấy tổng tiền của một sản phẩm bất kỳ dựa vào index
-            function getTotalValue(index) {
-                return totalValues[index];
-            }
-        
-            // Hàm để lấy số lượng của một sản phẩm bất kỳ dựa vào index
-            function getQuantity(index) {
-                return quantities[index];
-            }
-        
-            // Ví dụ: Lấy tổng tiền và số lượng của sản phẩm đầu tiên
-            console.log("Total value of the first item: " + getTotalValue(0));
-            console.log("Quantity of the first item: " + getQuantity(0));
+            // Sự kiện click cho tất cả các nút "Add to cart"
+            var addToCartButtons = document.querySelectorAll('.add-btn');
+            addToCartButtons.forEach(function(button, index) {
+                button.addEventListener('click', function() {
+                    // Lấy giá trị và số lượng của sản phẩm tương ứng với nút "Add to cart"
+                    var totalAmount = totalAmounts[index];
+                    var quantity = parseInt(quantityDisplays[index].innerText);
+                    var total = totalAmount.innerText;
+            
+                    // Hiển thị giá trị và số lượng của sản phẩm
+                    console.log("Total value of item " + (index + 1) + ": " + total);
+                    console.log("Quantity of item " + (index + 1) + ": " + quantity);
+                });
+            });
+            
+
         });
-        
-        
     </script>
+    
 {% endblock delivery_js %} 
 

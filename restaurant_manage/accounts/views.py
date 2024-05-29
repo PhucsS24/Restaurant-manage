@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import SignUpForm, SignInForm
+from django.contrib.auth.decorators import login_required
+from accounts.models import CustomUser
 
 # Create your views here.
 #sign up
@@ -40,6 +42,14 @@ def signin(request):
     else:
         form = SignInForm()
     return render(request, 'accounts/signin-new.html', {'form': form})
+from reservations.models import Booking
 
+@login_required
 def account(request):
-    return render(request, 'accounts/account.html')
+    user = request.user  
+
+    get_user = CustomUser.objects.all()   
+    bookings = Booking.objects.filter(user=user) 
+    context = {'get_users': get_user,'bookings': bookings, }
+    
+    return render(request, 'accounts/account.html', context)
