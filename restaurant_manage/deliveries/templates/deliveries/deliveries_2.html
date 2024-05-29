@@ -133,8 +133,9 @@
         
                             </div>
                         
-                            <button id="#"  class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500">Add to cart</button>
-        
+                            <button id="add-to-cart-btn-{{menuItem.id}}"  class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500">Add to cart</button>
+                            <button id="remove-from-cart-btn-{{menuItem.id}}"  class="mt-2 btn btn-outline-danger remove-btn remove-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500; display:none;">Remove to cart</button>
+
                         </div>
         
                     </div>
@@ -180,8 +181,8 @@
     </script>
 
 
-    {% comment %} Mới {% endcomment %}
-    <script>
+    {% comment %} Cũ {% endcomment %}
+    {% comment %} <script>
         document.addEventListener('DOMContentLoaded', function () {
             var decreaseButtons = document.querySelectorAll('.decrease-quantity');
             var increaseButtons = document.querySelectorAll('.increase-quantity');
@@ -248,6 +249,100 @@
             
 
         });
+    </script> {% endcomment %}
+
+    {% comment %} Mới {% endcomment %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var decreaseButtons = document.querySelectorAll('.decrease-quantity');
+            var increaseButtons = document.querySelectorAll('.increase-quantity');
+            var quantityDisplays = document.querySelectorAll('.quantity-display');
+            var totalAmounts = document.querySelectorAll('.total-amount');
+            
+            // Biến toàn cục để lưu trữ tổng tiền của tất cả các sản phẩm
+            var totalValues = [];
+            
+            // Biến toàn cục để lưu trữ số lượng của tất cả các sản phẩm
+            var quantities = [];
+        
+            decreaseButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    var quantityDisplay = quantityDisplays[index];
+                    var totalAmount = totalAmounts[index];
+                    var price = parseFloat(button.getAttribute('data-price'));
+                    var quantity = parseInt(quantityDisplay.innerText);
+        
+                    if (quantity > 1) {
+                        quantity--;
+                        quantityDisplay.innerText = quantity;
+                        var total = (quantity * price).toFixed(0) + " VND";
+                        totalAmount.innerText = total;
+                        // Lưu giá trị tổng tiền và số lượng vào mảng toàn cục
+                        totalValues[index] = (quantity * price).toFixed(0);
+                        quantities[index] = quantity;
+                    }
+                });
+            });
+        
+            increaseButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    var quantityDisplay = quantityDisplays[index];
+                    var totalAmount = totalAmounts[index];
+                    var price = parseFloat(button.getAttribute('data-price'));
+                    var quantity = parseInt(quantityDisplay.innerText);
+        
+                    quantity++;
+                    quantityDisplay.innerText = quantity;
+                    var total = (quantity * price).toFixed(0) + " VND";
+                    totalAmount.innerText = total;
+                    // Lưu giá trị tổng tiền và số lượng vào mảng toàn cục
+                    totalValues[index] = (quantity * price).toFixed(0);
+                    quantities[index] = quantity;
+                });
+            });
+        
+            // Sự kiện click cho tất cả các nút "Add to cart"
+            var addToCartButtons = document.querySelectorAll('.add-btn');
+            var removeFromCartButtons = document.querySelectorAll('.remove-btn');
+        
+            addToCartButtons.forEach(function(button, index) {
+                button.addEventListener('click', function() {
+                    // Lấy giá trị và số lượng của sản phẩm tương ứng với nút "Add to cart"
+                    var totalAmount = totalAmounts[index];
+                    var quantity = parseInt(quantityDisplays[index].innerText);
+                    var total = totalAmount.innerText;
+            
+                    // Hiển thị giá trị và số lượng của sản phẩm
+                    console.log("Total value of item " + (index + 1) + ": " + total);
+                    console.log("Quantity of item " + (index + 1) + ": " + quantity);
+        
+                    // Ẩn nút "Add to cart" và hiện nút "Remove from cart"
+                    button.style.display = 'none';
+                    removeFromCartButtons[index].style.display = 'block';
+                });
+            });
+        
+            // Sự kiện click cho tất cả các nút "Remove from cart"
+            removeFromCartButtons.forEach(function(button, index) {
+                button.addEventListener('click', function() {
+                    // Đặt lại giá trị số lượng và tổng tiền về 0
+                    quantityDisplays[index].innerText = 1;
+                    totalAmounts[index].innerText = "0 VND";
+        
+                    // Hiển thị lại nút "Add to cart" và ẩn nút "Remove from cart"
+                    addToCartButtons[index].style.display = 'block';
+                    button.style.display = 'none';
+        
+                    // Đặt lại giá trị tổng tiền và số lượng trong mảng toàn cục
+                    totalValues[index] = 0;
+                    quantities[index] = 0;
+
+                    console.log("Total value of item " + (index + 1) + ": " + totalValues[index]);
+                    console.log("Quantity of item " + (index + 1) + ": " + quantities[index]);
+                });
+            });
+        });
+        
     </script>
     
 {% endblock delivery_js %} 
