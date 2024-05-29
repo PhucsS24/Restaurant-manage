@@ -49,13 +49,13 @@
                             <div id="demo_1" class="collapse" >
                                 <ul class="menu list-unstyled no-decoration">
                                   <li class="nav-item">
-                                    <a class="nav-link ms-2 text-danger " href="#demo1" data-bs-toggle="collapse">Profile_Infomation</a>
+                                    <a class="nav-link ms-2 text-danger " href="#demo1" data-bs-toggle="collapse">Profile Infomation</a>
                                   </li>
                                   <li class="nav-item">
                                     <a class="nav-link ms-2 text-danger " href="#demo2" data-bs-toggle="collapse">Reservation</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link ms-2 text-danger " href="#demo3" data-bs-toggle="collapse">Change_Password</a>
+                                    <a class="nav-link ms-2 text-danger " href="#demo3" data-bs-toggle="collapse">Edit Profile</a>
                                   </li>
                                 </ul>
                               </div>
@@ -110,14 +110,14 @@
                                 <div class="col-md-6">
                                     <div class="mb-1 mt-1">
                                         <label for="username" class="form-label">Last name</label>
-                                        <input type="text" class="form-control bg-white" id="username" name="username" placeholder="{{ user.last_name }}" disabled>
+                                        <input type="text" class="form-control bg-white" id="username" name="username" placeholder="{{ user.last_name }}">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-1 mt-1">
                                         <label for="fullname" class="form-label">First name</label>
-                                        <input type="text" class="form-control bg-white" id="fullname" name="fullname" placeholder="{{ user.first_name }}" disabled>
+                                        <input type="text" class="form-control bg-white" id="fullname" name="fullname" placeholder="{{ user.first_name }}">
                                     </div>
                                 </div>
                             </div>
@@ -133,12 +133,12 @@
                                 <div class="col-md-6">
                                     <div class="mb-1 mt-1">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="tel" class="form-control bg-white" id="phone" name="phone" placeholder="{{ user.phone }}" disabled>
+                                        <input type="tel" class="form-control bg-white" id="phone" name="phone" placeholder="{{ user.phone }}" >
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
+                            {% comment %} <div class="row">
                                 <div class="col-md-2">
                                     <div class="mb-1 mt-1">
                                         <label for="gender" class="form-label">Gender</label>
@@ -156,7 +156,7 @@
                                         <input type="text" class="form-control " id="date" name="date" placeholder="24-03-2005" >
                                     </div>
                                 </div>
-                            </div>
+                            </div> {% endcomment %}
 
                             <div class="row">
                                 <div class="text-center" style="margin: 20px 0px;" >
@@ -164,6 +164,7 @@
                             
                                 </div>
                             </div>
+
                         </div>
 
                     </form>
@@ -197,15 +198,15 @@
                 <div id="demo3" class="change_passwd  collapse" data-bs-parent="#accordion">
 
                     <div class="card" style="margin-top: 20px;">
-                        <h5 class="heading_profile" style="text-align: center; padding-top: 10px;">CHANGE PASSWORD</h5>
+                        <h5 class="heading_profile" style="text-align: center; padding-top: 10px;">Edit Profile</h5>
                     </div>
                     
                     <form action="/action_page.php" method="get" class="was-validated">
                         <div class="card">
                             <div class="d-flex justify-content-center">
-                                <div class="row m-3">
+                                <div class="row m-1">
                                     <div class="col-16">
-                                        <div class="mb-3">
+                                        <div class="mb-1">
                                             <input type="password" class="form-control form-outline-danger" id="currpwd" placeholder="Enter Currrent Password" name="currpswd" required>
                                             <div class="valid-feedback"></div>
                                             <div class="invalid-feedback"></div>
@@ -214,18 +215,18 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <div class="row m-3">
+                                <div class="row m-1">
                                     <div class="col-16">
-                                        <div class="mb-3">
+                                        <div class="mb-1">
                                             <input type="password" class="form-control" id="newwpwd" placeholder="Enter New Password" name="newpswd" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <div class="row m-3">
+                                <div class="row m-1">
                                     <div class="col-16">
-                                        <div class="mb-3">
+                                        <div class="mb-1">
                                             <input type="password" class="form-control" id="cofpwd" placeholder="Confirm Your Password" name="cofpswd" required>
                                         </div>
                                     </div>
