@@ -133,7 +133,7 @@
         
                             </div>
                         
-                            <button id="#"  class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500">Add to cart</button>
+                            <button data-product="{{ menuItem.id }}"  class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500">Add to cart</button>
         
                         </div>
         
@@ -151,6 +151,7 @@
 
 {% comment %} JS delivery {% endcomment %}
 {% block delivery_js %}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function() {
             // Xử lý sự kiện khi nhấp vào mỗi data-filter
@@ -236,13 +237,33 @@
             addToCartButtons.forEach(function(button, index) {
                 button.addEventListener('click', function() {
                     // Lấy giá trị và số lượng của sản phẩm tương ứng với nút "Add to cart"
+                    var productId = button.getAttribute('data-product');
                     var totalAmount = totalAmounts[index];
                     var quantity = parseInt(quantityDisplays[index].innerText);
                     var total = totalAmount.innerText;
-            
+                    
+                    var data = {
+                        productId: productId,
+                        quantity: quantity,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "addToCart" %}',
+                        data: data,
+                        success: function(response) {
+                            alert('Added to cart successfully!');
+                        },
+                        error: function(error) {
+                            alert('Failed to add to cart.');
+                        }
+                    });  
+
                     // Hiển thị giá trị và số lượng của sản phẩm
                     console.log("Total value of item " + (index + 1) + ": " + total);
                     console.log("Quantity of item " + (index + 1) + ": " + quantity);
+                    console.log(data);
                 });
             });
             

@@ -1,6 +1,8 @@
 from django.conf import settings
 from deliveries.models import MenuItem
 from decimal import Decimal
+from re import sub
+
 
 class Cart:
     def __init__(self, request):
@@ -13,17 +15,15 @@ class Cart:
     def save(self):
         self.session.modified = True
 
-    def add(self, item, quantity=1, override_quantity=False):
+    def add(self, item, quantity):
         item_id = str(item.id)
         if item_id not in self.cart:
             self.cart[item_id] = {
                 'quantity': 0,
                 'price': str(item.price)
             }
-        if override_quantity:
-            self.cart[item_id]['quantity'] = quantity
-        else:
-            self.cart[item_id]['quantity'] += quantity
+        self.cart[item_id]['quantity'] = quantity
+        self.cart[item_id]['price']    = int(quantity * Decimal(sub(r'[^\d.]', '', str(item.price))))
         self.save()
     
     def remove(self, item):
@@ -39,16 +39,15 @@ class Cart:
         for item in items:
             cart[str(item.id)]['item'] = item
         for item in cart.values():
-            item['price'] = Decimal(item['price'])
+            item['price'] = int(item['price'])
             item['total_price'] = item['price'] * item['quantity']
             yield item
 
     def __len__(self):
-        print(self.cart.values())
         return sum(item['quantity'] for item in self.cart.values())
     
     def get_total_price(self):
-        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        return sum(int(item['price']) * item['quantity'] for item in self.cart.values())
     
     def clear(self):
         for key in list(self.cart.keys()):
