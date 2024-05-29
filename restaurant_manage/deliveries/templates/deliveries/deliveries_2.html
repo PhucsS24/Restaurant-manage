@@ -270,19 +270,6 @@
                 });
             });
             
-
-            addToCartButton.forEach(function(button, index){
-                button.addEventListener('click', function(){
-                    var productId = button.getAttribute('data-product');
-                    var quantity = quantities[index];
-                    var total = totalValues[index];
-
-                    var data = {
-                        
-                    }
-                })
-            })
-
             // Hàm để lấy tổng tiền của một sản phẩm bất kỳ dựa vào index
             function getTotalValue(index) {
                 return totalValues[index];
