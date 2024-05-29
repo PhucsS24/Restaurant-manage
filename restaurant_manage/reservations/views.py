@@ -8,6 +8,7 @@ from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
+from django.urls import reverse
 
 
 @csrf_exempt
@@ -27,6 +28,8 @@ def booking(request):
             email = form.cleaned_data['email']
             size_party = form.cleaned_data['size_party']
             note = form.cleaned_data['note']
+            created_at = form.cleaned_data['created_at']
+            user = request.user if request.user.is_authenticated else None
 
             # Lưu dữ liệu 
             booking = Booking(
@@ -39,13 +42,29 @@ def booking(request):
                 phone=phone,
                 email=email,
                 size_party=size_party,
-                note=note
+                note=note,
+                user=user,
+                created_at=created_at,
             )
             booking.save()
+            
 
-            return JsonResponse({'success': True, 'message': 'Yêu cầu của bạn đã được gửi'})
+            return JsonResponse({'success': True, 'message': 'Yêu cầu của bạn đã được gửi','redirect_url': reverse('reservations:booking_ok')})
         else:
             return JsonResponse({'success': False, 'message': 'Có trường bị lỗi','errors': form.errors})
     return JsonResponse({'success': False, 'message': 'Yêu cầu không hợp lệ'}, status=400)
 def booking_ok(request):
-    return render(request, 'home\home.html'})
+    if request.user.is_authenticated:
+        latest_booking = Booking.objects.filter(user=request.user).latest('created_at')
+    else:
+        # Lấy thông tin từ session (nếu có)
+        booking_id = request.session.get('latest_booking_id')
+        if booking_id:
+            latest_booking = get_object_or_404(Booking, pk=booking_id)
+        else:
+            latest_booking = None
+
+    context = {
+        'latest_booking': latest_booking,
+    }
+    return render(request, 'reservations/bookok.html', context)

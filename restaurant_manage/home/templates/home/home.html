@@ -290,7 +290,7 @@
           data: formData,
           success: function(response) {
             if (response.success) {
-              alert(response.message); 
+              window.location.href = response.redirect_url;
             } else {
               $('.invalid-feedback').empty();
               $('.form-control').removeClass('is-invalid').removeClass('is-valid');
