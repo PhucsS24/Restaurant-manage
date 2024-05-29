@@ -43,3 +43,5 @@ def booking(request):
         else:
             return JsonResponse({'success': False, 'message': 'Có trường bị lỗi','errors': form.errors})
     return JsonResponse({'success': False, 'message': 'Yêu cầu không hợp lệ'}, status=400)
+def booking_ok(request):
+    return render(request, 'home\home.html'})
