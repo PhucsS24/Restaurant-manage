@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import SignUpForm, SignInForm
+from django.contrib.auth.decorators import login_required
+from accounts.models import CustomUser
 
 # Create your views here.
 #sign up
@@ -41,5 +43,11 @@ def signin(request):
         form = SignInForm()
     return render(request, 'accounts/signin-new.html', {'form': form})
 
+@login_required
 def account(request):
-    return render(request, 'accounts/account.html')
+    user = request.user  
+
+    get_user = CustomUser.objects.all()   
+    context = {'get_users': get_user }
+    
+    return render(request, 'accounts/account.html', {'user': user})
