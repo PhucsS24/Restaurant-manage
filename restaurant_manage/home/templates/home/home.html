@@ -3,7 +3,7 @@
 
 {% block home_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/css/slider.css' %}">
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/info_book.css' %}">
     <script src="{% static 'app/js/bookevent.js' %}"></script>
 {% endblock %} 
 
@@ -41,9 +41,9 @@
                             <div class="col-md-3 ">
                                 <div class="mb-1 mt-1 d-flex">
                                     <select name="select_location" id="select-location" aria-placeholder="Restaurant" class="modal-select form-select form-select-lg" >
-                                        <option value="HaNoi">Trang Tien, Hoan Kiem | Hanoi</option>
-                                        <option value="HaNoi">Phu My Hung, D7 | HCMC</option>
-                                        <option value="HaNoi">An Hai Tay, Son Tra | Danang</option>
+                                        <option value="HN">Trang Tien, Hoan Kiem | Hanoi</option>
+                                        <option value="HCM">Phu My Hung, D7 | HCMC</option>
+                                        <option value="DN">An Hai Tay, Son Tra | Danang</option>
                                     </select>
                                     <!-- <i class="icon ti-location-pin" ></i> -->
                                 </div>
@@ -236,7 +236,7 @@
                         </div>
                         <div class="col-lg-6">
                           <div class="image-container">
-                            <img src="{% static 'home/images/imgs-home/banner3.jpg' %}" alt="Image">
+                            <img src="{% static 'app/images/imgs-home/banner3.jpg' %}" alt="Image">
                           </div>
                         </div>
                       </div>
@@ -264,9 +264,18 @@
 {% endblock home_promotion  %}
 {% comment %} ================================================================================== {% endcomment %}
 
+{% block book_succsess_info  %} 
+
+
+
+{% endblock book_succsess_info  %}
+{% comment %} ==================================================================================== {% endcomment %}
+
 {% block delivery_js %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 <script>
     $(document).ready(function() {
       $('#booking-form').submit(function(event) {

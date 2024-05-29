@@ -149,7 +149,7 @@
  
 }
 
-button {
+.btn-loca {
   background: none;
   border: 3px solid #ed2024;
   font: inherit;
@@ -157,10 +157,13 @@ button {
   padding:0.5em;
   font-weight: bold;
   width: 110px;
+  height: 35px;
   font-style: normal;
+  border-radius: 5px;
   
 }
-button {
+
+.btn-loca {
   color: #ed2024;
   -webkit-transition: 0.25s;
   transition: 0.25s;

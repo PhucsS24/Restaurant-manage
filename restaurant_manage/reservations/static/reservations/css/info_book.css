@@ -1,0 +1,26 @@
+.modal-header, .modal-footer {
+    text-align: center;
+}
+.modal-body {
+    text-align: left;
+}
+.modal-body p {
+    margin: 0;
+    font-size: 15px;
+}
+.modal-body .info-label {
+    font-size: 15px;
+}
+.modal-body .bold-label {
+    font-weight: bold;
+    font-size: 15px;
+}
+.modal-footer {
+    justify-content: center;
+}
+
+.btn-custom1, .btn-custom2 {
+    background-color: #ed2024;
+    color: #fff;
+    font-weight: 500;
+}

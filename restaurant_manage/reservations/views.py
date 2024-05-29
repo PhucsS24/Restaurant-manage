@@ -7,6 +7,8 @@ from .models import Booking
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
+
 
 @csrf_exempt
 def booking(request):
@@ -14,6 +16,7 @@ def booking(request):
         form = BookTableForm(request.POST)
         if form.is_valid():
             # Xử lý dữ liệu
+            print(form)
             select_location = form.cleaned_data['select_location']
             select_size = form.cleaned_data['select_size']
             choice_date = form.cleaned_data['choice_date']
@@ -39,6 +42,7 @@ def booking(request):
                 note=note
             )
             booking.save()
+
             return JsonResponse({'success': True, 'message': 'Yêu cầu của bạn đã được gửi'})
         else:
             return JsonResponse({'success': False, 'message': 'Có trường bị lỗi','errors': form.errors})

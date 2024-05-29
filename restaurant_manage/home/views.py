@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.conf import settings
 from accounts.models import CustomUser
+from locations.models import Restaurant
+
 # Create your views here.
 #view home
 
@@ -49,5 +51,8 @@ def home(request):
         user = CustomUser.objects.get(id=user_id)
         return render(request, 'home\home.html', {'user': user})
     else:
-        return redirect('signin')
+        return render(request, 'home\home.html', {'user': {}})
 
+
+def events(request):
+    return render(request,'home/events.html')

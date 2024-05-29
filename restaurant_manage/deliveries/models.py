@@ -30,16 +30,16 @@ class MenuItem(models.Model):
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='menu_items/', blank=True)
 
-    # ITEM_TYPE_CHOICES = {
-    #     'BEEF': 'Beef',
-    #     'SAUCES': 'Sauces',
-    #     'DESSERT': 'Dessert',
-    #     'DRINK': 'Drink',
-    #     'SOUP': 'Soup',
-    #     'TRADITIONAL': 'Traditional',
-    #     'POPULAR' : 'Popular'
-    # }
-    # item_type = models.CharField(max_length=20, choices=ITEM_TYPE_CHOICES, default='POPULAR')
+    ITEM_TYPE_CHOICES = {
+        'BEEF': 'Beef',
+        'SAUCES': 'Sauces',
+        'DESSERT': 'Dessert',
+        'DRINK': 'Drink',
+        'SOUP': 'Soup',
+        'TRADITIONAL': 'Traditional',
+        'POPULAR' : 'Popular'
+    }
+    item_type = models.CharField(max_length=20, choices=ITEM_TYPE_CHOICES, default='POPULAR')
 
     # WEIGHT_CHOICES = {
     #     250 : '250g',

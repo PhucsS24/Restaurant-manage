@@ -5,5 +5,6 @@ from .models import *
 # Create your views here.
 #view locations
 def locations(request):
-    context = {}
+    restaurants = Restaurant.objects.all()
+    context = {'restaurants': restaurants }
     return render(request, 'locations\locations.html', context)

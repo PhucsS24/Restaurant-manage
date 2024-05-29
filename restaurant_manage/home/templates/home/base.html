@@ -11,7 +11,7 @@
        
 
         <link rel="stylesheet" type="text/css" href="{% static 'app/css/promotion.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'menu/css/menu.css' %}">
+        
         
         {% comment %} css bootstrap {% endcomment %}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -29,8 +29,8 @@
     <body>
         <!-- Begin Nav -->
         <nav class="navbar navbar-expand-lg navbar-custom fixed-top" >
-            <a class="navbar-brand" href="#">
-                <img src="path/to/logo.png" alt="Logo" style="height: 50px; width: 70px;">
+            <a class="navbar-brand ms-2" href="#">
+                <img src="{% static 'app/images/imgs-home/logo.png' %}" alt="Logo" style="height: 45px; width: 70px;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: #ED2024;">
                 <span class="navbar-toggler-icon navbar-light"> <i class="fa fa-align-justify" title="Align Justify" style="margin-top: 5px;"></i></span>
@@ -43,6 +43,7 @@
                             <i class="fas fa-home"></i>
                         </a>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'menu' %}" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Menu
@@ -50,9 +51,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="menuDropdown">
                             <a class="dropdown-item" href="{% url 'menu' %}">ALL</a>
+                            <a class="dropdown-item" href="#">Popular</a>
                             <a class="dropdown-item" href="#">Beef</a>
-                            <a class="dropdown-item" href="#">Chicken</a>
-                            <a class="dropdown-item" href="#">Soups</a>
+                            <a class="dropdown-item" href="#">Soup &amp; Salad</a>
                             <a class="dropdown-item" href="#">Drink</a>
                         </div>
                     </li>
@@ -62,17 +63,18 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="locationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="{% url 'locations' %}" id="locationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Location
                             
                         </a>
                         <div class="dropdown-menu" aria-labelledby="locationDropdown">
                             <a class="dropdown-item" href="{% url 'locations' %}">All</a>
-                            <a class="dropdown-item" href="{% url 'locations' %}">Ho Chi Minh</a>
+                            <a class="dropdown-item" href="#">Ho Chi Minh</a>
                             <a class="dropdown-item" href="#">Ha Noi</a>
                             <a class="dropdown-item" href="#">Da Nang</a>
                         </div>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url "home" %}">Event
                             
@@ -84,11 +86,34 @@
                             <i class="fas fa-shopping-cart"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
+
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href="{% url 'account' %}">{{user.first_name}}
                             <i class="fas fa-user"></i> 
                         </a>
+                    </li> {% endcomment %}
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'account' %}" id="locationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.first_name}}
+                            <i class="fas fa-user"></i>
+                            
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="locationDropdown">
+                            <a class="dropdown-item" href="{% url 'account' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'account' %}">Purchase order</a>
+                            <a class="dropdown-item" href="#">Sign out</a>
+                            
+                        </div>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "signin" %}">Sign-in
+                            <i class="fas "></i>
+                        </a>
+                    </li>
+
+                    
+
                 </ul>
             </div>
         </nav>
@@ -99,6 +124,8 @@
         {% block home_css %}{% endblock home_css%} 
         {% block homepage  %} {% endblock homepage  %}
         {% block home_promotion  %} {% endblock home_promotion  %}
+        {% block book_succsess_info  %} {% endblock book_succsess_info  %}
+        
         <!-- end home page -->
 
         <!-- start event page -->
@@ -107,6 +134,7 @@
         <!-- end event page -->
 
         <!-- start menu page -->
+        {% block menu_css %}{% endblock menu_css%} 
         {% block menu_html %}{% endblock menu_html%} 
         <!-- end menu page -->
 
@@ -220,6 +248,6 @@
         {% block location_js  %} {% endblock location_js %}
         {% block menu_js  %} {% endblock menu_js %}
         {% block delivery_js %}{% endblock delivery_js %} 
-        
+
     </body>
 </html>
