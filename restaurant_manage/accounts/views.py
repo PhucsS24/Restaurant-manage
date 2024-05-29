@@ -42,12 +42,14 @@ def signin(request):
     else:
         form = SignInForm()
     return render(request, 'accounts/signin-new.html', {'form': form})
+from reservations.models import Booking
 
 @login_required
 def account(request):
     user = request.user  
 
     get_user = CustomUser.objects.all()   
-    context = {'get_users': get_user }
+    bookings = Booking.objects.filter(user=user) 
+    context = {'get_users': get_user,'bookings': bookings, }
     
-    return render(request, 'accounts/account.html', {'user': user})
+    return render(request, 'accounts/account.html', context)
