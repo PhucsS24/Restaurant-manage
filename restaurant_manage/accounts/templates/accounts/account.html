@@ -170,27 +170,39 @@
                     </form>
                     
                 </div>
-
                 <div id="demo2" class="RESERVATION  collapse" data-bs-parent="#accordion">
-
                     <div class="card">
-                        <h5 class="heading_profile p-2">RESERVATION</h5>
-                    </div>
-                    
-                    
-                    <div class="card">
-                        <div class="row">
-                            <div class="col">
-                                #item
-                            </div>
-                            
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">RESERVATION</h5> 
                         </div>
-
-                        <div class="row">
-                            <div class="col">#item</div>
-                            
+                        <div class="card-body">
+                            {% if bookings %}
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Họ và tên</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Giờ đặt</th>
+                                            <th>Số lượng khách</th>
+                                            <th>Thời gian tạo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for booking in bookings %}
+                                            <tr>
+                                                <td>{{ booking.fname }} {{ booking.lname }}</td>
+                                                <td>{{ booking.choice_date }}</td>
+                                                <td>{{ booking.choice_time }}</td>
+                                                <td>{{ booking.select_size }}</td>
+                                                <td>{{ booking.created_at }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p class="text-center text-muted">Chưa có thông tin đặt bàn.</p>
+                            {% endif %}
                         </div>
-
                     </div>
                     
                 </div>
