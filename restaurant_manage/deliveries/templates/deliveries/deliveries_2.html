@@ -134,7 +134,7 @@
                             </div>
                         
                             <button id="add-to-cart-btn-{{menuItem.id}}" data-product="{{ menuItem.id }}"  class="mt-2 btn btn-outline-danger add-btn update-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500">Add to cart</button>
-                            <button id="remove-from-cart-btn-{{menuItem.id}}"  class="mt-2 btn btn-outline-danger remove-btn remove-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500; display:none;">Remove to cart</button>
+                            {% comment %} <button id="remove-from-cart-btn-{{menuItem.id}}"  class="mt-2 btn btn-outline-danger remove-btn remove-cart mx-auto mb-3" style="width:300px;border-radius: 10px; font-weight:500; display:none;">Remove to cart</button> {% endcomment %}
 
                         </div>
         
@@ -183,7 +183,7 @@
 
 
     {% comment %} Cũ {% endcomment %}
-    {% comment %} <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             var decreaseButtons = document.querySelectorAll('.decrease-quantity');
             var increaseButtons = document.querySelectorAll('.increase-quantity');
@@ -270,10 +270,10 @@
             
 
         });
-    </script> {% endcomment %}
+    </script>
 
     {% comment %} Mới {% endcomment %}
-    <script>
+    {% comment %} <script>
         document.addEventListener('DOMContentLoaded', function () {
             var decreaseButtons = document.querySelectorAll('.decrease-quantity');
             var increaseButtons = document.querySelectorAll('.increase-quantity');
@@ -364,7 +364,7 @@
             });
         });
         
-    </script>
+    </script> {% endcomment %}
     
 {% endblock delivery_js %} 
 
