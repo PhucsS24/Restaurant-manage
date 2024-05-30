@@ -3,7 +3,6 @@ from deliveries.models import MenuItem
 from decimal import Decimal
 from re import sub
 
-
 class Cart:
     def __init__(self, request):
         self.session = request.session
