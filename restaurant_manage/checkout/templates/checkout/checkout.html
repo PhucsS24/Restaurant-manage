@@ -96,12 +96,12 @@
                             <div class="set-address d-flex " style="font-size: 13px;">
                                 <p class="set-address m-1">Set your address:</p>
                                 <div class="form-check m-1">
-                                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked >
+                                    <input type="radio" class="form-check-input" id="radio1" name="address" value="option1" checked >
                                     <label class="form-check-label" for="radio1">Home</label>
 
                                 </div>
                                 <div class="form-check m-1">
-                                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
+                                    <input type="radio" class="form-check-input" id="radio2" name="address" value="option2">
                                     <label class="form-check-label" for="radio2">Office</label>
                                 </div>
                                 
@@ -115,12 +115,12 @@
                                 </div>
                                 <div class="method-pay mt-2 d-flex">
                                     <div class="form-check m-2">
-                                        <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option1" checked >
+                                        <input type="radio" class="form-check-input" id="radio3" name="payment" value="option1" checked >
                                         <label class="form-check-label" for="radio3">Paypal/Credit card</label>
     
                                     </div>
                                     <div class="form-check m-2">
-                                        <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option2">
+                                        <input type="radio" class="form-check-input" id="radio4" name="payment" value="option2">
                                         <label class="form-check-label" for="radio4">Cash on Delivery</label>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                                     <!-- pading = com -->
                                     <div class="paddingbangcom2" style="margin: 0 90px;"></div>
     
-                                    <div class="subtotal-prices float-end m-2">400.000VND</div>
+                                    <div class="subtotal-prices float-end m-2">100,000VND</div>
                                 </div>
 
                                 <!-- row 2 -->
@@ -183,14 +183,14 @@
                                 </div>
 
                                 <div class="voucher mb-2  d-flex">
-                                    <input type="text" class="form-control border-secondary rounded" placeholder="Voucher code">
-                                    <button class="btn bg-danger text-light">Apply</button>
+                                    <input id="voucherCode" type="text" class="form-control border-secondary rounded" placeholder="Voucher code">
+                                    <button id="applyVoucher" class="btn bg-danger text-light">Apply</button>
                                 </div>
 
                                 <div class="vat d-flex m-2 mb-2">
                                     <p class="vat-text">VAT 8%</p>
                                     <div class="paddingbangcom2" style="margin: 0 100px;"></div>
-                                    <div class="price-vat">23.000VND</div>
+                                    <div class="price-vat">8,000VND</div>
                                 </div>
     
                                 <!-- row 3 -->
@@ -199,7 +199,7 @@
                                     <!-- pading = com -->
                                     <div class="paddingbangcom2" style="margin: 0 100px;"></div>
     
-                                    <div class="Total-prices float-end m-2">400.000VND</div>
+                                    <div id="totalPrice" class="Total-prices float-end m-2">108,000VND</div>
                                 </div>
     
                             </div>
@@ -218,6 +218,57 @@
         </div>
 
     </div>
-
+    {{ voucher_data }} 
 {% endblock checkout_html %}
+{% block delivery_js %}
+<script> 
+// const voucher_data = JSON.parse("{{ voucher_data|escapejs }}");
+document.addEventListener('DOMContentLoaded', function () {
+    let applyVoucherButton = document.getElementById('applyVoucher');
+    let voucherCodeInput = document.getElementById('voucherCode');
+    let totalPriceElement = document.getElementById('totalPrice');
+    let priceVatElement = document.querySelector('.price-vat');
+    let subtotalElement = document.querySelector('.subtotal-prices'); // Lấy phần tử chứa subtotal
+
+    applyVoucherButton.addEventListener('click', function () {
+        const voucherCode = voucherCodeInput.value.trim().toLowerCase();
+        let currentSubtotal = parseFloat(subtotalElement.innerText.replace(/[^\d.]/g, ''));
+        let currentTotal = currentSubtotal; // Khởi tạo currentTotal bằng currentSubtotal
+        let currentVAT = parseFloat(priceVatElement.innerText.replace(/[^\d.]/g, ''));
+
+        // Tìm voucher trong dữ liệu từ context
+        const voucher = JSON.parse("{{ voucher_data|escapejs }}").find(v => v.code.toLowerCase() === voucherCode);
+        console.log(voucher)
+
+        if (voucher) {
+            let discount = 0;
+            if (voucher.discount_type === 'percentage') {
+                discount = (voucher.discount_value / 100) * currentTotal;
+            } else if (voucher.discount_type === 'fixed_amount') {
+                discount = voucher.discount_value;
+            }
+
+            if (discount > currentTotal) {
+                alert("Số tiền giảm giá vượt quá giá trị đơn hàng.");
+                return;
+            }
+
+            let  newTotal = currentTotal - discount;
+            let  newVAT = (8 / 100) * newTotal;
+            newTotal=newTotal+newVAT;
+
+            // Cập nhật tổng tiền và VAT trên giao diện
+            totalPriceElement.innerText = newTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' VND';
+            priceVatElement.innerText = newVAT.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' VND';
+        } else {
+            alert('Mã giảm giá không hợp lệ hoặc đã bị vô hiệu hóa.');
+        }
+
+        // Reset input voucher
+        voucherCodeInput.value = '';
+    });
+});
+
+</script>
+{% endblock delivery_js %}
 
