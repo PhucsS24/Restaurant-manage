@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
+from cart.cart import Cart
 from datetime import datetime
 import json
 
@@ -22,8 +23,16 @@ def checkout(request):
         for voucher in vouchers
     ]
 
+    cart = Cart(request)
+    cart_items = list(cart.__iter__())
+    total_items = cart.__len__()
+    total_price = cart.get_total_price()
+    
     # Chuyển đổi thành JSON và đưa vào context
     context = {
-        'voucher_data': json.dumps(voucher_data)
+        'voucher_data': json.dumps(voucher_data),
+        'cart_items': cart_items,
+        'total_items': total_items,
+        'total_price': total_price
     }
     return render(request, 'checkout/checkout.html', context)

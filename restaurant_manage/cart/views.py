@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.http import require_POST
+from deliveries.models import MenuItem
 from .cart import Cart
 
 # Create your views here.
@@ -21,7 +23,16 @@ def clear_cart(request):
     cart.clear()
     return HttpResponse("Clear all cart")
 
+@require_POST
 def delete_cart(request):
-    cart = Cart(request)
-    #cart.remove
-    return HttpResponse("Delete a cart")
+    item_id = request.POST.get('itemId')
+    if item_id:
+        try:
+            item = MenuItem.objects.get(id=item_id)
+            cart = Cart(request)
+            cart.remove(item)
+            cart_items = cart.serialize_cart_items()
+            return JsonResponse({'success': True, 'cart_items': cart_items})
+        except MenuItem.DoesNotExist:
+            return JsonResponse({'success': True, 'error':'Item not found'})
+    return JsonResponse({'success': True, 'error':'Invalid request'})

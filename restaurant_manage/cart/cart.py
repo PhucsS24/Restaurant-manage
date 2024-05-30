@@ -52,3 +52,23 @@ class Cart:
         for key in list(self.cart.keys()):
             del self.cart[key]
         self.save()
+
+    def serialize_cart_items(self):
+        cart_items = []
+        for item_id, item_data in self.cart.items():
+            try:
+                item = MenuItem.objects.get(id=item_id)
+                serialized_item = {
+                    'item': {
+                        'id': item.id,
+                        'name': item.name,
+                        'image': item.image.url if item.image else None,
+                        'price': item_data['price'],
+                    },
+                    'quantity': item_data['quantity'],
+                    'total_price': item_data['price'] * item_data['quantity']
+                }
+                cart_items.append(serialized_item)
+            except MenuItem.DoesNotExist:
+                pass
+        return cart_items

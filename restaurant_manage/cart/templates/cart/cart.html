@@ -89,6 +89,7 @@
 {% endblock cart %}
 
 {% block cart_js %}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
@@ -176,12 +177,36 @@
                     e.preventDefault();
                     const itemId = this.getAttribute('data-id');
                     const rowElement = this.closest('.row');
-                    rowElement.remove();
-                    updateCart(itemId, 0, 0); // Giảm số lượng về 0 và cập nhật giỏ hàng
 
+                    $.ajax({
+                        url: "{% url 'delete_cart' %}",
+                        type: "POST",
+                        data: {
+                            itemId: itemId,
+                            csrfmiddlewaretoken: '{{ csrf_token }}'
+                        },
+                        success: function(response){
+                            let totalPrice = 0;
+                            console.log(response)
+                            rowElement.remove();
+                            const cartItems = response.cart_items;
+                            cartItems.forEach(item => {
+                                const itemId = item.item.id;
+                                const totalItemPrice = parseFloat(item.total_price);
+                                console.log(price);
+                                totalPrice += totalItemPrice;
+                                document.getElementById(`total-${itemId}`).innerText = `${totalItemPrice}`;
+                            });
+                            document.getElementById('total-items').innerText = response.cart_items.length;
+                            document.getElementById('total-price').innerText = `${totalPrice} VND`;
+                            updateCart(itemId, 0, 0); 
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error removing item:", error);
+                        }
+                    })
                 });
             });
-           
         });
         
     </script>
