@@ -15,7 +15,13 @@
                     <div class="title">
                         <div class="row">
                             <div class="col"><h4><b>Shopping Cart</b></h4></div>
-                            <div class="col align-self-center text-right text-muted">{{ total_items }} items {{ total_price }}</div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">Total Items:</div>
+                                    <div class="col text-right" id="total-items">{{ total_items }}</div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>    
 
@@ -24,34 +30,23 @@
                         <div class="row main align-items-center">
                             <div class="col-2" style="boder-radius:10px solid;"><img class="img-fluid" src="{{ item.item.image.url }}" alt="{{ item.item.image.url }}" ></div>
                             <div class="col">
-                                <div class="row text-muted">{{ item.item.name }} </div>
+                                <div class="row text-muted">{{ item.item.name }}</div>
                                 <div class="row" style="display:none; ">450g</div>
                             </div>
                             <div class="col">
-                                <a href="#">-</a><a href="#" class="border">{{ item.quantity }}</a><a href="#">+</a>
-                                <div class="row" style="color:#ed2024">{{ item.price }} &#8363; </div>
+                                <a href="#" class="decrease" data-id="{{ item.item.id }}" data-price="{{ item.item.price.amount }}">-</a>
+                                <a href="#" class="border quantity" data-id="{{ item.item.id }}">{{ item.quantity }}</a>
+                                <a href="#" class="increase" data-id="{{ item.item.id }}" data-price="{{ item.item.price.amount }}">+</a>
+                                <div class="row price_item" style="color: #ed2024" id="total-{{ item.item.id }}">{{ item.price }} {{ item.item.price.currency}}</div>
                             </div>
                             
-                            <div class="col" > <span class="close">&#10005;</span> </div>
+                            <div class="col" >
+                                <span class="close" style="cursor: pointer;" data-id="{{ item.item.id }}">&#10005;</span>
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
 
-                    {% comment %} <div class="row">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="/Retaurant_manage/assets/img/img-menu/2.jpg"></div>
-                            <div class="col">
-                                <div class="row text-muted">Sườn bò</div>
-                                <div class="row">300g</div>
-                            </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                                <div class="row" style="color:#ed2024">2.123.000&#8363; </div>
-                            </div>
-                
-                            <div class="col" > <span class="close">&#10005;</span> </div>
-                        </div>
-                    </div> {% endcomment %}
 
                     <div class="back-to-shop">
                         <a href="{% url 'delivery' %}">&leftarrow;<span class="text-muted"> Back to delivery</span></a>
@@ -61,24 +56,22 @@
                 <div class="col-md-4 summary">
                     <div><h5><b>Summary</b></h5></div>
                     <hr>
-                    {% for item in cart_items %}
-                    <div class="row">
-                        <div class="col" style="padding-left:0;">{{ item.item.name }}</div>
-                        <div class="col text-right" style="color:#ed2024">{{ item.price }} &#8363;</div>
+                    <div id="summary-items">
+                        {% for item in cart_items %}
+                            <div class="row summary-item" data-id="{{ item.item.id }}">
+                                <div class="col" style="padding-left:0;">{{ item.item.name }} x<span class="summary-quantity">{{ item.quantity }}</span></div>
+                                <div class="col text-right" style="color:#ed2024"><span class="summary-price">{{ item.price }}</span> {{ item.item.price.currency }}</div>
+                            </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+                    <hr>
 
-                    <form>
-                        <p>SHIPPING</p>
-                        <select><option class="text-muted">Free ship 0&#8363;</option></select>
-                        <p>GIVE CODE</p>
-                        <input id="code" placeholder="Enter your code">
-                    </form>
-                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                        <div class="col" style="color:#ed2024">TOTAL PRICE</div>
-                        <div class="col text-right" style="color:#ed2024"> {{ total_price }} &#8363;</div>
+                    <div class="row summary-row">
+                        <div class="col">Total Price:</div>
+                        <div class="col text-right" id="total-price">{{ total_price }} VND</div>
+
                     </div>
-                    <button class="btn"><a href="{% url 'checkout' %}" class="text-light">CHECK OUT</a></button>
+                    <button id="checkout-btn" class="btn"><a href="{% url 'checkout' %}" class="text-light">CHECK OUT</a></button>
                 </div>
                 
             </div>
@@ -89,142 +82,105 @@
 
 {% endblock cart %}
 
+{% block cart_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
+            function updateCart(itemId, quantity, price) {
+                const totalAmountElement = document.getElementById(`total-${itemId}`);
+                const quantityElements = document.querySelectorAll(`.quantity[data-id="${itemId}"]`);
+                const totalItemsElement = document.getElementById('total-items');
+                const totalPriceElement = document.getElementById('total-price');
+                const summaryQuantityElement = document.querySelector(`.summary-item[data-id="${itemId}"] .summary-quantity`);
+                const summaryPriceElement = document.querySelector(`.summary-item[data-id="${itemId}"] .summary-price`);
+        
+                // Tính tổng tiền của từng món
+                const totalPrice = (quantity * price).toFixed(0);
+                totalAmountElement.innerText = `${totalPrice} VND`;
+        
+                // Cập nhật số lượng hiển thị
+                quantityElements.forEach(element => {
+                    element.innerText = quantity;
+                });
+        
+                // Cập nhật phần Summary
+                summaryQuantityElement.innerText = quantity;
+                summaryPriceElement.innerText = totalPrice;
+        
+                // Cập nhật tổng số lượng và tổng tiền
+                let totalItems = 0;
+                let totalCartPrice = 0;
+                document.querySelectorAll('.quantity').forEach(element => {
+                    totalItems += parseInt(element.innerText);
+                });
+        
+                document.querySelectorAll('.price_item').forEach(element => {
+                    totalCartPrice += parseInt(element.innerText.replace(/\D/g, ''));
+                });
+        
+                totalItemsElement.innerText = totalItems;
+                totalPriceElement.innerText = `${totalCartPrice} VND`;
 
+                // Sự kiện khi nhấn nút "Checkout"
+                document.getElementById('checkout-btn').addEventListener('click', function () {
+                    // Lấy giá trị tổng giá của tất cả sản phẩm
+                    let totalCartPrice = 0;
+                    document.querySelectorAll('.price_item').forEach(element => {
+                        totalCartPrice += parseInt(element.innerText.replace(/\D/g, ''));
+                    });
 
-{% comment %} 
-
-{% block cart  %} 
-    <!-- CONTENT -->
-    <div id="content-cart">
-        <div class="container">
-            <div class="row">
-                <div class="col-8">
-                    <div class="heading-cart">
-                        <h1 class="d-inline-block">CART</h1>
-                        <span class="">(1 PRODUCT)</span>
-                    </div>
-    
-                    <div class="card">
-                        <div class="card-header">ALL PRODUCT</div>
-    
-                        <!-- Item full Item1-->
-                        <div class="item d-flex">
-                            <!-- item info -->
-                            <div class="item_info d-flex p-2">
-                                <img src="{% static '/app/images/img-cart/beef.png' %}" class="rounded m-1 " alt="item" height="90" width="95">
-                                <div class="card-content ">
-                                    <div class="info-item-name">Name: Beef</div>
-                                    <div class="info-item-weigh">weight: 200g</div>
-                                    <div class="info-item-note">Note: Well done</div>
-                                 </div>   
-                            </div>
-    
-                            <!-- pading = com -->
-                            <div class="paddingbangcom"></div>
-    
-                            <!-- item choise mount -->
-                            <div class="item_mount float-end p-2 text-center">
-                                <div class="price text-danger">200.000VND</div>
-                                <div class="btn-mount d-flex">
-                                    <button type="button" class="btn btn-outline-secondary">-</button>
-                                    <input type="text" class="display-mount form-control"  placeholder="1" readonly>
-                                    <button type="button" class="btn btn-outline-secondary">+</button>
-                                </div>
-                                <div class="edit_remove text-danger">Edit | Remove</div>
-                            </div>               
-                        </div>
-                        <!--End Item full Item 1-->
-    
-                        <!-- Item full Item2-->
-                        <div class="item d-flex">
-                            <!-- item info -->
-                            <div class="item_info d-flex p-2">
-                                <img src="{% static '/app/images/img-cart/beef.png' %}" class="rounded m-1 " alt="item" height="90" width="95">
-                                <div class="card-content ">
-                                    <div class="info-item-name">Name: Beef</div>
-                                    <div class="info-item-weigh">weight: 200g</div>
-                                    <div class="info-item-note">Note: Well done</div>
-                                 </div>   
-                            </div>
-    
-                            <!-- pading = com -->
-                            <div class="paddingbangcom"></div>
-                            
-                            <!-- item choise mount -->
-                            <div class="item_mount float-end p-2 text-center">
-                                <div class="price text-danger">200.000VND</div>
-                                <div class="btn-mount d-flex">
-                                    <button type="button" class="btn btn-outline-secondary">-</button>
-                                    <input type="text" class="display-mount form-control"  placeholder="1" readonly>
-                                    <button type="button" class="btn btn-outline-secondary">+</button>
-                                </div>
-                                <div class="edit_remove text-danger">Edit | Remove</div>
-                            </div>
-                                                 
-                        </div>
+                    // Hiển thị giá trị trên console
+                    console.log('Tổng giá của tất cả sản phẩm:', totalCartPrice);
                     
-                    </div>
-                    <!--End Item full Item 2-->
-                    
-                    <!--back menu-->          
-                    <div class="choose-more m-2 "><a href="{% url 'home' %}" class="text-decoration-none text-danger">CHOOSE MORE FOOD</a></div>
+                });
 
-                </div>
-    
-                <!--Bill--> 
-                <div class="col-4">
-                    <div class="heading-bill">
-                        <h1 class="d-inline-block">Bill</h1>
-                        <span class="">(1 PRODUCT)</span>
-                        <div class="card">
-                            <div class="card-header">CART TOTALS</div>
-                            <div class="card-content">
-                                <!-- row 1 -->
-                                <div class="subtotal d-flex">
-                                    <div class="subtotal-text m-2">Subtotal</div>
-                                    <!-- pading = com -->
-                                    <div class="paddingbangcom2"></div>
-    
-                                    <div class="subtotal-prices float-end m-2">400.000VND</div>
-                                </div>
-    
-                                <!-- row 2 -->
-                                <div class="shipping d-flex">
-                                    <div class="shipping-text m-2">Shipping*</div>
-    
-                                    <!-- pading = com -->
-                                    <div class="paddingbangcom2"></div>
-    
-                                    <div class="free-ship float-end m-2">FreeShip</div>
-                                </div>
-    
-                                <!-- row 3 -->
-                                <div class="total d-flex">
-                                    <div class="total-text m-2">Total</div>
-                                    <!-- pading = com -->
-                                    <div class="paddingbangcom2"></div>
-    
-                                    <div class="Total-prices float-end m-2">400.000VND</div>
-                                </div>
-    
-                            </div>
+                
+            }
 
-                            <button type="button" class="btn-checkout btn btn-outline-danger m-2" ><a href="{% url "checkout" %}" class="text-light">CHECK OUT</a></button>
-
-                        </div>
-                    </div>
-    
-    
-                </div>
-            </div>
-    
             
-        </div>
+        
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const itemId = this.getAttribute('data-id');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const quantityElement = document.querySelector(`.quantity[data-id="${itemId}"]`);
+                    let quantity = parseInt(quantityElement.innerText);
+                    quantity++;
+                    updateCart(itemId, quantity, price);
+                });
+            });
+        
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const itemId = this.getAttribute('data-id');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const quantityElement = document.querySelector(`.quantity[data-id="${itemId}"]`);
+                    let quantity = parseInt(quantityElement.innerText);
+                    if (quantity > 1) {
+                        quantity--;
+                        updateCart(itemId, quantity, price);
+                    }
+                });
+            });
+        
+            document.querySelectorAll('.close').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const itemId = this.getAttribute('data-id');
+                    const rowElement = this.closest('.row');
+                    rowElement.remove();
+                    updateCart(itemId, 0, 0); // Giảm số lượng về 0 và cập nhật giỏ hàng
 
-    </div>
+                });
+            });
+           
+        });
+        
+    </script>
+{% endblock cart_js %}
 
-{% endblock cart %} 
 
-{% endcomment %}
+
 
