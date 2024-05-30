@@ -15,9 +15,8 @@ def add_to_cart(request):
         cart.add(item, quantity)
     return HttpResponse("Add to cart successfully!")
 
-def Deliveries(request):
-    
+def deliveries(request):
     menuItems = MenuItem.objects.all()
 
     context = {'menuItems':  menuItems }
-    return render(request, 'deliveries/deliveries_2.html', context)
+    return render(request, 'deliveries/deliveries.html', context)

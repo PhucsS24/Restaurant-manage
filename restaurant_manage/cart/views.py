@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .cart import Cart
+
 # Create your views here.
 def show_cart(request):
     cart = Cart(request)
@@ -14,5 +16,12 @@ def show_cart(request):
     }
     return render(request, 'cart/cart.html', context)
 
-# print(cart_items[1]['item'].image)
-# print(cart_items[1]['item'].name)   
+def clear_cart(request):
+    cart = Cart(request)
+    cart.clear()
+    return HttpResponse("Clear all cart")
+
+def delete_cart(request):
+    cart = Cart(request)
+    #cart.remove
+    return HttpResponse("Delete a cart")
