@@ -4,6 +4,10 @@ from .models import *
 from datetime import datetime
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from .forms import OrderFormCo
+from cart.views import clear_cart
+from cart.cart import Cart
 
 # Create your views here.
 #view locations
@@ -22,27 +26,34 @@ def checkout(request):
         }
         for voucher in vouchers
     ]
+
+    cart = Cart(request)
+    total_price = cart.get_total_price()
+    total_price_8p=0.08*total_price
+    total=total_price+total_price_8p
+
     context = {
-        'voucher_data': json.dumps(voucher_data)
+        'voucher_data': json.dumps(voucher_data),
+        'total_price': total_price,
+        'total_price_8p': total_price_8p,
+        'total': total,
     }
     return render(request, 'checkout/checkout.html', context)
 
-from django.views.decorators.http import require_POST
-from .forms import OrderFormCo
+
 @require_POST 
 @csrf_exempt 
 def save_orderco(request):
-    print(request.body)
     data = json.loads(request.body)
     form = OrderFormCo(data)
-    print(form.is_valid())
-    print(form.errors)
     if form.is_valid():
         user = request.user if request.user.is_authenticated else None
         orderco = form.save(commit=False)  
         orderco.user = user
         orderco.save()
+        cart = Cart(request)
+        cart.clear()
 
-        return redirect('home')  # Chuyển hướng đến trang thành công
+        return redirect('/')  # Chuyển hướng đến trang thành công
     else:
         return render(request, 'checkout/checkout.html', {'form': form})  # Hiển thị lại form nếu có lỗi
