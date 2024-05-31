@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
-from cart.cart import Cart
 from datetime import datetime
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 #view locations
@@ -22,17 +22,27 @@ def checkout(request):
         }
         for voucher in vouchers
     ]
-
-    cart = Cart(request)
-    cart_items = list(cart.__iter__())
-    total_items = cart.__len__()
-    total_price = cart.get_total_price()
-    
-    # Chuyển đổi thành JSON và đưa vào context
     context = {
-        'voucher_data': json.dumps(voucher_data),
-        'cart_items': cart_items,
-        'total_items': total_items,
-        'total_price': total_price
+        'voucher_data': json.dumps(voucher_data)
     }
     return render(request, 'checkout/checkout.html', context)
+
+from django.views.decorators.http import require_POST
+from .forms import OrderFormCo
+@require_POST 
+@csrf_exempt 
+def save_orderco(request):
+    print(request.body)
+    data = json.loads(request.body)
+    form = OrderFormCo(data)
+    print(form.is_valid())
+    print(form.errors)
+    if form.is_valid():
+        user = request.user if request.user.is_authenticated else None
+        orderco = form.save(commit=False)  
+        orderco.user = user
+        orderco.save()
+
+        return redirect('home')  # Chuyển hướng đến trang thành công
+    else:
+        return render(request, 'checkout/checkout.html', {'form': form})  # Hiển thị lại form nếu có lỗi

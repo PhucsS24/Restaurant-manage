@@ -92,7 +92,7 @@
 
                             </div>
 
-                            <!-- Address -->
+                            <!-- Address
                             <div class="set-address d-flex " style="font-size: 13px;">
                                 <p class="set-address m-1">Set your address:</p>
                                 <div class="form-check m-1">
@@ -105,7 +105,7 @@
                                     <label class="form-check-label" for="radio2">Office</label>
                                 </div>
                                 
-                            </div> 
+                            </div>  -->
 
                             
                             <!-- Payment method -->
@@ -119,10 +119,10 @@
                                         <label class="form-check-label" for="radio3">Paypal/Credit card</label>
     
                                     </div>
-                                    <div class="form-check m-2">
+                                    <!-- <div class="form-check m-2">
                                         <input type="radio" class="form-check-input" id="radio4" name="payment" value="option2">
                                         <label class="form-check-label" for="radio4">Cash on Delivery</label>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         
@@ -149,12 +149,12 @@
                             <div class="date-time d-flex mb-2">
                                 <div class="date m-1 float-start" >
                                     <label class="delivery-date" for="delivery-date">Date:</label>
-                                    <input class="form-control border-secondary rounded" type="date" id="delivery-date " name="">
+                                    <input class="form-control border-secondary rounded" type="date" id="delivery-date" name="">
                                 </div>
 
                                 <div class="time m-1 float-end">
                                     <label class="delivery-time" for="delivery-time">Time:</label>
-                                    <input class="form-control border-secondary rounded" type="time" id="delivery-time " name="">
+                                    <input class="form-control border-secondary rounded" type="time" id="delivery-time" name="">
                                 </div>
                             </div>
 
@@ -204,8 +204,9 @@
     
                             </div>
     
-                            <button type="button" class="btn-checkout btn btn-outline-warning m-2 text-dark" >PayPal</button>
-                            <button type="button" class="btn-checkout btn btn-outline-danger mb-5 m-2" >Credit card</button>
+                            <!-- <button type="button" class="btn-checkout btn btn-outline-warning m-2 text-dark" >PayPal</button> -->
+                            <div id="paypal-button-container"></div>
+                            <!-- <button type="button" class="btn-checkout btn btn-outline-danger mb-5 m-2" >Credit card</button> -->
                         </div>
 
                     </div>
@@ -218,7 +219,7 @@
         </div>
 
     </div>
-    {{ voucher_data }} 
+
 {% endblock checkout_html %}
 {% block delivery_js %}
 <script> 
@@ -258,8 +259,8 @@ document.addEventListener('DOMContentLoaded', function () {
             newTotal=newTotal+newVAT;
 
             // Cập nhật tổng tiền và VAT trên giao diện
-            totalPriceElement.innerText = newTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' VND';
-            priceVatElement.innerText = newVAT.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' VND';
+            totalPriceElement.innerText = newTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' VND';
+            priceVatElement.innerText = newVAT.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' VND';
         } else {
             alert('Mã giảm giá không hợp lệ hoặc đã bị vô hiệu hóa.');
         }
@@ -269,6 +270,101 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+</script>
+<script src="https://www.paypal.com/sdk/js?client-id=AVlDeAhjA8189SXXDBwrjKrGFOvp2gubFfjuQkoA0ZQzuxsskhcUiMSZYX0tBwyf0Dqkih9tWFybkOxp&currency=USD&intent=capture" data-sdk-integration-source="button-factory"></script>
+<script>
+    let totalAmount = 10;
+    paypal.Buttons({
+        // Thiết lập cấu hình cho nút PayPal
+        style: {
+            layout:  'vertical',
+            color:   'gold',
+            shape:   'rect',
+            label:   'paypal',
+            tagline: false
+        },
+        createOrder: function (data, actions) {
+            const totalAmountElement = document.getElementById('totalPrice');
+            console.log(totalAmountElement.innerText);
+            totalAmount = Math.round(parseFloat(
+                totalAmountElement.innerText
+                    .replace(/,/g, '') // Loại bỏ dấu phẩy trước
+                    .replace(/[^\d.]/g, '') // Loại bỏ các ký tự không phải số và dấu chấm
+            ));
+            const exchangeRate = 23200; // Tỷ giá 1 USD = 23.200 VND (ví dụ)
+            const totalAmountUSD = (totalAmount / exchangeRate).toFixed(2); // Làm tròn 2 chữ số thập phân
+            console.log("Tổng số tiền gửi tới PayPal:", totalAmount);
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        currency_code: "USD", // Đặt mã tiền tệ thành VND
+                        value: totalAmountUSD  // Sử dụng totalAmount đã được cập nhật
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // Thanh toán thành công
+                //Lưu form
+                alert('Thanh toán thành công!');
+                //////////////////////
+            const totalAmountElement = document.getElementById('totalPrice');
+            console.log(totalAmountElement.innerText);
+            totalAmount = Math.round(parseFloat(
+                totalAmountElement.innerText
+                    .replace(/,/g, '') // Loại bỏ dấu phẩy trước
+                    .replace(/[^\d.]/g, '') // Loại bỏ các ký tự không phải số và dấu chấm
+            ));
+                const formData = {
+                    first_name: document.getElementById('fname').value,
+                    last_name: document.getElementById('lname').value,
+                    phone : document.getElementById('phone').value,
+                    email:document.getElementById('email').value,
+                    created_at: new Date().toISOString(),
+                    address:document.getElementById('address').value,
+                    payment_method: "Paypal/Credit card",
+                    country: "VietNam",
+                    // order_total:100,
+                    delivery_time: document.getElementById('delivery-time').value,
+                    delivery_date:document.getElementById('delivery-date').value,
+                    // order_note:document.getElementById('note').value,
+                    order_total:Math.round(parseFloat(
+                                    document.getElementById('totalPrice').innerText
+                                        .replace(/,/g, '') // Loại bỏ dấu phẩy trước
+                                        .replace(/[^\d.]/g, '') // Loại bỏ các ký tự không phải số và dấu chấm
+                                    )),
+
+                    
+                };
+
+                // Gửi dữ liệu form tới backend (ví dụ: sử dụng fetch hoặc AJAX)
+                fetch("{% url 'save_order' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Thanh toán và lưu thông tin thành công!');
+                        // Chuyển hướng đến trang thành công hoặc thực hiện các hành động khác
+                    } else {
+                        alert('Đã xảy ra lỗi khi lưu thông tin.');
+                    }
+                });
+
+
+
+            });
+        },
+        onError: function(err) {
+            // Thanh toán thất bại
+            alert('Thanh toán thất bại.');
+            console.error(err);
+        }
+    }).render('#paypal-button-container'); // Render nút PayPal vào container
 </script>
 {% endblock delivery_js %}
 

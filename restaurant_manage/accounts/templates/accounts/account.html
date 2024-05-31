@@ -260,20 +260,44 @@
                 <div id="demo4" class="RESERVATION  collapse" data-bs-parent="#accordion">
 
                     <div class="card">
-                        <h5 class="heading_profile p-2">ALL PURCHASE</h5>
-                    </div>
-                                          
-                    <div class="card">
-                        <div class="row">
-                            <div class="col">
-                                #item
-                            </div>                              
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">DELIVERY</h5> 
                         </div>
-
-                        <div class="row">
-                            <div class="col">#item</div>                              
+                        <div class="card-body">
+                            {% if bookings %}
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Họ và tên</th>
+                                            <th>Ngày giao</th>
+                                            <th>Giờ giao</th>
+                                            <th>SĐT</th>
+                                            <th>Email</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Thời gian tạo</th>
+                                            <th>Tổng tiền</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in orders %}
+                                            <tr>
+                                                <td>{{ order.first_name }} {{ order.last_name }} </td>
+                                                <td>{{ order.delivery_date }}</td>
+                                                <td>{{ order.delivery_time }}</td>
+                                                <td>{{ order.phone }}</td>
+                                                <td>{{ order.email }}</td>
+                                                <td>{{ order.address }}</td>
+                                                <td>{{ order.created_at }}</td>
+                                                <td>{{ order.order_total }} VNĐ</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p class="text-center text-muted">Chưa có thông tin đặt bàn.</p>
+                            {% endif %}
                         </div>
-
                     </div>
                     
                 </div>

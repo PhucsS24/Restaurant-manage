@@ -44,6 +44,7 @@ def signin(request):
         form = SignInForm()
     return render(request, 'accounts/signin-new.html', {'form': form})
 from reservations.models import Booking
+from checkout.models import OrderCo
 
 @login_required
 def account(request):
@@ -51,7 +52,8 @@ def account(request):
 
     get_user = CustomUser.objects.all()   
     bookings = Booking.objects.filter(user=user) 
-    context = {'get_users': get_user,'bookings': bookings, }
+    order = OrderCo.objects.filter(user=user)
+    context = {'get_users': get_user,'bookings': bookings,'orders':order, }
     
     return render(request, 'accounts/account.html', context)
 
