@@ -4,6 +4,11 @@ from .models import *
 from datetime import datetime
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+
+from .forms import OrderFormCo
+from cart.views import clear_cart
+from cart.cart import Cart
 
 
 # Create your views here.
