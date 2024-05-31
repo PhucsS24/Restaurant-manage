@@ -29,13 +29,13 @@
                                     <div class="col-md-6">
                                         <form action="/action_page.php" class="was-validated">
                                             <div class="mb-3 mt-3">   
-                                                <input type="text" class="form-control info" id="fname" placeholder="Enter first name" name="fname" required>
+                                                <input type="text" class="form-control info" id="fname" value="{{user.first_name}}" placeholder="Enter first name" name="fname" required>
                                                 <div class="valid-feedback">Valid.</div>
                                                 <div class="invalid-feedback">Please fill out this field.</div>
                                             </div>
 
                                             <div class="mb-3">                                                  
-                                                <input type="tel" class="form-control info" id="phone" placeholder="Phone" name="phone" required>
+                                                <input type="tel" class="form-control info" id="phone" value="{{user.phone}}" placeholder="Phone" name="phone" required>
                                                 <div class="valid-feedback">Valid.</div>
                                                 <div class="invalid-feedback">Please fill out this field.</div>
                                             </div>
@@ -47,13 +47,13 @@
                                     <div class="col-md-6">
                                         <form action="/action_page.php" class="was-validated">
                                             <div class="mb-3 mt-3">   
-                                                <input type="text" class="form-control info" id="lname" placeholder="Enter last name" name="lname" required>
+                                                <input type="text" class="form-control info" id="lname" value="{{user.last_name}}" placeholder="Enter last name" name="lname" required>
                                                 <div class="valid-feedback">Valid.</div>
                                                 <div class="invalid-feedback">Please fill out this field.</div>
                                             </div>
 
                                             <div class="mb-3">                                                  
-                                                <input type="email" class="form-control info"  id="email" placeholder="Email" name="email" required>
+                                                <input type="email" class="form-control info"  id="email" value="{{user.email}}" placeholder="Email" name="email" required>
                                                 <div class="valid-feedback">Valid.</div>
                                                 <div class="invalid-feedback">Please fill out this field.</div>
                                             </div>
@@ -169,7 +169,7 @@
                                     <!-- pading = com -->
                                     <div class="paddingbangcom2" style="margin: 0 90px;"></div>
     
-                                    <div class="subtotal-prices float-end m-2">100,000VND</div>
+                                    <div class="subtotal-prices float-end m-2">{{total_price}} VND</div>
                                 </div>
 
                                 <!-- row 2 -->

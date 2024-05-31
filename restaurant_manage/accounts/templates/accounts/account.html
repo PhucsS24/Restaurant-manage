@@ -111,14 +111,14 @@
                                 <div class="col-md-6">
                                     <div class="mb-1 mt-1">
                                         <label for="username" class="form-label">Last name</label>
-                                        <input type="text" class="form-control bg-white" id="username" name="username" placeholder="{{ user.last_name }}">
+                                        <input type="text" class="form-control bg-white" id="username" name="username" value="{{user.last_name}}" placeholder="{{ user.last_name }}">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-1 mt-1">
                                         <label for="fullname" class="form-label">First name</label>
-                                        <input type="text" class="form-control bg-white" id="fullname" name="fullname" placeholder="{{ user.first_name }}">
+                                        <input type="text" class="form-control bg-white" id="fullname" name="fullname" value="{{user.first_name}}" placeholder="{{ user.first_name }}">
                                     </div>
                                 </div>
                             </div>
@@ -127,14 +127,14 @@
                                 <div class="col-md-6">
                                     <div class="mb-1 mt-1">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control bg-white" id="email" name="email" placeholder="{{ user.email }}" disabled>
+                                        <input type="email" class="form-control bg-white" id="email" name="email" value="{{user.email}}" placeholder="{{ user.email }}" disabled>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-1 mt-1">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="tel" class="form-control bg-white" id="phone" name="phone" placeholder="{{ user.phone }}" >
+                                        <input type="tel" class="form-control bg-white" id="phone" name="phone" value="{{user.phone}}" placeholder="{{ user.phone }}" >
                                     </div>
                                 </div>
                             </div>

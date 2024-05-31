@@ -4,6 +4,7 @@ from .models import *
 from datetime import datetime
 import json
 from django.views.decorators.csrf import csrf_exempt
+from cart.views import show_cart
 
 # Create your views here.
 #view locations

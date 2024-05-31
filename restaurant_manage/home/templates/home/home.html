@@ -100,7 +100,7 @@
                             <!-- fname -->
                             <div class="col-md-3">
                                 <div class="mb-1 mt-1">   
-                                    <input type="text" class="form-control form-control-lg info" id="fname" placeholder="Enter first name" name="fname" required>
+                                    <input type="text" class="form-control form-control-lg info" id="fname" value="{{user.first_name}}" placeholder="Enter first name" name="fname" required>
                                     <div class="valid-feedback check-valid"></div>
                                     <div class="invalid-feedback check-valid"></div>
                                 </div>
@@ -109,7 +109,7 @@
                             <!-- lname -->
                             <div class="col-md-3">
                                 <div class="mb-1 mt-1">   
-                                    <input type="text" class="form-control form-control-lg info" id="lname" placeholder="Enter last name" name="lname" required>
+                                    <input type="text" class="form-control form-control-lg info" id="lname" value="{{user.last_name}}" placeholder="Enter last name" name="lname" required>
                                     <div class="valid-feedback check-valid"></div>
                                     <div class="invalid-feedback check-valid"></div>
                                 </div>
@@ -118,7 +118,7 @@
                             <!-- phone -->
                             <div class="col-md-3">
                                 <div class="mb-1 mt-1">   
-                                    <input type="tel" class="form-control form-control-lg info" id="phone" placeholder="Phone" name="phone" required>
+                                    <input type="tel" class="form-control form-control-lg info" id="phone" value="{{user.phone}}" placeholder="Phone" name="phone" required>
                                     <div class="valid-feedback check-valid" ></div>
                                     <div class="invalid-feedback check-valid"></div>
                                     <div style="display: block !important; color: red !important;" class="invalid-feedback" id="phone-error" >
@@ -129,7 +129,7 @@
                             <!-- email -->
                             <div class="col-md-3">
                                 <div class="mb-1 mt-1" >   
-                                    <input type="email" class="form-control form-control-lg info" id="email" placeholder="Email" name="email" required>
+                                    <input type="email" class="form-control form-control-lg info" id="email" value="{{user.email}}" placeholder="Email" name="email" required>
                                     <div class="valid-feedback check-valid"></div>
                                     <div class="invalid-feedback check-valid"></div>
                                     <div style="display: block !important; color: red !important;" class="invalid-feedback" id="email-error"></div>
