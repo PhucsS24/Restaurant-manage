@@ -4,7 +4,8 @@ from django.conf import settings
 from .forms import SignUpForm, SignInForm
 from django.contrib.auth.decorators import login_required
 from accounts.models import CustomUser
-from .forms import EditProfileForm
+
+from django.contrib import messages
 
 # Create your views here.
 #sign up
@@ -58,15 +59,3 @@ def account(request):
     return render(request, 'accounts/account.html', context)
 
 
-@login_required
-def profile(request):
-    user = request.user
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')  # Chuyển hướng về trang profile sau khi lưu thành công
-    else:
-        form = EditProfileForm(instance=user)
-
-    return render(request, 'account.html', {'user': user, 'form': form})

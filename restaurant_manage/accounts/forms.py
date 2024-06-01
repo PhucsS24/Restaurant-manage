@@ -30,7 +30,7 @@ class SignInForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class EditProfileForm(forms.ModelForm):
-    class Meta:
-        model = CustomUser
-        fields = ('first_name', 'last_name', 'email', 'phone')
+# class EditProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = CustomUser
+#         fields = ('first_name', 'last_name', 'email', 'phone')
