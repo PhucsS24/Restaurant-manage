@@ -4,6 +4,7 @@ from decimal import Decimal
 from re import sub
 
 class Cart:
+    total = 0
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
@@ -45,8 +46,14 @@ class Cart:
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
     
-    def get_total_price(self):
-        return sum(int(item['price']) * item['quantity'] for item in self.cart.values())
+    def set_total_price(self, total):
+        self.total = total
+        self.session['cart_total'] = self.total
+        self.save()
+
+    def get_total_price(self, is_override=False):
+        total = sum(int(item['price']) * item['quantity'] for item in self.cart.values())
+        return total
     
     def clear(self):
         for key in list(self.cart.keys()):
