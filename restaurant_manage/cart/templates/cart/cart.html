@@ -77,7 +77,7 @@
                         <div class="col text-right" id="total-price">{{ total_price }} VND</div>
 
                     </div>
-                    <button id="checkout-btn" class="btn"><a href="{% url 'checkout' %}" class="text-light">CHECK OUT</a></button>
+                  <button id="checkout-btn" class="btn"><a  class="text-light">CHECK OUT</a></button> 
                 </div>
                 
             </div>
@@ -139,13 +139,8 @@
                     // Hiển thị giá trị trên console
                     console.log('Tổng giá của tất cả sản phẩm:', totalCartPrice);
                     
-                });
-
-                
-            }
-
-            
-        
+                });   
+            }        
             document.querySelectorAll('.increase').forEach(button => {
                 button.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -207,8 +202,30 @@
                     })
                 });
             });
-        });
-        
+
+            document.getElementById('checkout-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                const totalCartPrice = document.getElementById('total-price').innerText.replace(/\D/g, '');
+                console.log(totalCartPrice);
+                $.ajax({
+                    url: "{% url 'total' %}",
+                    type: "POST",
+                    data: {
+                        total_price: totalCartPrice,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.redirect_url) {
+                            window.location.href = response.redirect_url;
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        })
     </script>
 {% endblock cart_js %}
 

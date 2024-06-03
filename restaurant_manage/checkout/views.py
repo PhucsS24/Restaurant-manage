@@ -29,8 +29,8 @@ def checkout(request):
         for voucher in vouchers
     ]
 
-    cart = Cart(request)
-    total_price = cart.get_total_price()
+    #cart = Cart(request)
+    total_price = int(request.session.get('cart_total'))
     total_price_8p=0.08*total_price
     total=total_price+total_price_8p
 

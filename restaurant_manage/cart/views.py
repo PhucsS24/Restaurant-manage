@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 from deliveries.models import MenuItem
 from .cart import Cart
 
@@ -36,3 +37,12 @@ def delete_cart(request):
         except MenuItem.DoesNotExist:
             return JsonResponse({'success': True, 'error':'Item not found'})
     return JsonResponse({'success': True, 'error':'Invalid request'})
+
+@require_POST
+@csrf_exempt
+def checkout(request):
+    total_price = request.POST.get('total_price')
+    cart = Cart(request)
+    cart.set_total_price(total_price)
+    cart.save()
+    return JsonResponse({'message': 'Checkout successful', 'redirect_url': '/checkout/'})
