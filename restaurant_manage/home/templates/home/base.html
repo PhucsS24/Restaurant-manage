@@ -51,10 +51,10 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="menuDropdown">
                             <a class="dropdown-item" href="{% url 'menu' %}">ALL</a>
-                            <a class="dropdown-item" href="#">Popular</a>
-                            <a class="dropdown-item" href="#">Beef</a>
-                            <a class="dropdown-item" href="#">Soup &amp; Salad</a>
-                            <a class="dropdown-item" href="#">Drink</a>
+                            <a class="dropdown-item" href="{% url 'menu' %}">Popular</a>
+                            <a class="dropdown-item" href="{% url 'menu' %}">Beef</a>
+                            <a class="dropdown-item" href="{% url 'menu' %}">Soup &amp; Salad</a>
+                            <a class="dropdown-item" href="{% url 'menu' %}">Drink</a>
                         </div>
                     </li>
 
@@ -69,9 +69,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="locationDropdown">
                             <a class="dropdown-item" href="{% url 'locations' %}">All</a>
-                            <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                            <a class="dropdown-item" href="#">Ha Noi</a>
-                            <a class="dropdown-item" href="#">Da Nang</a>
+                            <a class="dropdown-item" href="{% url 'locations' %}">Ho Chi Minh</a>
+                            <a class="dropdown-item" href="{% url 'locations' %}">Ha Noi</a>
+                            <a class="dropdown-item" href="{% url 'locations' %}">Da Nang</a>
                         </div>
                     </li>
 
